@@ -40,10 +40,12 @@ namespace Capstone.DAL
 
                     cmd.ExecuteNonQuery();
                 }
+
+                result = true;
             }
             catch (SqlException)
             {
-                throw;
+                result = false;
             }
 
             return result;
@@ -66,14 +68,21 @@ namespace Capstone.DAL
                     {
                         Property property = new Property();
 
+                        property.PropertyID = Convert.ToInt32(reader["PropertyID"]);
+                        property.PropertyOwnerID = Convert.ToInt32(reader["PropertyOwnerID"]);
+                        property.NumberOfUnits = Convert.ToInt32(reader["NumberOfUnits"]);
+                        property.PropertyType = Convert.ToString(reader["PropertyType"]);
+                        property.ManagerID = Convert.ToInt32(reader["ManagerID"]);
+                        property.ImageSource = Convert.ToString(reader["ImageSource"]);
+                        property.PropertyName = Convert.ToString(reader["PropertyName"]);
 
+                        returnedProperties.Add(property);
                     }
                 }
             }
             catch (SqlException)
             {
-
-                throw;
+                returnedProperties = new List<Property>();
             }
 
             return returnedProperties;

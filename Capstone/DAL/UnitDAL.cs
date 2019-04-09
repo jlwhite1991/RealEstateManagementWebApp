@@ -51,10 +51,12 @@ namespace Capstone.DAL
 
                     cmd.ExecuteNonQuery();
                 }
+
+                result = true;
             }
             catch (SqlException)
             {
-                throw;
+                result = false;
             }
 
             return result;
