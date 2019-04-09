@@ -20,5 +20,14 @@ namespace Capstone.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        public IActionResult SubmitedForm([FromBody] FormViewModel form)
+        {
+            string message = "";
+
+            //Insert to Database, send emai, etc
+
+            return Json(new { message });
+        }
     }
 }
