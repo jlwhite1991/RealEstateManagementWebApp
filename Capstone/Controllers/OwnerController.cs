@@ -31,9 +31,22 @@ namespace Capstone.Controllers
         {
             propertyDAL.AddProperty(property);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("UnitForm");
         }
 
+        [HttpGet]
+        public IActionResult UnitForm()
+        {
+            return View();
+        }
 
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public IActionResult UnitForm(Unit unit)
+        {
+            unitDAL.AddUnit(unit);
+
+            return RedirectToAction("UnitForm");
+        }
     }
 }

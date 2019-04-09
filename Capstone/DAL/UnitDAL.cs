@@ -10,7 +10,7 @@ namespace Capstone.DAL
 {
     public class UnitDAL : IUnitDAL
     {
-        private const string SQL_AddUnit = "INSERT INTO Unit (PropertyID, TenantID, MonthlyRent, Sqft, NumOfBaths, NumOfBeds, Description, ApplicationFee, SecurityDeposit, PetDeposit, TagLine, AddressID, ImageSource, AddressLine1, AddressLine2, City, State, ZipCode) VALUES (@PropertyID, @TenantID, @MonthlyRent, @Sqft, @NumOfBaths, @NumOfBeds, @Description, @ApplicationFee, @SecurityDeposit, @PetDeposit, @TagLine, @AddressID, @ImageSource, @AddressLine1, @AddressLine2, @City, @State, @ZipCode);";
+        private const string SQL_AddUnit = "INSERT INTO Unit (PropertyID, TenantID, MonthlyRent, Sqft, NumOfBaths, NumOfBeds, Description, ApplicationFee, SecurityDeposit, PetDeposit, TagLine, ImageSource, AddressLine1, AddressLine2, City, State, ZipCode) VALUES (@PropertyID, @TenantID, @MonthlyRent, @Sqft, @NumOfBaths, @NumOfBeds, @Description, @ApplicationFee, @SecurityDeposit, @PetDeposit, @TagLine, @ImageSource, @AddressLine1, @AddressLine2, @City, @State, @ZipCode);";
 
         private string connectionString;
 
@@ -41,10 +41,9 @@ namespace Capstone.DAL
                     cmd.Parameters.AddWithValue("@SecurityDeposit", unit.SecurityDeposit);
                     cmd.Parameters.AddWithValue("@PetDeposit", unit.PetDeposit);
                     cmd.Parameters.AddWithValue("@TagLine", unit.UnitTagline);
-                    cmd.Parameters.AddWithValue("@AddressID", unit.AddressID);
-                    cmd.Parameters.AddWithValue("@ImageSource", unit.ImageSource);
+                    cmd.Parameters.AddWithValue("@ImageSource", (unit.ImageSource??(object)DBNull.Value));
                     cmd.Parameters.AddWithValue("@AddressLine1", unit.AddressLine1);
-                    cmd.Parameters.AddWithValue("@AddressLine2", unit.AddressLine2);
+                    cmd.Parameters.AddWithValue("@AddressLine2", (unit.AddressLine2??(object)DBNull.Value));
                     cmd.Parameters.AddWithValue("@City", unit.City);
                     cmd.Parameters.AddWithValue("@State", unit.State);
                     cmd.Parameters.AddWithValue("@ZipCode", unit.ZipCode);
@@ -54,9 +53,10 @@ namespace Capstone.DAL
 
                 result = true;
             }
-            catch (SqlException)
+            catch (SqlException ex)
             {
                 result = false;
+                throw ex;
             }
 
             return result;
