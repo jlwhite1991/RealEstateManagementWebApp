@@ -1,11 +1,13 @@
-﻿using System;
+﻿using Capstone.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Capstone.DAL.Interfaces
 {
-    public class IUnitDAL
+    public interface IUnitDAL
     {
+        bool AddUnit(Unit unit);
     }
 }
