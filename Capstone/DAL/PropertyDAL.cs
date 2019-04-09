@@ -22,8 +22,8 @@ namespace Capstone.DAL
 
         public bool AddProperty(Property property)
         {
-            bool result = false;
-
+            bool result;
+            
             try
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
@@ -35,7 +35,7 @@ namespace Capstone.DAL
                     cmd.Parameters.AddWithValue("@NumberOfUnits", property.NumberOfUnits);
                     cmd.Parameters.AddWithValue("@PropertyType", property.PropertyType);
                     cmd.Parameters.AddWithValue("@ManagerID", property.ManagerID);
-                    cmd.Parameters.AddWithValue("@ImageSource", property.ImageSource);
+                    cmd.Parameters.AddWithValue("@ImageSource", (property.ImageSource ?? (object)DBNull.Value));
                     cmd.Parameters.AddWithValue("@PropertyName", property.PropertyName);
 
                     cmd.ExecuteNonQuery();
@@ -43,9 +43,10 @@ namespace Capstone.DAL
 
                 result = true;
             }
-            catch (SqlException)
+            catch (SqlException ex)
             {
                 result = false;
+                throw ex;
             }
 
             return result;

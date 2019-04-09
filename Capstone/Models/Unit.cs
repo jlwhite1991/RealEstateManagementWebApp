@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -13,10 +14,9 @@ namespace Capstone.Models
 
         public int TenantID { get; set; }
 
-        public int AddressID { get; set; }
-
         public string AddressLine1 { get; set; }
 
+        [DefaultValue("NULL")]
         public string AddressLine2 { get; set; }
 
         public string City { get; set; }
@@ -43,6 +43,7 @@ namespace Capstone.Models
 
         public string UnitTagline { get; set; }
 
+        [DefaultValue("NULL")]
         public string ImageSource { get; set; }
     }
 }
