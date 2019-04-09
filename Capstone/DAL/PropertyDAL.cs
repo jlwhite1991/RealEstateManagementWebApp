@@ -7,5 +7,11 @@ namespace Capstone.DAL
 {
     public class PropertyDAL
     {
+        private string connectionString;
+
+        public PropertyDAL(string connectionString)
+        {
+            this.connectionString = connectionString;
+        }
     }
 }

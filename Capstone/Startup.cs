@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Capstone.DAL;
+using Capstone.DAL.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -30,6 +32,19 @@ namespace Capstone
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            //services.AddDistributedMemoryCache();
+            //services.AddSession(options =>
+            //{
+            //    // Sets session expiration to 20 minuates
+            //    options.IdleTimeout = TimeSpan.FromMinutes(10);
+            //    options.Cookie.HttpOnly = true;
+            //});
+
+            string connectionString = Configuration.GetConnectionString("Default");
+
+            services.AddScoped<IPropertyDAL, PropertyDAL>(c => new PropertyDAL(connectionString));
+            services.AddScoped<IUnitDAL, UnitDAL>(c => new UnitDAL(connectionString));
+
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
@@ -47,6 +62,8 @@ namespace Capstone
             }
 
             app.UseStaticFiles();
+            //app.UseCookiePolicy();
+            //app.UseSession();
 
             app.UseMvc(routes =>
             {
