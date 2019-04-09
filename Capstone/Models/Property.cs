@@ -18,5 +18,7 @@ namespace Capstone.Models
         public string PropertyType { get; set; }
 
         public string ImageSource { get; set; }
+
+        public List<Unit> UnitsAtThisProperty { get; set; }
     }
 }
