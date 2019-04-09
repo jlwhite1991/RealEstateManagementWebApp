@@ -1,4 +1,5 @@
-﻿using Capstone.Models;
+﻿using Capstone.DAL.Interfaces;
+using Capstone.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -7,9 +8,10 @@ using System.Threading.Tasks;
 
 namespace Capstone.DAL
 {
-    public class PropertyDAL
+    public class PropertyDAL : IPropertyDAL
     {
-        private const string SQL_AddProperty = "INSERT INTO Property (PropertyOwnerID, NumberOfUnits, PropertyType, ManagerID, ImageSource, PropertyName) VALUES (@PropertyOwnerID, @NumberOfUnits, @PropertyType, @ManagerID, @ImageSource, @PropertyName)";
+        private const string SQL_AddProperty = "INSERT INTO Property (PropertyOwnerID, NumberOfUnits, PropertyType, ManagerID, ImageSource, PropertyName) VALUES (@PropertyOwnerID, @NumberOfUnits, @PropertyType, @ManagerID, @ImageSource, @PropertyName);";
+        private const string SQL_GetAllProperties = "SELECT * FROM Property;";
 
         private string connectionString;
 
@@ -18,8 +20,10 @@ namespace Capstone.DAL
             this.connectionString = connectionString;
         }
 
-        public void AddProperty(Property property)
+        public bool AddProperty(Property property)
         {
+            bool result = false;
+
             try
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
@@ -41,6 +45,38 @@ namespace Capstone.DAL
             {
                 throw;
             }
+
+            return result;
+        }
+
+        public List<Property> GetAllProperties()
+        {
+            List<Property> returnedProperties = new List<Property>();
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    SqlCommand cmd = new SqlCommand(SQL_GetAllProperties, connection);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        Property property = new Property();
+
+
+                    }
+                }
+            }
+            catch (SqlException)
+            {
+
+                throw;
+            }
+
+            return returnedProperties;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Capstone.Models;
+﻿using Capstone.DAL.Interfaces;
+using Capstone.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -7,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Capstone.DAL
 {
-    public class UnitDAL
+    public class UnitDAL : IUnitDAL
     {
-        private const string SQL_AddUnit = "INSERT INTO Unit (PropertyID, TenantID, MonthlyRent, Sqft, NumOfBaths, NumOfBeds, Description, ApplicationFee, SecurityDeposit, PetDeposit, TagLine, AddressID, ImageSource, AddressLine1, AddressLine2, City, State, ZipCode) VALUES (@PropertyID, @TenantID, @MonthlyRent, @Sqft, @NumOfBaths, @NumOfBeds, @Description, @ApplicationFee, @SecurityDeposit, @PetDeposit, @TagLine, @AddressID, @ImageSource, @AddressLine1, @AddressLine2, @City, @State, @ZipCode)";
+        private const string SQL_AddUnit = "INSERT INTO Unit (PropertyID, TenantID, MonthlyRent, Sqft, NumOfBaths, NumOfBeds, Description, ApplicationFee, SecurityDeposit, PetDeposit, TagLine, AddressID, ImageSource, AddressLine1, AddressLine2, City, State, ZipCode) VALUES (@PropertyID, @TenantID, @MonthlyRent, @Sqft, @NumOfBaths, @NumOfBeds, @Description, @ApplicationFee, @SecurityDeposit, @PetDeposit, @TagLine, @AddressID, @ImageSource, @AddressLine1, @AddressLine2, @City, @State, @ZipCode);";
 
         private string connectionString;
 
@@ -18,8 +19,10 @@ namespace Capstone.DAL
             this.connectionString = connectionString;
         }
 
-        public void AddUnit(Unit unit)
+        public bool AddUnit(Unit unit)
         {
+            bool result = false;
+
             try
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
@@ -53,6 +56,8 @@ namespace Capstone.DAL
             {
                 throw;
             }
+
+            return result;
         }
     }
 }
