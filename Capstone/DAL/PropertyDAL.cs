@@ -9,7 +9,7 @@ namespace Capstone.DAL
 {
     public class PropertyDAL
     {
-        private const string SQL_AddProperty = "INSERT INTO Property (PropertyOwnerID, NumberOfUnits, PropertyType, ManagerID, ImageSource) VALUES (@PropertyOwnerID, @NumberOfUnits, @PropertyType, @ManagerID, @ImageSource)";
+        private const string SQL_AddProperty = "INSERT INTO Property (PropertyOwnerID, NumberOfUnits, PropertyType, ManagerID, ImageSource, PropertyName) VALUES (@PropertyOwnerID, @NumberOfUnits, @PropertyType, @ManagerID, @ImageSource, @PropertyName)";
 
         private string connectionString;
 
@@ -32,6 +32,7 @@ namespace Capstone.DAL
                     cmd.Parameters.AddWithValue("@PropertyType", property.PropertyType);
                     cmd.Parameters.AddWithValue("@ManagerID", property.ManagerID);
                     cmd.Parameters.AddWithValue("@ImageSource", property.ImageSource);
+                    cmd.Parameters.AddWithValue("@PropertyName", property.PropertyName);
 
                     cmd.ExecuteNonQuery();
                 }

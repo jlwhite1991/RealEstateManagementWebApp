@@ -9,11 +9,21 @@ namespace Capstone.Models
     {
         public int UnitID { get; set; }
 
-        public int PropeertyID { get; set; }
+        public int PropertyID { get; set; }
 
         public int TenantID { get; set; }
 
         public int AddressID { get; set; }
+
+        public string AddressLine1 { get; set; }
+
+        public string AddressLine2 { get; set; }
+
+        public string City { get; set; }
+
+        public string State { get; set; }
+
+        public int ZipCode { get; set; }
 
         public decimal MonthlyRent { get; set; }
 

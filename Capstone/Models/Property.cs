@@ -13,6 +13,8 @@ namespace Capstone.Models
 
         public int ManagerID { get; set; }
 
+        public string PropertyName { get; set; }
+
         public int NumberOfUnits { get; set; }
 
         public string PropertyType { get; set; }
