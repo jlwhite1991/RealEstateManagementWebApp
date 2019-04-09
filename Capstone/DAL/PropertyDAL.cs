@@ -10,7 +10,7 @@ namespace Capstone.DAL
 {
     public class PropertyDAL : IPropertyDAL
     {
-        private const string SQL_AddProperty = "INSERT INTO Property (PropertyOwnerID, NumberOfUnits, PropertyType, ManagerID, ImageSource, PropertyName) VALUES (@PropertyOwnerID, @NumberOfUnits, @PropertyType, @ManagerID, @ImageSource, @PropertyName);";
+        private const string SQL_AddProperty = "INSERT INTO Property (PropertyOwnerID, NumberOfUnits, PropertyType, ManagerID, PropertyName) VALUES (@PropertyOwnerID, @NumberOfUnits, @PropertyType, @ManagerID, @PropertyName);";
         private const string SQL_GetAllProperties = "SELECT * FROM Property;";
 
         private string connectionString;
@@ -22,7 +22,7 @@ namespace Capstone.DAL
 
         public bool AddProperty(Property property)
         {
-            bool result = false;
+            bool result;
 
             try
             {
@@ -35,7 +35,7 @@ namespace Capstone.DAL
                     cmd.Parameters.AddWithValue("@NumberOfUnits", property.NumberOfUnits);
                     cmd.Parameters.AddWithValue("@PropertyType", property.PropertyType);
                     cmd.Parameters.AddWithValue("@ManagerID", property.ManagerID);
-                    cmd.Parameters.AddWithValue("@ImageSource", property.ImageSource);
+                    //cmd.Parameters.AddWithValue("@ImageSource", property.ImageSource); TODO: Add this feature later
                     cmd.Parameters.AddWithValue("@PropertyName", property.PropertyName);
 
                     cmd.ExecuteNonQuery();
@@ -43,9 +43,10 @@ namespace Capstone.DAL
 
                 result = true;
             }
-            catch (SqlException)
+            catch (SqlException ex)
             {
                 result = false;
+                throw ex;
             }
 
             return result;

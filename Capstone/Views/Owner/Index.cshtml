@@ -1,0 +1,78 @@
+﻿@model Capstone.Models.Property
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<h4>Property</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Index">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="PropertyOwnerID" class="control-label"></label>
+                <input asp-for="PropertyOwnerID" class="form-control" />
+                <span asp-validation-for="PropertyOwnerID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ManagerID" class="control-label"></label>
+                <input asp-for="ManagerID" class="form-control" />
+                <span asp-validation-for="ManagerID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PropertyName" class="control-label"></label>
+                <input asp-for="PropertyName" class="form-control" />
+                <span asp-validation-for="PropertyName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumberOfUnits" class="control-label"></label>
+                <input asp-for="NumberOfUnits" class="form-control" />
+                <span asp-validation-for="NumberOfUnits" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="radio" name="PropertyType" value="single family" class="activity-selector" />
+                <label asp-for="PropertyType" class="control-label">Single Family</label>
+
+                <input type="radio" name="PropertyType" value="duplex" class="activity-selector" />
+                <label asp-for="PropertyType" class="control-label">Duplex</label>
+
+                <input type="radio" name="PropertyType" value="triplex" class="activity-selector" />
+                <label asp-for="PropertyType" class="control-label">Triplex</label>
+
+                <input type="radio" name="PropertyType" value="fourplex" class="activity-selector" />
+                <label asp-for="PropertyType" class="control-label">Fourplex</label>
+
+                <input type="radio" name="PropertyType" value="multi-family" class="activity-selector" />
+                <label asp-for="PropertyType" class="control-label">Multi-Family</label>
+
+                <input type="radio" name="PropertyType" value="condo" class="activity-selector" />
+                <label asp-for="PropertyType" class="control-label">Condo</label>
+
+                <input type="radio" name="PropertyType" value="mobile home" class="activity-selector" />
+                <label asp-for="PropertyType" class="control-label">Mobile Home</label>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageSource" class="control-label"></label>
+                <input asp-for="ImageSource" class="form-control" />
+                <span asp-validation-for="ImageSource" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+        <div>
+            <h3>Click here to add units to your property</h3>
+        </div>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
