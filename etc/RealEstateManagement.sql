@@ -3,7 +3,7 @@ BEGIN TRANSACTION;
 CREATE TABLE unit (
 	unit_id integer NOT NULL IDENTITY(1,1),
 	property_id integer NOT NULL,
-	tenant_id integer NOT NULL,
+	tenant_id integer NULL,
 	monthly_rent numeric(8, 2) NOT NULL,
 	square_feet integer NOT NULL,
 	number_of_beds integer NOT NULL,
