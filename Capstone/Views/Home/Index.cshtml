@@ -1,5 +1,7 @@
 ﻿<h1>Getting Started with Vue.js in .NET Core</h1>
 
+<h6>Add Property <a asp-controller="Owner" asp-action="Index">Click Here</h6></a>
+
 <div id="form">
     <p>
         <label>Full Name</label>
@@ -8,7 +10,7 @@
 
     <p>
         <label>Email</label>
-        <input type="text" placeholder="Enter your email" v-model="Email" v-on:blur="CheckEmail"/>
+        <input type="text" placeholder="Enter your email" v-model="Email" v-on:blur="CheckEmail" />
         <span class="invalid-input" v-show="InvalidEmail">Invalid Email</span>
     </p>
 
@@ -19,5 +21,6 @@
 
     <div id="form-buttons">
         <button type="button" class="danger" v-on:click="ResetForm">Reset Form</button>
-        <button type="button" class="success" ref="SubmitButton" v-bind:disabled="isSubmitDisabled" v-on:click="SubmitForm">Submit Form</button>  </div>
+        <button type="button" class="success" ref="SubmitButton" v-bind:disabled="isSubmitDisabled" v-on:click="SubmitForm">Submit Form</button>
+    </div>
 </div>

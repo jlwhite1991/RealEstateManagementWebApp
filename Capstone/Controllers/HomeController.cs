@@ -29,5 +29,10 @@ namespace Capstone.Controllers
 
             return Json(new { message });
         }
+
+        //public IActionResult AvailableProperties()
+        //{
+
+        //}
     }
 }
