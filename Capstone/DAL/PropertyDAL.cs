@@ -12,12 +12,10 @@ namespace Capstone.DAL
     {
         private const string SQL_AddProperty = "INSERT INTO property (owner_id, manager_id, property_name, property_type, number_of_units, image_source) VALUES (@ownerID, @managerID, @propertyName, @propertyType, @numberOfUnits, @imageSource);";
         private const string SQL_GetAllProperties = "SELECT * FROM property;";
-        private const string SQL_GetAvailableProperties = "SELECT * FROM property JOIN unit ON property.property_id = unit.property_id WHERE tenant_id IS NULL;";
-        private IUnitDAL unitDAL;
+        private const string SQL_GetAvailableProperties = "SELECT DISTINCT property.property_id, property.owner_id, property.manager_id, property.property_name, property.property_type, property.number_of_units, property.image_source FROM property JOIN unit ON property.property_id = unit.property_id WHERE tenant_id IS NULL;";
 
         private string connectionString;
-
-
+        private IUnitDAL unitDAL;
 
         public PropertyDAL(string connectionString)
         {
@@ -57,43 +55,42 @@ namespace Capstone.DAL
             return result;
         }
 
-        public List<Property> GetAllProperties()
-        {
-            List<Property> returnedProperties = new List<Property>();
+        //public List<Property> GetAllProperties()
+        //{
+        //    List<Property> returnedProperties = new List<Property>();
 
-            try
-            {
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                {
-                    connection.Open();
+        //    try
+        //    {
+        //        using (SqlConnection connection = new SqlConnection(connectionString))
+        //        {
+        //            connection.Open();
 
-                    SqlCommand cmd = new SqlCommand(SQL_GetAllProperties, connection);
-                    SqlDataReader reader = cmd.ExecuteReader();
+        //            SqlCommand cmd = new SqlCommand(SQL_GetAllProperties, connection);
+        //            SqlDataReader reader = cmd.ExecuteReader();
 
-                    while (reader.Read())
-                    {
-                        Property property = new Property();
+        //            while (reader.Read())
+        //            {
+        //                Property property = new Property();
 
-                        property.PropertyID = Convert.ToInt32(reader["property_id"]);
-                        property.OwnerID = Convert.ToInt32(reader["owner_id"]);
-                        property.ManagerID = Convert.ToInt32(reader["manager_id"]);
-                        property.PropertyName = Convert.ToString(reader["property_name"]);
-                        property.PropertyType = Convert.ToString(reader["property_type"]);
-                        property.NumberOfUnits = Convert.ToInt32(reader["number_of_units"]);
-                        property.ImageSource = Convert.ToString(reader["image_source"]);
+        //                property.PropertyID = Convert.ToInt32(reader["property_id"]);
+        //                property.OwnerID = Convert.ToInt32(reader["owner_id"]);
+        //                property.ManagerID = Convert.ToInt32(reader["manager_id"]);
+        //                property.PropertyName = Convert.ToString(reader["property_name"]);
+        //                property.PropertyType = Convert.ToString(reader["property_type"]);
+        //                property.NumberOfUnits = Convert.ToInt32(reader["number_of_units"]);
+        //                property.ImageSource = Convert.ToString(reader["image_source"]);
 
+        //                returnedProperties.Add(property);
+        //            }
+        //        }
+        //    }
+        //    catch (SqlException)
+        //    {
+        //        returnedProperties = new List<Property>();
+        //    }
 
-                        returnedProperties.Add(property);
-                    }
-                }
-            }
-            catch (SqlException)
-            {
-                returnedProperties = new List<Property>();
-            }
-
-            return returnedProperties;
-        }
+        //    return returnedProperties;
+        //}
 
         public List<Property> GetAvailableProperties()
         {

@@ -118,8 +118,6 @@ namespace Capstone.DAL
                         unit.Gym = Convert.ToBoolean(reader["gym"]);
                         unit.Pool = Convert.ToBoolean(reader["pool"]);
 
-
-
                         returnedUnits.Add(unit);
                     }
                 }

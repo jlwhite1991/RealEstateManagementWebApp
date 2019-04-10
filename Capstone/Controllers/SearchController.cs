@@ -21,7 +21,6 @@ namespace Capstone.Controllers
 
         public IActionResult Index()
         {
-
             List<Property> properties = propertyDAL.GetAvailableProperties();
             
             return View(properties);
