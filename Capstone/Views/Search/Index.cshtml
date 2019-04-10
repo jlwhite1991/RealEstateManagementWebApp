@@ -1,0 +1,207 @@
+﻿@model IEnumerable<Capstone.Models.Property>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PropertyID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OwnerID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ManagerID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PropertyName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PropertyType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberOfUnits)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageSource)
+            </th>
+            <th>
+                UnitID
+            </th>
+            <th>
+                PropertyID
+            </th>
+            <th>
+                MonthlyRent
+            </th>
+            <th>
+                SquareFeet
+            </th>
+            <th>
+                NumberOfBeds
+            </th>
+            <th>
+                NumberOfBaths
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Tagline
+            </th>
+            <th>
+                ImageSource
+            </th>
+            <th>
+                ApplicationFee
+            </th>
+            <th>
+                SecurityDeposit
+            </th>
+            <th>
+                PetDeposit
+            </th>
+            <th>
+                AddressLine1
+            </th>
+            <th>
+                AddressLine2
+            </th>
+            <th>
+                City
+            </th>
+            <th>
+                State
+            </th>
+            <th>
+                ZipCode
+            </th>
+            <th>
+                WasherDryer
+            </th>
+            <th>
+                AllowCats
+            </th>
+            <th>
+                AllowDogs
+            </th>
+            <th>
+                ParkingSpots
+            </th>
+            <th>
+                Gym
+            </th>
+            <th>
+                Pool
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Property item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PropertyID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OwnerID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ManagerID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PropertyName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PropertyType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumberOfUnits)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ImageSource)
+                </td>
+                @foreach (Unit unit in item.UnitsAtThisProperty)
+                {
+                    <td>
+                        @Html.DisplayFor(unitItem => unit.UnitID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(unitItem => unit.PropertyID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(unitItem => unit.MonthlyRent)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(unitItem => unit.SquareFeet)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(unitItem => unit.NumberOfBeds)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(unitItem => unit.NumberOfBaths)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(unitItem => unit.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(unitItem => unit.Tagline)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(unitItem => unit.ImageSource)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(unitItem => unit.ApplicationFee)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(unitItem => unit.SecurityDeposit)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(unitItem => unit.PetDeposit)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(unitItem => unit.AddressLine1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(unitItem => unit.AddressLine2)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(unitItem => unit.City)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(unitItem => unit.State)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(unitItem => unit.ZipCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(unitItem => unit.WasherDryer)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(unitItem => unit.AllowCats)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(unitItem => unit.AllowDogs)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(unitItem => unit.ParkingSpots)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(unitItem => unit.Gym)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(unitItem => unit.Pool)
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>

@@ -9,5 +9,6 @@ namespace Capstone.DAL.Interfaces
     public interface IUnitDAL
     {
         bool AddUnit(Unit unit);
+        List<Unit> GetAllUnitsAtProperty(int propertyID);
     }
 }

@@ -9,7 +9,7 @@ namespace Capstone.DAL.Interfaces
     public interface IPropertyDAL
     {
         bool AddProperty(Property property);
-
         List<Property> GetAllProperties();
+        List<Property> GetAvailableProperties();
     }
 }
