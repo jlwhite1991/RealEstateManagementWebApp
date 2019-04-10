@@ -10,8 +10,8 @@ namespace Capstone.DAL
 {
     public class PropertyDAL : IPropertyDAL
     {
-        private const string SQL_AddProperty = "INSERT INTO Property (PropertyOwnerID, NumberOfUnits, PropertyType, ManagerID, ImageSource, PropertyName) VALUES (@PropertyOwnerID, @NumberOfUnits, @PropertyType, @ManagerID, @ImageSource, @PropertyName);";
-        private const string SQL_GetAllProperties = "SELECT * FROM Property;";
+        private const string SQL_AddProperty = "INSERT INTO property (owner_id, manager_id, property_name, property_type, number_of_units, image_source) VALUES (@ownerID, @managerID, @propertyName, @propertyType, @numberOfUnits, @imageSource);";
+        private const string SQL_GetAllProperties = "SELECT * FROM property;";
 
         private string connectionString;
 
@@ -31,12 +31,12 @@ namespace Capstone.DAL
                     connection.Open();
 
                     SqlCommand cmd = new SqlCommand(SQL_AddProperty, connection);
-                    cmd.Parameters.AddWithValue("@PropertyOwnerID", property.PropertyOwnerID);
-                    cmd.Parameters.AddWithValue("@NumberOfUnits", property.NumberOfUnits);
-                    cmd.Parameters.AddWithValue("@PropertyType", property.PropertyType);
-                    cmd.Parameters.AddWithValue("@ManagerID", property.ManagerID);
-                    cmd.Parameters.AddWithValue("@ImageSource", (property.ImageSource ?? (object)DBNull.Value));
-                    cmd.Parameters.AddWithValue("@PropertyName", property.PropertyName);
+                    cmd.Parameters.AddWithValue("@ownerID", property.OwnerID);
+                    cmd.Parameters.AddWithValue("@managerID", property.ManagerID);
+                    cmd.Parameters.AddWithValue("@propertyName", property.PropertyName);
+                    cmd.Parameters.AddWithValue("@propertyType", property.PropertyType);
+                    cmd.Parameters.AddWithValue("@numberOfUnits", property.NumberOfUnits);
+                    cmd.Parameters.AddWithValue("@imageSource", (property.ImageSource??(object)DBNull.Value));
 
                     cmd.ExecuteNonQuery();
                 }
@@ -70,7 +70,7 @@ namespace Capstone.DAL
                         Property property = new Property();
 
                         property.PropertyID = Convert.ToInt32(reader["PropertyID"]);
-                        property.PropertyOwnerID = Convert.ToInt32(reader["PropertyOwnerID"]);
+                        property.OwnerID = Convert.ToInt32(reader["PropertyOwnerID"]);
                         property.NumberOfUnits = Convert.ToInt32(reader["NumberOfUnits"]);
                         property.PropertyType = Convert.ToString(reader["PropertyType"]);
                         property.ManagerID = Convert.ToInt32(reader["ManagerID"]);

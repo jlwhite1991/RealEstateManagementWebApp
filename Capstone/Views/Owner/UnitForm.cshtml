@@ -23,6 +23,56 @@
                 <span asp-validation-for="TenantID" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="MonthlyRent" class="control-label"></label>
+                <input asp-for="MonthlyRent" class="form-control" />
+                <span asp-validation-for="MonthlyRent" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SquareFeet" class="control-label"></label>
+                <input asp-for="SquareFeet" class="form-control" />
+                <span asp-validation-for="SquareFeet" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumberOfBeds" class="control-label"></label>
+                <input asp-for="NumberOfBeds" class="form-control" />
+                <span asp-validation-for="NumberOfBeds" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumberOfBaths" class="control-label"></label>
+                <input asp-for="NumberOfBaths" class="form-control" />
+                <span asp-validation-for="NumberOfBaths" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tagline" class="control-label"></label>
+                <input asp-for="Tagline" class="form-control" />
+                <span asp-validation-for="Tagline" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageSource" class="control-label"></label>
+                <input asp-for="ImageSource" class="form-control" />
+                <span asp-validation-for="ImageSource" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ApplicationFee" class="control-label"></label>
+                <input asp-for="ApplicationFee" class="form-control" />
+                <span asp-validation-for="ApplicationFee" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SecurityDeposit" class="control-label"></label>
+                <input asp-for="SecurityDeposit" class="form-control" />
+                <span asp-validation-for="SecurityDeposit" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PetDeposit" class="control-label"></label>
+                <input asp-for="PetDeposit" class="form-control" />
+                <span asp-validation-for="PetDeposit" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="AddressLine1" class="control-label"></label>
                 <input asp-for="AddressLine1" class="form-control" />
                 <span asp-validation-for="AddressLine1" class="text-danger"></span>
@@ -48,54 +98,44 @@
                 <span asp-validation-for="ZipCode" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="MonthlyRent" class="control-label"></label>
-                <input asp-for="MonthlyRent" class="form-control" />
-                <span asp-validation-for="MonthlyRent" class="text-danger"></span>
+                <input type="radio" name="WasherDryer" value="true" class="activity-selector" />
+                <label asp-for="WasherDryer" class="control-label">Available Washer/Dryer - Yes</label>
+
+                <input type="radio" name="WasherDryer" value="false" class="activity-selector" checked="checked" />
+                <label asp-for="WasherDryer" class="control-label">Available Washer/Dryer - No</label>
             </div>
             <div class="form-group">
-                <label asp-for="SquareFeet" class="control-label"></label>
-                <input asp-for="SquareFeet" class="form-control" />
-                <span asp-validation-for="SquareFeet" class="text-danger"></span>
+                <input type="radio" name="AllowCats" value="true" class="activity-selector" />
+                <label asp-for="AllowCats" class="control-label">Cats Allowed - Yes</label>
+
+                <input type="radio" name="AllowCats" value="false" class="activity-selector" checked="checked" />
+                <label asp-for="AllowCats" class="control-label">Cats Allowed - No</label>
             </div>
             <div class="form-group">
-                <label asp-for="NumberOfBaths" class="control-label"></label>
-                <input asp-for="NumberOfBaths" class="form-control" />
-                <span asp-validation-for="NumberOfBaths" class="text-danger"></span>
+                <input type="radio" name="AllowDogs" value="true" class="activity-selector" />
+                <label asp-for="AllowDogs" class="control-label">Allow Dogs - Yes</label>
+
+                <input type="radio" name="AllowDogs" value="false" class="activity-selector" checked="checked" />
+                <label asp-for="AllowDogs" class="control-label">Allow Dogs - No</label>
             </div>
             <div class="form-group">
-                <label asp-for="NumberOfBeds" class="control-label"></label>
-                <input asp-for="NumberOfBeds" class="form-control" />
-                <span asp-validation-for="NumberOfBeds" class="text-danger"></span>
+                <label asp-for="ParkingSpots" class="control-label"></label>
+                <input asp-for="ParkingSpots" class="form-control" />
+                <span asp-validation-for="ParkingSpots" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ApplicationFee" class="control-label"></label>
-                <input asp-for="ApplicationFee" class="form-control" />
-                <span asp-validation-for="ApplicationFee" class="text-danger"></span>
+                <input type="radio" name="Gym" value="true" class="activity-selector" />
+                <label asp-for="Gym" class="control-label">Available Gym - Yes</label>
+
+                <input type="radio" name="Gym" value="false" class="activity-selector" checked="checked" />
+                <label asp-for="Gym" class="control-label">Available Gym - No</label>
             </div>
             <div class="form-group">
-                <label asp-for="SecurityDeposit" class="control-label"></label>
-                <input asp-for="SecurityDeposit" class="form-control" />
-                <span asp-validation-for="SecurityDeposit" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PetDeposit" class="control-label"></label>
-                <input asp-for="PetDeposit" class="form-control" />
-                <span asp-validation-for="PetDeposit" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UnitDescription" class="control-label"></label>
-                <input asp-for="UnitDescription" class="form-control" />
-                <span asp-validation-for="UnitDescription" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UnitTagline" class="control-label"></label>
-                <input asp-for="UnitTagline" class="form-control" />
-                <span asp-validation-for="UnitTagline" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ImageSource" class="control-label"></label>
-                <input asp-for="ImageSource" class="form-control" />
-                <span asp-validation-for="ImageSource" class="text-danger"></span>
+                <input type="radio" name="Pool" value="true" class="activity-selector" />
+                <label asp-for="Pool" class="control-label">Available Pool - Yes</label>
+
+                <input type="radio" name="Pool" value="false" class="activity-selector" checked="checked" />
+                <label asp-for="Pool" class="control-label">Available Pool - No</label>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />

@@ -14,9 +14,28 @@ namespace Capstone.Models
 
         public int TenantID { get; set; }
 
+        public decimal MonthlyRent { get; set; }
+
+        public int SquareFeet { get; set; }
+
+        public int NumberOfBeds { get; set; }
+
+        public double NumberOfBaths { get; set; }
+
+        public string Description { get; set; }
+
+        public string Tagline { get; set; }
+
+        public string ImageSource { get; set; }
+
+        public decimal ApplicationFee { get; set; }
+
+        public decimal SecurityDeposit { get; set; }
+
+        public decimal PetDeposit { get; set; }
+
         public string AddressLine1 { get; set; }
 
-        [DefaultValue("NULL")]
         public string AddressLine2 { get; set; }
 
         public string City { get; set; }
@@ -25,25 +44,16 @@ namespace Capstone.Models
 
         public int ZipCode { get; set; }
 
-        public decimal MonthlyRent { get; set; }
+        public bool WasherDryer { get; set; }
 
-        public int SquareFeet { get; set; }
+        public bool AllowCats { get; set; }
 
-        public double NumberOfBaths { get; set; }
+        public bool AllowDogs { get; set; }
 
-        public int NumberOfBeds { get; set; }
+        public string ParkingSpots { get; set; }
 
-        public decimal ApplicationFee { get; set; }
+        public bool Gym { get; set; }
 
-        public decimal SecurityDeposit { get; set; }
-
-        public decimal PetDeposit { get; set; }
-
-        public string UnitDescription { get; set; }
-
-        public string UnitTagline { get; set; }
-
-        [DefaultValue("NULL")]
-        public string ImageSource { get; set; }
+        public bool Pool { get; set; }
     }
 }

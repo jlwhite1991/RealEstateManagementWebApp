@@ -12,7 +12,7 @@ namespace Capstone.Models
 
         [Range(1, int.MaxValue, ErrorMessage = "Please provide a Owner ID")]
         [Display(Name = "Enter your Owner ID: ")]
-        public int PropertyOwnerID { get; set; }
+        public int OwnerID { get; set; }
 
         [Range(1, int.MaxValue, ErrorMessage = "Please provide a manager ID")]
         [Display(Name = "Enter in the ID of your manager: ")]
@@ -22,14 +22,14 @@ namespace Capstone.Models
         [Display(Name = "Enter in the name of your property")]
         public string PropertyName { get; set; }
 
+        [Required(ErrorMessage = "Please provide a property type")]
+        [Display(Name = "Property Type")]
+        public string PropertyType { get; set; }
+
         [Required(ErrorMessage = "Please provide number of Units")]
         [Range(0, 2000)]
         [Display(Name = "Enter in the number of units")]
         public int NumberOfUnits { get; set; }
-
-        [Required(ErrorMessage = "Please provide a property type")]
-        [Display(Name = "Property Type")]
-        public string PropertyType { get; set; }
 
         [DataType(DataType.ImageUrl)]
         [Display(Name = "Add a link to an image of your property: ")]

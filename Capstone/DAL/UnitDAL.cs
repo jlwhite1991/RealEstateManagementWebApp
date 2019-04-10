@@ -10,7 +10,7 @@ namespace Capstone.DAL
 {
     public class UnitDAL : IUnitDAL
     {
-        private const string SQL_AddUnit = "INSERT INTO Unit (PropertyID, TenantID, MonthlyRent, Sqft, NumOfBaths, NumOfBeds, Description, ApplicationFee, SecurityDeposit, PetDeposit, TagLine, ImageSource, AddressLine1, AddressLine2, City, State, ZipCode) VALUES (@PropertyID, @TenantID, @MonthlyRent, @Sqft, @NumOfBaths, @NumOfBeds, @Description, @ApplicationFee, @SecurityDeposit, @PetDeposit, @TagLine, @ImageSource, @AddressLine1, @AddressLine2, @City, @State, @ZipCode);";
+        private const string SQL_AddUnit = "INSERT INTO unit (property_id, tenant_id, monthly_rent, square_feet, number_of_beds, number_of_baths, description, tagline, image_source, application_fee, security_deposit, pet_deposit, address_line_1, address_line_2, city, us_state, zip_code, washer_dryer, allow_cats, allow_dogs, parking_spots, gym, pool) VALUES (@propertyID, @tenantID, @monthlyRent, @squareFeet, @numberOfBeds, @numberOfBaths, @description, @tagline, @imageSource, @applicationFee, @securityDeposit, @petDeposit, @addressLine1, @addressLine2, @city, @state, @zipCode, @washerDryer, @allowCats, @allowDogs, @parkingSpots, @gym, @pool);";
 
         private string connectionString;
 
@@ -30,23 +30,29 @@ namespace Capstone.DAL
                     connection.Open();
 
                     SqlCommand cmd = new SqlCommand(SQL_AddUnit, connection);
-                    cmd.Parameters.AddWithValue("@PropertyID", unit.PropertyID);
-                    cmd.Parameters.AddWithValue("@TenantID", unit.TenantID);
-                    cmd.Parameters.AddWithValue("@MonthlyRent", unit.MonthlyRent);
-                    cmd.Parameters.AddWithValue("@Sqft", unit.SquareFeet);
-                    cmd.Parameters.AddWithValue("@NumOfBaths", unit.NumberOfBaths);
-                    cmd.Parameters.AddWithValue("@NumOfBeds", unit.NumberOfBeds);
-                    cmd.Parameters.AddWithValue("@Description", unit.UnitDescription);
-                    cmd.Parameters.AddWithValue("@ApplicationFee", unit.ApplicationFee);
-                    cmd.Parameters.AddWithValue("@SecurityDeposit", unit.SecurityDeposit);
-                    cmd.Parameters.AddWithValue("@PetDeposit", unit.PetDeposit);
-                    cmd.Parameters.AddWithValue("@TagLine", unit.UnitTagline);
-                    cmd.Parameters.AddWithValue("@ImageSource", (unit.ImageSource??(object)DBNull.Value));
-                    cmd.Parameters.AddWithValue("@AddressLine1", unit.AddressLine1);
-                    cmd.Parameters.AddWithValue("@AddressLine2", (unit.AddressLine2??(object)DBNull.Value));
-                    cmd.Parameters.AddWithValue("@City", unit.City);
-                    cmd.Parameters.AddWithValue("@State", unit.State);
-                    cmd.Parameters.AddWithValue("@ZipCode", unit.ZipCode);
+                    cmd.Parameters.AddWithValue("@propertyID", unit.PropertyID);
+                    cmd.Parameters.AddWithValue("@tenantID", unit.TenantID);
+                    cmd.Parameters.AddWithValue("@monthlyRent", unit.MonthlyRent);
+                    cmd.Parameters.AddWithValue("@squareFeet", unit.SquareFeet);
+                    cmd.Parameters.AddWithValue("@numberOfBeds", unit.NumberOfBeds);
+                    cmd.Parameters.AddWithValue("@numberOfBaths", unit.NumberOfBaths);
+                    cmd.Parameters.AddWithValue("@description", unit.Description);
+                    cmd.Parameters.AddWithValue("@tagline", unit.Tagline);
+                    cmd.Parameters.AddWithValue("@imageSource", (unit.ImageSource??(object)DBNull.Value));
+                    cmd.Parameters.AddWithValue("@applicationFee", unit.ApplicationFee);
+                    cmd.Parameters.AddWithValue("@securityDeposit", unit.SecurityDeposit);
+                    cmd.Parameters.AddWithValue("@petDeposit", unit.PetDeposit);
+                    cmd.Parameters.AddWithValue("@addressLine1", unit.AddressLine1);
+                    cmd.Parameters.AddWithValue("@addressLine2", (unit.AddressLine2??(object)DBNull.Value));
+                    cmd.Parameters.AddWithValue("@city", unit.City);
+                    cmd.Parameters.AddWithValue("@state", unit.State);
+                    cmd.Parameters.AddWithValue("@zipCode", unit.ZipCode);
+                    cmd.Parameters.AddWithValue("@washerDryer", unit.WasherDryer);
+                    cmd.Parameters.AddWithValue("@allowCats", unit.AllowCats);
+                    cmd.Parameters.AddWithValue("@allowDogs", unit.AllowDogs);
+                    cmd.Parameters.AddWithValue("@parkingSpots", unit.ParkingSpots);
+                    cmd.Parameters.AddWithValue("@gym", unit.Gym);
+                    cmd.Parameters.AddWithValue("@pool", unit.Pool);
 
                     cmd.ExecuteNonQuery();
                 }
