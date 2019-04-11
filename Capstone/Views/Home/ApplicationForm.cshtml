@@ -1,0 +1,115 @@
+﻿@model Capstone.Models.Application
+
+@{
+    ViewData["Title"] = "ApplicationForm";
+}
+
+<h2>Tenant Application Form</h2>
+
+<h4>By submitting the form below you agree to all terms and conditions. 'RealEstateManagment' Company will be allowed to perform a background check with information provided below.</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="ApplicationForm">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="UnitID" class="control-label"></label>
+                <input asp-for="UnitID" class="form-control" />
+                <span asp-validation-for="UnitID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SocialSecurityNumber" class="control-label"></label>
+                <input asp-for="SocialSecurityNumber" class="form-control" />
+                <span asp-validation-for="SocialSecurityNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhoneNumber" class="control-label"></label>
+                <input asp-for="PhoneNumber" class="form-control" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmailAddress" class="control-label"></label>
+                <input asp-for="EmailAddress" class="form-control" />
+                <span asp-validation-for="EmailAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastResidenceOwner" class="control-label"></label>
+                <input asp-for="LastResidenceOwner" class="form-control" />
+                <span asp-validation-for="LastResidenceOwner" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastResidencePhoneNumber" class="control-label"></label>
+                <input asp-for="LastResidencePhoneNumber" class="form-control" />
+                <span asp-validation-for="LastResidencePhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastResidenceTenancyStartDate" class="control-label"></label>
+                <input asp-for="LastResidenceTenancyStartDate" class="form-control" />
+                <span asp-validation-for="LastResidenceTenancyStartDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastResidenceTenancyEndDate" class="control-label"></label>
+                <input asp-for="LastResidenceTenancyEndDate" class="form-control" />
+                <span asp-validation-for="LastResidenceTenancyEndDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="EmploymentStatus" /> @Html.DisplayNameFor(model => model.EmploymentStatus)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmployerName" class="control-label"></label>
+                <input asp-for="EmployerName" class="form-control" />
+                <span asp-validation-for="EmployerName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmployerContactPhoneNumber" class="control-label"></label>
+                <input asp-for="EmployerContactPhoneNumber" class="form-control" />
+                <span asp-validation-for="EmployerContactPhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AnnualIncome" class="control-label"></label>
+                <input asp-for="AnnualIncome" class="form-control" />
+                <span asp-validation-for="AnnualIncome" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumOfResidents" class="control-label"></label>
+                <input asp-for="NumOfResidents" class="form-control" />
+                <span asp-validation-for="NumOfResidents" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumOfCats" class="control-label"></label>
+                <input asp-for="NumOfCats" class="form-control" />
+                <span asp-validation-for="NumOfCats" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumOfDogs" class="control-label"></label>
+                <input asp-for="NumOfDogs" class="form-control" />
+                <span asp-validation-for="NumOfDogs" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
