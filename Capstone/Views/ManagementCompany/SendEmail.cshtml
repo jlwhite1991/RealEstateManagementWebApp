@@ -12,8 +12,9 @@
 
         <span class="form-control-static"> Receiver: </span>
 
-        <input class="form-control" type="text" name="receiver" />
-        <br/>
+        <input class="form-control" type="text" name="receiver" v-model="Email" v-on:blur="CheckEmail" />
+        <span class="invalid-input" v-show="InvalidEmail">Invalid Email</span>
+        <br />
         <span class="form-control-static"> Subject: </span>
         <input class="form-control" type="text" name="subject" />
         <br />
