@@ -9,5 +9,6 @@ namespace Capstone.DAL.Interfaces
     public interface IApplicationDAL
     {
         bool AddApplication(Application application);
+        List<Application> GetAllApplications();
     }
 }
