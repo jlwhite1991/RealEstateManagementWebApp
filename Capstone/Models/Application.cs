@@ -10,47 +10,47 @@ namespace Capstone.Models
     {
         public int ApplicationID { get; set; }
 
-        [Required(ErrorMessage = "Please provide Employer Contact Number")]
+        [Required(ErrorMessage = "Please provide the Unit ID")]
         [Display(Name = "Enter The Unit ID: ")]
         public int UnitID { get; set; }
 
-        [Required(ErrorMessage = "Please provide Employer Contact Number")]
+        [Required(ErrorMessage = "Please provide your First Name")]
         [Display(Name = "Enter your First Name: ")]
         public string FirstName { get; set; }
 
-        [Required(ErrorMessage = "Please provide Employer Contact Number")]
+        [Required(ErrorMessage = "Please provide your Last Name")]
         [Display(Name = "Enter your Last Name: ")]
         public string LastName { get; set; }
 
-        [Required(ErrorMessage = "Please provide Employer Contact Number")]
+        [Required(ErrorMessage = "Please provide a Social Security Number")]
         [Display(Name = "Enter your Social Security: ")]
         public int SocialSecurityNumber { get; set; }
 
-        [Required(ErrorMessage = "Please provide Employer Contact Number")]
+        [Required(ErrorMessage = "Please provide Phone Number")]
         [Display(Name = "Enter your Phone Number: ")]
         public string PhoneNumber { get; set; }
 
-        [Required(ErrorMessage = "Please provide Employer Contact Number")]
+        [Required(ErrorMessage = "Please provide Email Address")]
         [Display(Name = "Enter your Email Address: ")]
         public string EmailAddress { get; set; }
 
-        [Required(ErrorMessage = "Please provide Employer Contact Number")]
+        [Required(ErrorMessage = "Please provide Landlord Name")]
         [Display(Name = "Enter the Name of your previous/current Landlord: ")]
         public string LastResidenceOwner { get; set; }
 
-        [Required(ErrorMessage = "Please provide Employer Contact Number")]
+        [Required(ErrorMessage = "Please provide Contact Number for Landlord")]
         [Display(Name = "Enter previous Landlord's Contact Number: ")]
         public string LastResidencePhoneNumber { get; set; }
 
-        [Required(ErrorMessage = "Please provide Employer Contact Number")]
+        [Required(ErrorMessage = "Please provide lease Start Date")]
         [Display(Name = "Enter previous lease Start Date: ")]
         public string LastResidenceTenancyStartDate { get; set; }
 
-        [Required(ErrorMessage = "Please provide Employer Contact Number")]
+        [Required(ErrorMessage = "Please provide lease End Date")]
         [Display(Name = "Enter previous lease End Date: ")]
         public string LastResidenceTenancyEndDate { get; set; }
 
-        [Required(ErrorMessage = "Please provide Employer Contact Number")]
+        [Required(ErrorMessage = "Please provide an Employment Status")]
         [Display(Name = "Enter current Employment Status: ")]
         public bool EmploymentStatus { get; set; }
 
