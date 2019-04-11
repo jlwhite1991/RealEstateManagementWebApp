@@ -23,7 +23,33 @@ namespace Capstone.Controllers
         {
             List<Property> properties = propertyDAL.GetAvailableProperties();
             
+            
             return View(properties);
+        }
+
+        [HttpGet]
+        public IActionResult AdvancedSearch()
+        {
+            SearchModel search = new SearchModel();
+            search.AvailableProperties = propertyDAL.GetAvailableProperties();
+
+            return View(search);
+        }
+
+        [HttpPost]
+        public IActionResult AdvancedSearch(SearchModel model)
+        {
+            model.AvailableProperties = propertyDAL.GetAvailableProperties();
+
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            else
+            {
+                model.HandleAdvancedSearch();
+                return View(model);
+            }
         }
     }
 }
