@@ -5,15 +5,40 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Capstone.Models;
+using Capstone.DAL.Interfaces;
 
 namespace Capstone.Controllers
 {
     public class HomeController : Controller
     {
+        private IApplicationDAL applicationDAL;
+
+        public HomeController(IApplicationDAL applicationDAL)
+        {
+            this.applicationDAL = applicationDAL;
+        }
+
+
         public IActionResult Index()
         {
             return View();
         }
+
+        [HttpGet]
+        public IActionResult ApplicationForm()
+        {
+            return View();
+        }
+
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public IActionResult ApplicationForm(Application application)
+        {
+            applicationDAL.AddApplication(application);
+
+            return RedirectToAction("ApplicationForm");
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
