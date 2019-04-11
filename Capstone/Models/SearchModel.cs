@@ -30,7 +30,7 @@ namespace Capstone.Models
                 {
                     if (NumberofBathsMin > 0)
                     {
-                       
+
 
                     }
 
@@ -39,8 +39,8 @@ namespace Capstone.Models
 
             }
 
-            return result;
-
+            //return result;
+        
             ////HandleBedNumber
             //if (NumberofBathsMin > 0)
             //{

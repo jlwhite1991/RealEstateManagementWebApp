@@ -117,7 +117,6 @@ namespace Capstone.DAL
                         property.NumberOfUnits = Convert.ToInt32(reader["number_of_units"]);
 
                         property.ImageSource = Convert.ToString(reader["image_source"]);
-
                         List<Unit> units = unitDAL.GetAllUnitsAtProperty(property.PropertyID);
 
                         property.UnitsAtThisProperty = units;
