@@ -39,7 +39,7 @@ namespace Capstone
             //    options.IdleTimeout = TimeSpan.FromMinutes(10);
             //    options.Cookie.HttpOnly = true;
             //});
-
+            
             string connectionString = Configuration.GetConnectionString("Default");
 
             services.AddScoped<IPropertyDAL, PropertyDAL>(c => new PropertyDAL(connectionString));
