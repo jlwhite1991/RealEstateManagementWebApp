@@ -11,7 +11,8 @@ namespace Capstone.DAL
     public class ApplicationDAL : IApplicationDAL
     {
         private const string SQL_AddProperty = "INSERT INTO tenant_application (unit_id, first_name, last_name, social_security_number, phone_number, email_address, last_residence_owner, last_residence_contact_phone_number, last_residence_tenancy_start_date, last_residence_tenancy_end_date, employment_status, employer_name, employer_contact_phone_number, annual_income, number_of_residents, number_of_cats, number_of_dogs) VALUES (@unitID, @firstName, @lastName, @socialSecurityNumber, @phoneNumber, @emailAddress, @lastResidenceOwner, @lastResidencePhoneNumber, @lastResidenceTenancyStartDate, @lastResidenceTenancyEndDate, @employmentStatus, @employerName, @employerContactPhoneNumber, @annualIncome, @numOfResidents, @numOfCats, @numOfDogs);";
-        private const string SQL_GetAllApplications = "";
+        private const string SQL_GetAllApplications = "SELECT * FROM tenant_application WHERE application_approval_status IS NULL;";
+
         private string connectionString;
 
         public ApplicationDAL(string connectionString)
@@ -99,15 +100,16 @@ namespace Capstone.DAL
                         application.NumOfResidents = Convert.ToInt32(reader["number_of_residents"]);
                         application.NumOfCats = Convert.ToInt32(reader["number_of_cats"]);
                         application.NumOfDogs = Convert.ToInt32(reader["number_of_dogs"]);
-                        application.ApplicationApprovalStatus = Convert.ToBoolean(reader["application_approval_status"]);
+                        //application.ApplicationApprovalStatus = Convert.ToBoolean(reader["application_approval_status"]);
 
                         output.Add(application);
                     }
                 }
             }
-            catch (SqlException)
+            catch (SqlException ex)
             {
                 output = new List<Application>();
+                throw ex;
             }
 
             return output;

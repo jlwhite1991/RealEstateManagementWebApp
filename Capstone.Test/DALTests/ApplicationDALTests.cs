@@ -9,6 +9,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Capstone.Test.DALTests
 {
+    [TestClass]
     public class ApplicationDALTests
     {
         private TransactionScope tran;
@@ -38,26 +39,19 @@ namespace Capstone.Test.DALTests
             tran.Dispose();
         }
 
-        //[TestMethod()]
-        //public void AddApplicationTest()
-        //{
+        [TestMethod()]
+        public void AddApplicationTest()
+        {
 
-        //    ApplicationDAL applicationDAL = new ApplicationDAL(connectionString);
-        //    List<Application> results = applicationDAL.GetAllApplication();
+            ApplicationDAL applicationDAL = new ApplicationDAL(connectionString);
+            List<Application> priorResults = applicationDAL.GetAllApplications();
 
-        //    Application application = new Application()
-        //    {
-        //        PropertyID = 5,
-        //        OwnerID = 2,
-        //        ManagerID = 1,
-        //        PropertyName = "Test Paradise",
-        //        PropertyType = "Triplex",
-        //        NumberOfUnits = 3
-        //    };
+            bool addSuccessful = applicationDAL.AddApplication(new Application() { UnitID = 1, FirstName = "Nick", LastName = "Paraskos", SocialSecurityNumber = 555555555, PhoneNumber = "6144038287", EmailAddress = "nick@website.com", LastResidenceOwner = "Jim OwnerGuy", LastResidencePhoneNumber = "614-888-8888",LastResidenceTenancyStartDate = "05/18/18", LastResidenceTenancyEndDate = "04/30/19", EmploymentStatus = true, EmployerName = "Tech Elevator", EmployerContactPhoneNumber = "614-403-8287", AnnualIncome = "600,000", NumOfResidents = 3, NumOfCats = 0, NumOfDogs = 1 });
 
-        //    bool result = propertyDAL.AddProperty(property);
+            List<Application> newResults = applicationDAL.GetAllApplications();
 
-        //    Assert.IsTrue(result);
-        //}
+            Assert.AreEqual(true, addSuccessful);
+            Assert.AreEqual(priorResults.Count + 1, newResults.Count);
+        }
     }
 }
