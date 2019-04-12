@@ -39,16 +39,16 @@ namespace Capstone.DAL
                     cmd.Parameters.AddWithValue("@phoneNumber", application.PhoneNumber);
                     cmd.Parameters.AddWithValue("@emailAddress", application.EmailAddress);
                     cmd.Parameters.AddWithValue("@lastResidenceOwner", application.LastResidenceOwner);
-                    cmd.Parameters.AddWithValue("@lastResidencePhoneNumber", application.LastResidencePhoneNumber);
+                    cmd.Parameters.AddWithValue("@lastResidencePhoneNumber", application.LastResidenceContactPhoneNumber);
                     cmd.Parameters.AddWithValue("@lastResidenceTenancyStartDate", application.LastResidenceTenancyStartDate);
                     cmd.Parameters.AddWithValue("@lastResidenceTenancyEndDate", application.LastResidenceTenancyEndDate);
                     cmd.Parameters.AddWithValue("@employmentStatus", application.EmploymentStatus);
                     cmd.Parameters.AddWithValue("@employerName", application.EmployerName);
                     cmd.Parameters.AddWithValue("@employerContactPhoneNumber", application.EmployerContactPhoneNumber);
                     cmd.Parameters.AddWithValue("@annualIncome", application.AnnualIncome);
-                    cmd.Parameters.AddWithValue("@numOfResidents", application.NumOfResidents);
-                    cmd.Parameters.AddWithValue("@numOfCats", application.NumOfCats);
-                    cmd.Parameters.AddWithValue("@numOfDogs", application.NumOfDogs);
+                    cmd.Parameters.AddWithValue("@numOfResidents", application.NumberOfResidents);
+                    cmd.Parameters.AddWithValue("@numOfCats", application.NumberOfCats);
+                    cmd.Parameters.AddWithValue("@numOfDogs", application.NumberOfDogs);
 
                     cmd.ExecuteNonQuery();
                 }
@@ -64,7 +64,6 @@ namespace Capstone.DAL
             return result;
         }
 
-        //Get All application was added to allow for proper testing.
         public List<Application> GetAllApplications()
         {
             List<Application> output = new List<Application>();
@@ -82,26 +81,66 @@ namespace Capstone.DAL
                     {
                         Application application = new Application();
 
+                        //All following if statements prevent an exception by checking if the database value is null before setting the property
                         application.ApplicationID = Convert.ToInt32(reader["application_id"]);
-                        application.UnitID = Convert.ToInt32(reader["unit_id"]);
+                        if (!Convert.IsDBNull(reader["unit_id"]))
+                        {
+                            application.UnitID = Convert.ToInt32(reader["unit_id"]);
+                        }
                         application.FirstName = Convert.ToString(reader["first_name"]);
                         application.LastName = Convert.ToString(reader["last_name"]);
-                        application.SocialSecurityNumber = Convert.ToInt32(reader["social_security_number"]);
+                        if (!Convert.IsDBNull(reader["social_security_number"]))
+                        {
+                            application.SocialSecurityNumber = Convert.ToInt32(reader["social_security_number"]);
+                        }
                         application.PhoneNumber = Convert.ToString(reader["phone_number"]);
                         application.EmailAddress = Convert.ToString(reader["email_address"]);
-                        application.LastResidenceOwner = Convert.ToString(reader["last_residence_owner"]);
-                        application.LastResidencePhoneNumber = Convert.ToString(reader["last_residence_contact_phone_number"]);
-                        application.LastResidenceTenancyStartDate = Convert.ToString(reader["last_residence_tenancy_start_date"]);
-                        application.LastResidenceTenancyEndDate = Convert.ToString(reader["last_residence_tenancy_end_date"]);
-                        application.EmploymentStatus = Convert.ToBoolean(reader["employment_status"]);
-                        application.EmployerName = Convert.ToString(reader["employer_name"]);
-                        application.EmployerContactPhoneNumber = Convert.ToString(reader["employer_contact_phone_number"]);
-                        application.AnnualIncome = Convert.ToString(reader["annual_income"]);
-                        application.NumOfResidents = Convert.ToInt32(reader["number_of_residents"]);
-                        application.NumOfCats = Convert.ToInt32(reader["number_of_cats"]);
-                        application.NumOfDogs = Convert.ToInt32(reader["number_of_dogs"]);
-                        //application.ApplicationApprovalStatus = Convert.ToBoolean(reader["application_approval_status"]);
-
+                        if (!Convert.IsDBNull(reader["last_residence_owner"]))
+                        {
+                            application.LastResidenceOwner = Convert.ToString(reader["last_residence_owner"]);
+                        }
+                        if (!Convert.IsDBNull(reader["last_residence_contact_phone_number"]))
+                        {
+                            application.LastResidenceContactPhoneNumber = Convert.ToString(reader["last_residence_contact_phone_number"]);
+                        }
+                        if (!Convert.IsDBNull(reader["last_residence_tenancy_start_date"]))
+                        {
+                            application.LastResidenceTenancyStartDate = Convert.ToString(reader["last_residence_tenancy_start_date"]);
+                        }
+                        if (!Convert.IsDBNull(reader["last_residence_tenancy_end_date"]))
+                        {
+                            application.LastResidenceTenancyEndDate = Convert.ToString(reader["last_residence_tenancy_end_date"]);
+                        }
+                        if (!Convert.IsDBNull(reader["employment_status"]))
+                        {
+                            application.EmploymentStatus = Convert.ToBoolean(reader["employment_status"]);
+                        }
+                        if (!Convert.IsDBNull(reader["employer_name"]))
+                        {
+                            application.EmployerName = Convert.ToString(reader["employer_name"]);
+                        }
+                        if (!Convert.IsDBNull(reader["employer_contact_phone_number"]))
+                        {
+                            application.EmployerContactPhoneNumber = Convert.ToString(reader["employer_contact_phone_number"]);
+                        }
+                        if (!Convert.IsDBNull(reader["annual_income"]))
+                        {
+                            application.AnnualIncome = Convert.ToString(reader["annual_income"]);
+                        }
+                        application.NumberOfResidents = Convert.ToInt32(reader["number_of_residents"]);
+                        if (!Convert.IsDBNull(reader["number_of_cats"]))
+                        {
+                            application.NumberOfCats = Convert.ToInt32(reader["number_of_cats"]);
+                        }
+                        if (!Convert.IsDBNull(reader["number_of_dogs"]))
+                        {
+                            application.NumberOfDogs = Convert.ToInt32(reader["number_of_dogs"]);
+                        }
+                        if (!Convert.IsDBNull(reader["application_approval_status"]))
+                        {
+                            application.ApplicationApprovalStatus = Convert.ToBoolean(reader["application_approval_status"]);
+                        }
+                        
                         output.Add(application);
                     }
                 }

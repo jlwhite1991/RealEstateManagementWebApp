@@ -48,5 +48,7 @@ namespace Capstone.DAL
 
             return result;
         }
+
+        //TODO: Add GetAllServiceRequests()
     }
 }

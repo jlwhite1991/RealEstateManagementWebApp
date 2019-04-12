@@ -40,7 +40,7 @@ namespace Capstone.Models
 
         [Required(ErrorMessage = "Please provide Contact Number for Landlord")]
         [Display(Name = "Enter previous Landlord's Contact Number: ")]
-        public string LastResidencePhoneNumber { get; set; }
+        public string LastResidenceContactPhoneNumber { get; set; }
 
         [Required(ErrorMessage = "Please provide lease Start Date")]
         [Display(Name = "Enter previous lease Start Date: ")]
@@ -68,15 +68,15 @@ namespace Capstone.Models
 
         [Required(ErrorMessage = "Please provide number of Residents")]
         [Display(Name = "Enter Number of Residents: ")]
-        public int NumOfResidents { get; set; }
+        public int NumberOfResidents { get; set; }
 
         [Required(ErrorMessage = "Please provide number of Cats")]
         [Display(Name = "Enter Number of Cats: ")]
-        public int NumOfCats { get; set; }
+        public int NumberOfCats { get; set; }
 
         [Required(ErrorMessage = "Please provide number of Dogs")]
         [Display(Name = "Enter Number of Dogs: ")]
-        public int NumOfDogs { get; set; }
+        public int NumberOfDogs { get; set; }
 
         public bool ApplicationApprovalStatus { get; set; }
     }
