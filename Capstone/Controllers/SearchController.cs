@@ -23,7 +23,6 @@ namespace Capstone.Controllers
         {
             List<Property> properties = propertyDAL.GetAvailableProperties();
             
-            
             return View(properties);
         }
 

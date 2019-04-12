@@ -37,9 +37,6 @@ namespace Capstone.Test.DALTests
 
                     cmd = new SqlCommand("SET IDENTITY_INSERT unit ON; INSERT INTO unit (unit_id, property_id, tenant_id, monthly_rent, square_feet, number_of_beds, number_of_baths, description, tagline, application_fee, security_deposit, pet_deposit, address_line_1, city, us_state, zip_code, washer_dryer, allow_cats, allow_dogs, parking_spots, gym, pool) VALUES (999, 999, 999, 9999, 9999, 9, 9, 'Testing is really good and this is one', 'TEST!!!', 99, 999, 99, '99 Testing Lane', 'Testville', 'Ohio', 99999, 0, 0, 0, 'Test Parking', 0, 0); SET IDENTITY_INSERT unit OFF;", conn);
                     cmd.ExecuteNonQuery();
-
-                    cmd = new SqlCommand("SET IDENTITY_INSERT service_request ON; INSERT INTO service_request (request_id, tenant_id, description, is_emergency, category) VALUES (999, 999, 'There are not enough tests in my home', 0, 'other'); SET IDENTITY_INSERT service_request OFF;", conn);
-                    cmd.ExecuteNonQuery();
                 }
             }
             catch (SqlException)

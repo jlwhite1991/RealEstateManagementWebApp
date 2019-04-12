@@ -39,7 +39,6 @@ namespace Capstone.Controllers
 
                 return RedirectToAction("Index");
             }
-
         }
     }
 }
