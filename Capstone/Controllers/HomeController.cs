@@ -34,6 +34,8 @@ namespace Capstone.Controllers
         [HttpPost]
         public IActionResult ApplicationForm(Application application)
         {
+            
+
             if (!ModelState.IsValid)
             {
                 return View(application);
