@@ -96,9 +96,9 @@ INSERT INTO unit (unit_id, property_id, tenant_id, monthly_rent, square_feet, nu
 
 INSERT INTO unit (unit_id, property_id, tenant_id, monthly_rent, square_feet, number_of_beds, number_of_baths, description, tagline, image_source, application_fee, security_deposit, pet_deposit, address_line_1, city, us_state, zip_code, washer_dryer, allow_cats, allow_dogs, parking_spots, gym, pool) VALUES (4, 3, 5, 750, 1400, 2, 2.5, 'The finest loft available!', 'Fresh!', 'https://upload.wikimedia.org/wikipedia/commons/6/62/Burger_King%2C_Saugus.jpg', 0, 300, 100, '67 King Row', 'Columbus', 'Ohio', 43219, 0, 1, 0, 'Street Parking', 1, 0);
 
-INSERT INTO unit (unit_id, property_id, monthly_rent, square_feet, number_of_beds, number_of_baths, description, tagline, image_source, application_fee, security_deposit, pet_deposit, address_line_1, city, us_state, zip_code, washer_dryer, allow_cats, allow_dogs, parking_spots, gym, pool) VALUES (5, 3, 850, 1500, 2, 2.5, 'Probably not a restaurant', 'Smells like french fries!', 'https://upload.wikimedia.org/wikipedia/commons/6/62/Burger_King%2C_Saugus.jpg', 0, 400, 120, '68 King Row', 'Columbus', 'Ohio', 43219, 1, 1, 1, 'Street Parking', 1, 1);
+INSERT INTO unit (unit_id, property_id, monthly_rent, square_feet, number_of_beds, number_of_baths, description, tagline, image_source, application_fee, security_deposit, pet_deposit, address_line_1, city, us_state, zip_code, washer_dryer, allow_cats, allow_dogs, parking_spots, gym, pool) VALUES (5, 3, 850, 1500, 2, 2.5, 'Probably not a restaurant', 'Smells like french fries!', 'http://media.zenfs.com/en-US/homerun/investorplace_417/02332c1f6f09e8412498d3fecd939cd4', 0, 400, 120, '68 King Row', 'Columbus', 'Ohio', 43219, 1, 1, 1, 'Street Parking', 1, 1);
 
-INSERT INTO unit (unit_id, property_id, monthly_rent, square_feet, number_of_beds, number_of_baths, description, tagline, image_source, application_fee, security_deposit, pet_deposit, address_line_1, city, us_state, zip_code, washer_dryer, allow_cats, allow_dogs, parking_spots, gym, pool) VALUES (6, 3, 950, 1600, 3, 2.5, 'Do you love burgers? I know I love them.', 'Minimum wage is okay!', 'https://upload.wikimedia.org/wikipedia/commons/6/62/Burger_King%2C_Saugus.jpg', 0, 500, 140, '69 King Row', 'Columbus', 'Ohio', 43219, 1, 1, 1, '1 Car Garage', 1, 1);
+INSERT INTO unit (unit_id, property_id, monthly_rent, square_feet, number_of_beds, number_of_baths, description, tagline, image_source, application_fee, security_deposit, pet_deposit, address_line_1, city, us_state, zip_code, washer_dryer, allow_cats, allow_dogs, parking_spots, gym, pool) VALUES (6, 3, 950, 1600, 3, 2.5, 'Do you love burgers? I know I love them.', 'Minimum wage is okay!', 'http://ccsconstructionservice.com/wp-content/uploads/2015/04/Grandview-BK-8-Web.jpg', 0, 500, 140, '69 King Row', 'Columbus', 'Ohio', 43219, 1, 1, 1, '1 Car Garage', 1, 1);
 
 
 SET IDENTITY_INSERT unit OFF;
@@ -111,7 +111,7 @@ INSERT INTO property (property_id, owner_id, manager_id, property_name, property
 
 INSERT INTO property (property_id, owner_id, manager_id, property_name, property_type, number_of_units, image_source) VALUES (2, 2, 1, 'McMansion', 'Single Family', 1, 'https://upload.wikimedia.org/wikipedia/commons/6/63/Bulcolic_Mc_Mansions_Leesburg_%284949100182%29.jpg');
 
-INSERT INTO property (property_id, owner_id, manager_id, property_name, property_type, number_of_units, image_source) VALUES (3, 2, 1, 'Kingly Estates', 'Triplex', 3, 'https://upload.wikimedia.org/wikipedia/commons/6/63/Bulcolic_Mc_Mansions_Leesburg_%284949100182%29.jpg');
+INSERT INTO property (property_id, owner_id, manager_id, property_name, property_type, number_of_units, image_source) VALUES (3, 2, 1, 'Kingly Estates', 'Triplex', 3, 'https://lighting.cree.com/media/resized/casestudy/images/Cree_Restaurant_BurgerKing_SavoyIL_CaseStudy_004w=625h=400.jpg');
 
 
 SET IDENTITY_INSERT property OFF;
@@ -139,7 +139,9 @@ SET IDENTITY_INSERT service_request ON;
 
 INSERT INTO service_request (request_id, tenant_id, description, is_emergency, category, is_completed) VALUES (1, 3, 'There is a hole in my ceiling and I definitely did not cause it.', 1, 'property damage', 0);
 
-INSERT INTO service_request (request_id, tenant_id, description, is_emergency, category, is_completed) VALUES (2, 4, 'Water leak in my bathroom.', 0, 'water damage', 1);
+INSERT INTO service_request (request_id, tenant_id, description, is_emergency, category, is_completed) VALUES (2, 4, 'Water leak in my bathroom.', 0, 'plumbing', 1);
+
+INSERT INTO service_request (request_id, tenant_id, description, is_emergency, category) VALUES (3, 5, 'My power is out and there is a lot of static electricity everywhere.', 1, 'electrical');
 
 
 SET IDENTITY_INSERT service_request OFF;
@@ -148,9 +150,11 @@ SET IDENTITY_INSERT service_request OFF;
 SET IDENTITY_INSERT tenant_application ON;
 
 
-INSERT INTO tenant_application (application_id, unit_id, first_name, last_name, phone_number, email_address, last_residence_owner, last_residence_contact_phone_number, last_residence_tenancy_start_date, last_residence_tenancy_end_date, employment_status, employer_name, employer_contact_phone_number, annual_income, number_of_residents, number_of_cats, number_of_dogs, application_approval_status) VALUES (1, 3, 'Bruce', 'Wayne', '426-228-6261', 'bruce@wayneenterprises.com', 'Thomas Wayne', '555-426-3323', 'March 30, 1939', 'April 10, 2019', '0', 'Self-Employed', 'NA', '1000000000', 2, 0, 0, 0);
+INSERT INTO tenant_application (application_id, unit_id, first_name, last_name, phone_number, email_address, last_residence_owner, last_residence_contact_phone_number, last_residence_tenancy_start_date, last_residence_tenancy_end_date, employment_status, employer_name, employer_contact_phone_number, annual_income, number_of_residents, number_of_cats, number_of_dogs, application_approval_status) VALUES (1, 2, 'Bruce', 'Wayne', '426-228-6261', 'bruce@wayneenterprises.com', 'Thomas Wayne', '555-426-3323', 'March 30, 1939', 'April 10, 2019', 0, 'Self-Employed', 'NA', '1000000000', 2, 0, 0, 0);
 
-INSERT INTO tenant_application (application_id, unit_id, first_name, last_name, phone_number, email_address, last_residence_owner, last_residence_contact_phone_number, last_residence_tenancy_start_date, last_residence_tenancy_end_date, employment_status, employer_name, employer_contact_phone_number, annual_income, number_of_residents, number_of_cats, number_of_dogs, application_approval_status) VALUES (2, 6, 'Clark', 'Kent', '774-447-7474', 'notsuperman@gmail.com', 'Martha Kent', '447-774-4747', 'June 1938', 'April 11, 2019', '1', 'Daily Planet', '993-399-9393', '30000', 1, 1, 0, 1);
+INSERT INTO tenant_application (application_id, unit_id, first_name, last_name, phone_number, email_address, last_residence_owner, last_residence_contact_phone_number, last_residence_tenancy_start_date, last_residence_tenancy_end_date, employment_status, employer_name, employer_contact_phone_number, annual_income, number_of_residents, number_of_cats, number_of_dogs, application_approval_status) VALUES (2, 6, 'Clark', 'Kent', '774-447-7474', 'notsuperman@test.com', 'Martha Kent', '447-774-4747', 'June 1938', 'April 11, 2019', 1, 'Daily Planet', '993-399-9393', '30000', 1, 1, 0, 1);
+
+INSERT INTO tenant_application (application_id, unit_id, first_name, last_name, phone_number, email_address, last_residence_owner, last_residence_contact_phone_number, last_residence_tenancy_start_date, last_residence_tenancy_end_date, employment_status, employer_name, employer_contact_phone_number, annual_income, number_of_residents, number_of_cats, number_of_dogs) VALUES (3, 5, 'Diana', 'Prince', '113-331-1313', 'notwonderwoman@test.com', 'Zeus', '555-525-2525', 'January 1942', 'April 12, 2019', 1, 'Self-Employed', 'NA', '60000', 1, 1, 1);
 
 
 SET IDENTITY_INSERT tenant_application OFF;
