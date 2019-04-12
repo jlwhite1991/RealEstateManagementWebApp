@@ -34,9 +34,18 @@ namespace Capstone.Controllers
         [HttpPost]
         public IActionResult ApplicationForm(Application application)
         {
-            applicationDAL.AddApplication(application);
+            
 
-            return RedirectToAction("ApplicationForm");
+            if (!ModelState.IsValid)
+            {
+                return View(application);
+            }
+            else
+            {
+                applicationDAL.AddApplication(application);
+
+                return RedirectToAction("ApplicationForm");
+            }
         }
 
 
