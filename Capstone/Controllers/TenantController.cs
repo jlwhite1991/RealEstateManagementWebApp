@@ -40,5 +40,26 @@ namespace Capstone.Controllers
                 return RedirectToAction("Index");
             }
         }
+
+        [HttpGet]
+        public IActionResult PayRent()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult PayRent(Payment payment)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(payment);
+            }
+            else
+            {
+                serviceRequestDAL.PayRent(payment);
+
+                return RedirectToAction("PayRent");
+            }
+        }
     }
 }

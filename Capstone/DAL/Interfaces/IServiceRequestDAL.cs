@@ -9,5 +9,6 @@ namespace Capstone.DAL.Interfaces
     public interface IServiceRequestDAL
     {
         bool AddServiceRequest(ServiceRequest serviceRequest);
+        bool PayRent(Payment payment);
     }
 }

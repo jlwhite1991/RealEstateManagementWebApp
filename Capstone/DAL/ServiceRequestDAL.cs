@@ -11,6 +11,7 @@ namespace Capstone.DAL
     public class ServiceRequestDAL : IServiceRequestDAL
     {
         private const string SQL_AddServiceRequest = "INSERT INTO service_request (tenant_id, description, is_emergency, category, is_completed) VALUES (@tenantID, @description, @isEmergency, @category, @isCompleted);";
+        private const string SQL_PayRent = "INSERT INTO payment (unit_id, tenant_id, payment_amount) VALUES (@unitID, @tenant_id, @payment_amount);";
 
         private string connectionString;
 
@@ -50,5 +51,34 @@ namespace Capstone.DAL
         }
 
         //TODO: Add GetAllServiceRequests()
+
+        //TODO: Rename this class to TenantDAL?
+
+        public bool PayRent(Payment payment)
+        {
+            bool result;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    SqlCommand cmd = new SqlCommand(SQL_PayRent, connection);
+                    cmd.Parameters.AddWithValue("@unitID", payment.UnitID);
+                    cmd.Parameters.AddWithValue("@tenant_id", payment.TenantID);
+                    cmd.Parameters.AddWithValue("@payment_amount", payment.PaymentAmount);
+
+                    cmd.ExecuteNonQuery();
+                }
+                result = true;
+            }
+            catch (Exception)
+            {
+                result = false;
+                throw;
+            }
+            return result;
+        }
     }
 }
