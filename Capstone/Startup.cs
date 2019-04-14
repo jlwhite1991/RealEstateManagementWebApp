@@ -45,9 +45,6 @@ namespace Capstone
                 new PhysicalFileProvider(
                     Path.Combine(Directory.GetCurrentDirectory(), "wwwroot")));
 
-           
-
-
             string connectionString = Configuration.GetConnectionString("Default");
 
             services.AddScoped<IPropertyDAL, PropertyDAL>(c => new PropertyDAL(connectionString));
@@ -61,8 +58,6 @@ namespace Capstone
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

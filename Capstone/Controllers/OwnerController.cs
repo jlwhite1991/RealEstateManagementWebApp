@@ -12,11 +12,13 @@ namespace Capstone.Controllers
     {
         private IPropertyDAL propertyDAL;
         private IUnitDAL unitDAL;
+        private IApplicationDAL applicationDAL;
 
-        public OwnerController(IPropertyDAL propertyDAL, IUnitDAL unitDAL)
+        public OwnerController(IPropertyDAL propertyDAL, IUnitDAL unitDAL, IApplicationDAL applicationDAL)
         {
             this.propertyDAL = propertyDAL;
             this.unitDAL = unitDAL;
+            this.applicationDAL = applicationDAL;
         }
 
         [HttpGet]
@@ -48,5 +50,14 @@ namespace Capstone.Controllers
 
             return RedirectToAction("UnitForm");
         }
+
+        [HttpGet]
+        public IActionResult Applicants()
+        {
+            List<Application> applications = applicationDAL.GetAllApplications();
+
+            return View(applications);
+        }
+
     }
 }
