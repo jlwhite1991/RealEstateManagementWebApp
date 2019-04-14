@@ -18,8 +18,13 @@ namespace Capstone.Controllers
             this.serviceRequestDAL = serviceRequestDAL;
         }
 
-        [HttpGet]
         public IActionResult Index()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult Submit()
         {
             ServiceRequest serviceRequest = new ServiceRequest();
             return View(serviceRequest);
@@ -27,7 +32,7 @@ namespace Capstone.Controllers
 
         [ValidateAntiForgeryToken]
         [HttpPost]
-        public IActionResult Index(ServiceRequest serviceRequest)
+        public IActionResult Submit(ServiceRequest serviceRequest)
         {
             if (!ModelState.IsValid)
             {
@@ -37,18 +42,18 @@ namespace Capstone.Controllers
             {
                 serviceRequestDAL.AddServiceRequest(serviceRequest);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Submit");
             }
         }
 
         [HttpGet]
-        public IActionResult PayRent()
+        public IActionResult Rent()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult PayRent(Payment payment)
+        public IActionResult Rent(Payment payment)
         {
             if (!ModelState.IsValid)
             {
@@ -56,9 +61,9 @@ namespace Capstone.Controllers
             }
             else
             {
-                serviceRequestDAL.PayRent(payment);
+                serviceRequestDAL.SubmitPayment(payment);
 
-                return RedirectToAction("PayRent");
+                return RedirectToAction("Rent");
             }
         }
     }

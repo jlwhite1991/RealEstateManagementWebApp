@@ -1,16 +1,16 @@
 ﻿@model Capstone.Models.SearchModel
 
 @{
-    ViewData["Title"] = "AdvancedSearch";
+    ViewData["Title"] = "Advanced";
 }
 
-<h2>AdvancedSearch</h2>
+<h2>Advanced</h2>
 
 <h4>SearchModel</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="AdvancedSearch">
+        <form asp-action="Advanced">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="NumberofBedsMin" class="control-label"></label>
@@ -128,7 +128,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Back to all Available Properties</a>
 </div>
 
 @section Scripts {

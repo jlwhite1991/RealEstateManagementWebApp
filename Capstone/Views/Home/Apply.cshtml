@@ -1,7 +1,7 @@
 ﻿@model Capstone.Models.Application
 
 @{
-    ViewData["Title"] = "ApplicationForm";
+    ViewData["Title"] = "Apply";
 }
 
 <h2>Tenant Application Form</h2>
@@ -10,7 +10,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="ApplicationForm">
+        <form asp-action="Apply">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="UnitID" class="control-label"></label>
@@ -107,7 +107,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-controller="Search" asp-action="Index">Back to All Properties</a>
 </div>
 
 @section Scripts {

@@ -19,6 +19,7 @@ namespace Capstone.Controllers
             this.unitDAL = unitDAL;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
             List<Property> properties = propertyDAL.GetAvailableProperties();
@@ -27,7 +28,7 @@ namespace Capstone.Controllers
         }
 
         [HttpGet]
-        public IActionResult AdvancedSearch()
+        public IActionResult Advanced()
         {
             SearchModel search = new SearchModel();
             search.AvailableProperties = propertyDAL.GetAvailableProperties();
@@ -36,7 +37,7 @@ namespace Capstone.Controllers
         }
 
         [HttpPost]
-        public IActionResult AdvancedSearch(SearchModel model)
+        public IActionResult Advanced(SearchModel model)
         {
             model.AvailableProperties = propertyDAL.GetAvailableProperties();
 
@@ -46,7 +47,7 @@ namespace Capstone.Controllers
             }
             else
             {
-                model.HandleAdvancedSearch();
+                model.AdvancedPropertySearch();
                 return View(model);
             }
         }

@@ -21,43 +21,54 @@ namespace Capstone.Controllers
             this.applicationDAL = applicationDAL;
         }
 
-        [HttpGet]
         public IActionResult Index()
         {
             return View();
         }
 
-        [ValidateAntiForgeryToken]
-        [HttpPost]
-        public IActionResult Index(Property property)
-        {
-            propertyDAL.AddProperty(property);
-
-            return RedirectToAction("UnitForm");
-        }
-
         [HttpGet]
-        public IActionResult UnitForm()
+        public IActionResult Property()
         {
             return View();
         }
 
         [ValidateAntiForgeryToken]
         [HttpPost]
-        public IActionResult UnitForm(Unit unit)
+        public IActionResult Property(Property property)
         {
-            unitDAL.AddUnit(unit);
+            propertyDAL.AddProperty(property);
 
-            return RedirectToAction("UnitForm");
+            return RedirectToAction("Unit");
         }
 
         [HttpGet]
-        public IActionResult Applicants()
+        public IActionResult Unit()
+        {
+            return View();
+        }
+
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public IActionResult Unit(Unit unit)
+        {
+            unitDAL.AddUnit(unit);
+
+            return RedirectToAction("Unit");
+        }
+
+        [HttpGet]
+        public IActionResult Review()
         {
             List<Application> applications = applicationDAL.GetAllApplications();
 
             return View(applications);
         }
 
+        //[ValidateAntiForgeryToken]
+        //[HttpPost]
+        //public IActionResult Review()
+        //{
+
+        //}
     }
 }

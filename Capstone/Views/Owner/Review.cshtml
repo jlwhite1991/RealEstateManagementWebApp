@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<Capstone.Models.Application>
 
 @{
-    ViewData["Title"] = "AllApplicants";
+    ViewData["Title"] = "Review";
 }
 
-<h2>AllApplicants</h2>
+<h2>Review</h2>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -73,7 +73,7 @@
         </tr>
     </thead>
     <tbody>
-@foreach (Application item in Model) {
+@foreach (var item in Model) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.ApplicationID)
@@ -141,3 +141,7 @@
 }
     </tbody>
 </table>
+
+<div>
+    <a asp-action="Index">Back to Owner Home</a>
+</div>

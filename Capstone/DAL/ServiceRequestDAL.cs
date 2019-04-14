@@ -54,7 +54,7 @@ namespace Capstone.DAL
 
         //TODO: Rename this class to TenantDAL?
 
-        public bool PayRent(Payment payment)
+        public bool SubmitPayment(Payment payment)
         {
             bool result;
 

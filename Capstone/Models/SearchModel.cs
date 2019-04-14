@@ -19,7 +19,7 @@ namespace Capstone.Models
         public int SquareFeetMax { get; set; }
         public int ZipCode { get; set; }
 
-        public void HandleAdvancedSearch()
+        public void AdvancedPropertySearch()
         {
             List<Property> result = new List<Property>();
 

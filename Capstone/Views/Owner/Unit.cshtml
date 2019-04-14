@@ -1,16 +1,16 @@
 ﻿@model Capstone.Models.Unit
 
 @{
-    ViewData["Title"] = "UnitForm";
+    ViewData["Title"] = "Unit";
 }
 
 <h2>Add Additional Units To Your Existing Properties</h2>
 
-<h7>If you have not added your property yet, <a asp-controller="Owner" asp-action="Index">click here</h7></a>
+<h6>If you have not added your property yet, <a asp-controller="Owner" asp-action="Property">click here</a></h6>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="UnitForm">
+        <form asp-action="Unit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="PropertyID" class="control-label"></label>
@@ -140,7 +140,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Back to Owner Home</a>
 </div>
 
 @section Scripts {
