@@ -4,74 +4,10 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
+<h2>Owner Home</h2>
 
-<h4>Property</h4>
+<h6><a asp-controller="Owner" asp-action="Property">Click here</a> to add a Property</h6>
 
-<h7>If you have already added your property. You can add additional units to it <a asp-controller="Owner" asp-action="UnitForm">here</h7></a>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Index">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="OwnerID" class="control-label"></label>
-                <input asp-for="OwnerID" class="form-control" />
-                <span asp-validation-for="OwnerID" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ManagerID" class="control-label"></label>
-                <input asp-for="ManagerID" class="form-control" />
-                <span asp-validation-for="ManagerID" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PropertyName" class="control-label"></label>
-                <input asp-for="PropertyName" class="form-control" />
-                <span asp-validation-for="PropertyName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NumberOfUnits" class="control-label"></label>
-                <input asp-for="NumberOfUnits" class="form-control" />
-                <span asp-validation-for="NumberOfUnits" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="radio" name="PropertyType" value="single family" class="activity-selector" />
-                <label asp-for="PropertyType" class="control-label">Single Family</label>
+<h6><a asp-controller="Owner" asp-action="Unit">Click here</a> to add a Unit to an existing Property</h6>
 
-                <input type="radio" name="PropertyType" value="duplex" class="activity-selector" />
-                <label asp-for="PropertyType" class="control-label">Duplex</label>
-
-                <input type="radio" name="PropertyType" value="triplex" class="activity-selector" />
-                <label asp-for="PropertyType" class="control-label">Triplex</label>
-
-                <input type="radio" name="PropertyType" value="fourplex" class="activity-selector" />
-                <label asp-for="PropertyType" class="control-label">Fourplex</label>
-
-                <input type="radio" name="PropertyType" value="multi-family" class="activity-selector" />
-                <label asp-for="PropertyType" class="control-label">Multi-Family</label>
-
-                <input type="radio" name="PropertyType" value="condo" class="activity-selector" />
-                <label asp-for="PropertyType" class="control-label">Condo</label>
-
-                <input type="radio" name="PropertyType" value="mobile home" class="activity-selector" />
-                <label asp-for="PropertyType" class="control-label">Mobile Home</label>
-            </div>
-            <div class="form-group">
-                <label asp-for="ImageSource" class="control-label"></label>
-                <input asp-for="ImageSource" class="form-control" />
-                <span asp-validation-for="ImageSource" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </form>
-    </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+<h6><a asp-controller="Owner" asp-action="Review">Click here</a> to view submitted Applications</h6>

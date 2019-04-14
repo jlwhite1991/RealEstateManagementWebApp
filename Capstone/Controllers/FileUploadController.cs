@@ -24,7 +24,7 @@ namespace Capstone.Controllers
         public JsonResult UploadFile(IFormFile file)
         {
             if (file == null || file.Length == 0)
-                return Json (new { success = "False" });
+                return Json(new { success = "False" });
 
             var path = Path.Combine(
                         Directory.GetCurrentDirectory(), "wwwroot",

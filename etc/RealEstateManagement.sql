@@ -80,8 +80,16 @@ CREATE TABLE tenant_application (
 	number_of_residents integer NOT NULL,
 	number_of_cats integer NULL,
 	number_of_dogs integer NULL,
-	application_approval_status bit NULL,
+	application_approval_status bit NOT NULL DEFAULT 0,
 	CONSTRAINT pk_application_id PRIMARY KEY (application_id),
+);
+
+CREATE TABLE payment (
+	payment_id integer NOT NULL IDENTITY(1,1),
+	unit_id integer NOT NULL,
+	tenant_id integer NOT NULL,
+	payment_amount DECIMAL(13,2) NOT NULL,
+	CONSTRAINT pk_payment_id PRIMARY KEY (payment_id),
 );
 
 
@@ -159,6 +167,21 @@ INSERT INTO tenant_application (application_id, unit_id, first_name, last_name, 
 
 SET IDENTITY_INSERT tenant_application OFF;
 
+SET IDENTITY_INSERT payment ON;
+
+INSERT INTO payment (payment_id, unit_id, tenant_id, payment_amount) VALUES (1, 1, 1, 700.00 );
+
+INSERT INTO payment (payment_id, unit_id, tenant_id, payment_amount) VALUES (2, 1, 1, 700.00 );
+
+INSERT INTO payment (payment_id, unit_id, tenant_id, payment_amount) VALUES (3, 1, 1, 700.00 );
+
+INSERT INTO payment (payment_id, unit_id, tenant_id, payment_amount) VALUES (4, 2, 2, 700.00 );
+
+INSERT INTO payment (payment_id, unit_id, tenant_id, payment_amount) VALUES (5, 2, 2, 700.00 );
+
+INSERT INTO payment (payment_id, unit_id, tenant_id, payment_amount) VALUES (6, 2, 2, 700.00 );
+
+SET IDENTITY_INSERT payment OFF;
 
 ALTER TABLE unit
 ADD FOREIGN KEY (property_id)
@@ -176,5 +199,8 @@ ALTER TABLE tenant_application
 ADD FOREIGN KEY (unit_id)
 REFERENCES unit(unit_id)
 
+ALTER TABLE payment
+ADD FOREIGN KEY (unit_id)
+REFERENCES unit(unit_id)
 
 COMMIT TRANSACTION;

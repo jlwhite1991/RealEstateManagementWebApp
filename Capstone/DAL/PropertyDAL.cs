@@ -78,11 +78,12 @@ namespace Capstone.DAL
                         property.PropertyName = Convert.ToString(reader["property_name"]);
                         property.PropertyType = Convert.ToString(reader["property_type"]);
                         property.NumberOfUnits = Convert.ToInt32(reader["number_of_units"]);
-
-                        property.ImageSource = Convert.ToString(reader["image_source"]);
-                        List<Unit> units = unitDAL.GetAllUnitsAtProperty(property.PropertyID);
-
-                        property.UnitsAtThisProperty = units;
+                        //The following if statement prevents an exception by checking if the database value is null before setting the property
+                        if (!Convert.IsDBNull(reader["image_source"]))
+                        {
+                            property.ImageSource = Convert.ToString(reader["image_source"]);
+                        }
+                        property.UnitsAtThisProperty = unitDAL.GetAllUnitsAtProperty(property.PropertyID);
 
                         returnedProperties.Add(property);
                     }

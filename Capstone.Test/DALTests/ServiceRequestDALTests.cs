@@ -21,16 +21,21 @@ namespace Capstone.Test.DALTests
         {
             tran = new TransactionScope();
 
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                SqlCommand cmd;
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    SqlCommand cmd;
 
-                conn.Open();
+                    conn.Open();
 
-                cmd = new SqlCommand("SET IDENTITY_INSERT site_user ON; INSERT INTO site_user(user_id, first_name, last_name, phone_number, email_address, role, password, salt) VALUES(999, 'Test', 'Johnson', '555-555-5555', 'test@test.com', 'tenant', 'password', 'salt'); SET IDENTITY_INSERT site_user OFF;", conn);
-
-                cmd.ExecuteNonQuery();
+                    cmd = new SqlCommand("SET IDENTITY_INSERT site_user ON; INSERT INTO site_user(user_id, first_name, last_name, phone_number, email_address, role, password, salt) VALUES(999, 'Test', 'Johnson', '555-555-5555', 'test@test.com', 'tenant', 'password', 'salt'); SET IDENTITY_INSERT site_user OFF;", conn);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
             }
         }
 
@@ -58,5 +63,6 @@ namespace Capstone.Test.DALTests
             Assert.IsTrue(result);
         }
 
+        //TODO: Add GetAllServiceRequestsTest()
     }
 }

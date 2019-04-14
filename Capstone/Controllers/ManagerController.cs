@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Capstone.Controllers
 {
-    public class ManagementCompanyController : Controller
+    public class ManagerController : Controller
     {
         public IActionResult Index()
         {
@@ -16,13 +16,13 @@ namespace Capstone.Controllers
         }
 
         [HttpGet]
-        public ActionResult SendEmail()
+        public ActionResult Email()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult SendEmail(string receiver, string subject, string message)
+        public ActionResult Email(string receiver, string subject, string message)
         {
             try
             {

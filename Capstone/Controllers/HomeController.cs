@@ -18,24 +18,21 @@ namespace Capstone.Controllers
             this.applicationDAL = applicationDAL;
         }
 
-
         public IActionResult Index()
         {
             return View();
         }
 
         [HttpGet]
-        public IActionResult ApplicationForm()
+        public IActionResult Apply()
         {
             return View();
         }
 
         [ValidateAntiForgeryToken]
         [HttpPost]
-        public IActionResult ApplicationForm(Application application)
+        public IActionResult Apply(Application application)
         {
-            
-
             if (!ModelState.IsValid)
             {
                 return View(application);
@@ -44,10 +41,9 @@ namespace Capstone.Controllers
             {
                 applicationDAL.AddApplication(application);
 
-                return RedirectToAction("ApplicationForm");
+                return RedirectToAction("Apply");
             }
         }
-
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
@@ -59,14 +55,9 @@ namespace Capstone.Controllers
         {
             string message = "";
 
-            //Insert to Database, send emai, etc
+            //Insert to Database, send email, etc
 
             return Json(new { message });
         }
-
-        //public IActionResult AvailableProperties()
-        //{
-
-        //}
     }
 }
