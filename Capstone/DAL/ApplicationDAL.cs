@@ -136,10 +136,7 @@ namespace Capstone.DAL
                         {
                             application.NumberOfDogs = Convert.ToInt32(reader["number_of_dogs"]);
                         }
-                        if (!Convert.IsDBNull(reader["application_approval_status"]))
-                        {
                             application.ApplicationApprovalStatus = Convert.ToBoolean(reader["application_approval_status"]);
-                        }
                         
                         output.Add(application);
                     }

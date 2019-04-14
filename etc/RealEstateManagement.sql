@@ -80,7 +80,7 @@ CREATE TABLE tenant_application (
 	number_of_residents integer NOT NULL,
 	number_of_cats integer NULL,
 	number_of_dogs integer NULL,
-	application_approval_status bit NULL DEFAULT 0,
+	application_approval_status bit NOT NULL DEFAULT 0,
 	CONSTRAINT pk_application_id PRIMARY KEY (application_id),
 );
 
