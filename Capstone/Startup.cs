@@ -51,6 +51,7 @@ namespace Capstone
             services.AddScoped<IUnitDAL, UnitDAL>(c => new UnitDAL(connectionString));
             services.AddScoped<IServiceRequestDAL, ServiceRequestDAL>(c => new ServiceRequestDAL(connectionString));
             services.AddScoped<IApplicationDAL, ApplicationDAL>(c => new ApplicationDAL(connectionString));
+            services.AddScoped<IPaymentDAL, PaymentDAL>(c => new PaymentDAL(connectionString));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

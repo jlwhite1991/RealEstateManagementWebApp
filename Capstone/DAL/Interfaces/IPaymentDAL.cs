@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Capstone.DAL.Interfaces
 {
-    public interface IServiceRequestDAL
+    public interface IPaymentDAL
     {
-        bool AddServiceRequest(ServiceRequest serviceRequest);
-        //List<ServiceRequest> GetAllServiceRequests()
+        bool SubmitPayment(Payment payment);
     }
 }

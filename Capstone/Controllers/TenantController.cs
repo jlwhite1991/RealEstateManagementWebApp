@@ -12,10 +12,12 @@ namespace Capstone.Controllers
     public class TenantController : Controller
     {
         private IServiceRequestDAL serviceRequestDAL;
+        private IPaymentDAL paymentDAL;
 
-        public TenantController(IServiceRequestDAL serviceRequestDAL)
+        public TenantController(IServiceRequestDAL serviceRequestDAL, IPaymentDAL paymentDAL)
         {
             this.serviceRequestDAL = serviceRequestDAL;
+            this.paymentDAL = paymentDAL;
         }
 
         public IActionResult Index()
@@ -61,7 +63,7 @@ namespace Capstone.Controllers
             }
             else
             {
-                serviceRequestDAL.SubmitPayment(payment);
+                paymentDAL.SubmitPayment(payment);
 
                 return RedirectToAction("Rent");
             }
