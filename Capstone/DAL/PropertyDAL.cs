@@ -18,10 +18,12 @@ namespace Capstone.DAL
         private string connectionString;
         private UnitDAL unitDAL;
 
+
         public PropertyDAL(string connectionString)
         {
             this.connectionString = connectionString;
             unitDAL = new UnitDAL(connectionString);
+            
         }
 
         public bool AddProperty(Property property)

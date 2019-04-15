@@ -169,21 +169,19 @@ INSERT INTO tenant_application (application_id, unit_id, first_name, last_name, 
 
 SET IDENTITY_INSERT tenant_application OFF;
 
-SET IDENTITY_INSERT payment ON;
 
-INSERT INTO payment (payment_id, unit_id, tenant_id, payment_amount) VALUES (1, 1, 1, 700.00 );
+INSERT INTO payment ( unit_id, tenant_id, payment_amount, payment_date, payment_for_month) VALUES (1, 1, 700.00, '2019-02-14', 3 );
 
-INSERT INTO payment (payment_id, unit_id, tenant_id, payment_amount) VALUES (2, 1, 1, 700.00 );
+INSERT INTO payment ( unit_id, tenant_id, payment_amount, payment_date, payment_for_month) VALUES ( 1, 1, 700.00, '2019-03-28', 4 );
 
-INSERT INTO payment (payment_id, unit_id, tenant_id, payment_amount) VALUES (3, 1, 1, 700.00 );
+INSERT INTO payment ( unit_id, tenant_id, payment_amount, payment_date, payment_for_month) VALUES ( 1, 1, 700.00, '2019-02-25', 3 );
 
-INSERT INTO payment (payment_id, unit_id, tenant_id, payment_amount) VALUES (4, 2, 2, 700.00 );
+INSERT INTO payment ( unit_id, tenant_id, payment_amount, payment_date, payment_for_month) VALUES ( 2, 2, 700.00, '2019-03-24', 4 );
 
-INSERT INTO payment (payment_id, unit_id, tenant_id, payment_amount) VALUES (5, 2, 2, 700.00 );
+INSERT INTO payment ( unit_id, tenant_id, payment_amount, payment_date, payment_for_month) VALUES ( 2, 2, 700.00, '2019-04-10', 5 );
 
-INSERT INTO payment (payment_id, unit_id, tenant_id, payment_amount) VALUES (6, 2, 2, 700.00 );
+INSERT INTO payment ( unit_id, tenant_id, payment_amount, payment_date, payment_for_month) VALUES ( 2, 2, 700.00, '2019-01-19', 2 );
 
-SET IDENTITY_INSERT payment OFF;
 
 ALTER TABLE unit
 ADD FOREIGN KEY (property_id)

@@ -108,6 +108,6 @@ namespace Capstone.Models
             }
         }
 
-        public int RentCollectedYTD { get; set; }
+        public decimal RentCollectedYTD { get; set; }
     }
 }

@@ -18,9 +18,12 @@ namespace Capstone.DAL
 
         private string connectionString;
 
+        private PaymentDAL payDAL;
+
         public UnitDAL(string connectionString)
         {
             this.connectionString = connectionString;
+            payDAL = new PaymentDAL(connectionString);
         }
 
         public bool AddUnit(Unit unit)
@@ -148,6 +151,8 @@ namespace Capstone.DAL
                         {
                             unit.Pool = Convert.ToBoolean(reader["pool"]);
                         }
+
+                        unit.RentCollectedYTD = payDAL.GetYTDPaymentsforUnit(unit.UnitID);
 
                         returnedUnits.Add(unit);
                     }
