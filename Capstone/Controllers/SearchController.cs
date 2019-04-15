@@ -36,6 +36,7 @@ namespace Capstone.Controllers
             return View(search);
         }
 
+        [ValidateAntiForgeryToken]
         [HttpPost]
         public IActionResult Advanced(SearchModel model)
         {

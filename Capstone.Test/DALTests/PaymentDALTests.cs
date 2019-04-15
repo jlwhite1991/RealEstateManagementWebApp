@@ -13,7 +13,7 @@ namespace Capstone.Test.DALTests
     public class PaymentDALTests
     {
         private TransactionScope tran;
-        private string connectionString = "Data Source=.\\sqlexpress;Initial Catalog=RealEstateManagement;Integrated Security=True";
+        //private string connectionString = "Data Source=.\\sqlexpress;Initial Catalog=RealEstateManagement;Integrated Security=True";
 
         [TestInitialize]
         public void Initialize()

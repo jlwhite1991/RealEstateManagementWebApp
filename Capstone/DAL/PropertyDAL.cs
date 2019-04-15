@@ -89,9 +89,10 @@ namespace Capstone.DAL
                     }
                 }
             }
-            catch (SqlException)
+            catch (SqlException ex)
             {
                 returnedProperties = new List<Property>();
+                throw ex;
             }
 
             return returnedProperties;
@@ -126,9 +127,10 @@ namespace Capstone.DAL
         //            }
         //        }
         //    }
-        //    catch (SqlException)
+        //    catch (SqlException ex)
         //    {
         //        returnedProperties = new List<Property>();
+        //        throw ex;
         //    }
 
         //    return returnedProperties;

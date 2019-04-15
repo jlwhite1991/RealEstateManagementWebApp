@@ -41,9 +41,10 @@ namespace Capstone.DAL
 
                 result = true;
             }
-            catch (SqlException)
+            catch (SqlException ex)
             {
                 result = false;
+                throw ex;
             }
 
             return result;

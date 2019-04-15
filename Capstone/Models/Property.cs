@@ -14,8 +14,8 @@ namespace Capstone.Models
         [Display(Name = "Enter your Owner ID: ")]
         public int OwnerID { get; set; }
 
-        [Range(1, int.MaxValue, ErrorMessage = "Please provide a manager ID")]
-        [Display(Name = "Enter in the ID of your manager: ")]
+        [Range(1, int.MaxValue, ErrorMessage = "Manager ID required")]
+        [Display(Name = "Please submit your manager's ID #: ")]
         public int ManagerID { get; set; }
 
         [Required(ErrorMessage = "Please provide a property name")]

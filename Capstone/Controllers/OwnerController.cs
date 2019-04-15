@@ -59,16 +59,27 @@ namespace Capstone.Controllers
         [HttpGet]
         public IActionResult Review()
         {
-            List<Application> applications = applicationDAL.GetAllApplications();
+            List<Application> applications = applicationDAL.GetAllUnreviewedApplications();
 
             return View(applications);
         }
 
-        //[ValidateAntiForgeryToken]
-        //[HttpPost]
-        //public IActionResult Review()
-        //{
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public IActionResult Approve(int applicationID)
+        {
+                applicationDAL.ApproveApplication(applicationID);
 
-        //}
+                return RedirectToAction("Review");
+        }
+
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public IActionResult Deny(int applicationID)
+        {
+            applicationDAL.DenyApplication(applicationID);
+
+            return RedirectToAction("Review");
+        }
     }
 }

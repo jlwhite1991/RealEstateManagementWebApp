@@ -19,6 +19,7 @@ namespace Capstone.Models
         public string FirstName { get; set; }
 
         [Required(ErrorMessage = "Please provide your Last Name")]
+        [Range(1, 999999999, ErrorMessage = "Please provide a valid SSN")]
         [Display(Name = "Enter your Last Name: ")]
         public string LastName { get; set; }
 

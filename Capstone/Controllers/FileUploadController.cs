@@ -20,6 +20,7 @@ namespace Capstone.Controllers
             return View();
         }
 
+        [ValidateAntiForgeryToken]
         [HttpPost]
         public JsonResult UploadFile(IFormFile file)
         {

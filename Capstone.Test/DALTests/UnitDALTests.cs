@@ -39,9 +39,9 @@ namespace Capstone.Test.DALTests
                     cmd.ExecuteNonQuery();
                 }
             }
-            catch (SqlException)
+            catch (SqlException ex)
             {
-                throw;
+                throw ex;
             }
         }
 

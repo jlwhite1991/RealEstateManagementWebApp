@@ -151,9 +151,10 @@ namespace Capstone.DAL
                     }
                 }
             }
-            catch (SqlException)
+            catch (SqlException ex)
             {
                 returnedUnits = new List<Unit>();
+                throw ex;
             }
 
             return returnedUnits;

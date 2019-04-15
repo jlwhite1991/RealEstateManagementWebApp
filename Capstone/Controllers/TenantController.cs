@@ -54,6 +54,7 @@ namespace Capstone.Controllers
             return View();
         }
 
+        [ValidateAntiForgeryToken]
         [HttpPost]
         public IActionResult Rent(Payment payment)
         {

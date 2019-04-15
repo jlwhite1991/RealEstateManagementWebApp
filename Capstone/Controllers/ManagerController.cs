@@ -21,6 +21,7 @@ namespace Capstone.Controllers
             return View();
         }
 
+        [ValidateAntiForgeryToken]
         [HttpPost]
         public ActionResult Email(string receiver, string subject, string message)
         {
