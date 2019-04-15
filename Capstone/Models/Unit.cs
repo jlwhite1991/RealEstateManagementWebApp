@@ -55,5 +55,16 @@ namespace Capstone.Models
         public bool Gym { get; set; }
 
         public bool Pool { get; set; }
+
+
+
+        public bool IsVacant
+        {
+            get
+            {
+                // TenantID will default to 0 when unoccupied
+                return (TenantID == 0);
+            }
+        }
     }
 }

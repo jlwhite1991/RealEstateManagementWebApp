@@ -13,6 +13,7 @@ namespace Capstone.DAL
         private const string SQL_AddProperty = "INSERT INTO property (owner_id, manager_id, property_name, property_type, number_of_units, image_source) VALUES (@ownerID, @managerID, @propertyName, @propertyType, @numberOfUnits, @imageSource);";
         private const string SQL_GetAllProperties = "SELECT * FROM property;";
         private const string SQL_GetAvailableProperties = "SELECT DISTINCT property.property_id, property.owner_id, property.manager_id, property.property_name, property.property_type, property.number_of_units, property.image_source FROM property JOIN unit ON property.property_id = unit.property_id WHERE tenant_id IS NULL;";
+        private const string SQL_GetPropertiesForOwner = "SELECT * FROM property as p JOIN site_user as u ON p.owner_id = u.user_id WHERE p.owner_id = @ownerID ";
 
         private string connectionString;
         private UnitDAL unitDAL;
@@ -97,6 +98,50 @@ namespace Capstone.DAL
             return returnedProperties;
         }
         
+        public List<Property> GetPropertiesForOwner(int ownerID)
+        {
+            List<Property> result = new List<Property>();
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    SqlCommand cmd = new SqlCommand(SQL_GetPropertiesForOwner, connection);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    cmd.Parameters.AddWithValue("@ownerID", ownerID);
+                   
+                    while (reader.Read())
+                    {
+                        Property property = new Property();
+
+                        property.PropertyID = Convert.ToInt32(reader["property_id"]);
+                        property.OwnerID = Convert.ToInt32(reader["owner_id"]);
+                        property.ManagerID = Convert.ToInt32(reader["manager_id"]);
+                        property.PropertyName = Convert.ToString(reader["property_name"]);
+                        property.PropertyType = Convert.ToString(reader["property_type"]);
+                        property.NumberOfUnits = Convert.ToInt32(reader["number_of_units"]);
+                        //The following if statement prevents an exception by checking if the database value is null before setting the property
+                        if (!Convert.IsDBNull(reader["image_source"]))
+                        {
+                            property.ImageSource = Convert.ToString(reader["image_source"]);
+                        }
+                        property.UnitsAtThisProperty = unitDAL.GetAllUnitsAtProperty(property.PropertyID);
+
+                        result.Add(property);
+                    }
+                }
+            }
+            catch (SqlException e)
+            {
+                result = new List<Property>();
+                throw e;
+            }
+
+            return result;
+        }
         //public List<Property> GetAllProperties()
         //{
         //    List<Property> returnedProperties = new List<Property>();

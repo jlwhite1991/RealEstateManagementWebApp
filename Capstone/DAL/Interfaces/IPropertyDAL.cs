@@ -11,5 +11,7 @@ namespace Capstone.DAL.Interfaces
         bool AddProperty(Property property);
         //List<Property> GetAllProperties();
         List<Property> GetAvailableProperties();
+        List<Property> GetPropertiesForOwner(int ownerID);
+
     }
 }

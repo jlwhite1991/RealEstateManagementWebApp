@@ -55,9 +55,7 @@ namespace Capstone.Controllers
 
             return RedirectToAction("Unit");
         }
-<<<<<<< HEAD
-        public IActionResult 
-=======
+
 
         [HttpGet]
         public IActionResult Review()
@@ -67,12 +65,27 @@ namespace Capstone.Controllers
             return View(applications);
         }
 
+        [HttpGet]
+        public IActionResult MyProperties()
+        {
+            // Get ownersID
+            int myID = 0;
+
+            List<Property> ownerProperties = propertyDAL.GetPropertiesForOwner(myID);
+
+            OwnersPropertiesViewModel myProperties = new OwnersPropertiesViewModel();
+
+            myProperties.ownersProperties = ownerProperties;
+
+            return View(ownerProperties);
+        }
+
         //[ValidateAntiForgeryToken]
         //[HttpPost]
         //public IActionResult Review()
         //{
 
         //}
->>>>>>> deb26b883fd3203288f65e00decfb09b0d4376d6
+
     }
 }

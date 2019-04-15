@@ -36,5 +36,48 @@ namespace Capstone.Models
         public string ImageSource { get; set; } = "";
 
         public List<Unit> UnitsAtThisProperty { get; set; }
+
+
+        // Get Vacancy % at property(?)
+        public decimal GetVacancyRate()
+        {
+            int vacantCount = 0;
+            foreach (var unit in UnitsAtThisProperty)
+            {
+                if(unit.IsVacant)
+                {
+                    vacantCount++;
+                }
+            }
+
+            return vacantCount / UnitsAtThisProperty.Count;
+        }
+
+        public decimal GetTotalScheduledGrossRents()
+        {
+            decimal result = 0.0M;
+
+            // TODO: Consider this a placeholder. 
+            // Would need to add actually get payments for a month, or account for additional fees.
+            //Technically this would need all "Occupied Units" 
+            foreach (Unit unit in UnitsAtThisProperty)
+            {
+                result += unit.MonthlyRent;
+            }
+
+            return result * 12;
+        }
+
+        public decimal GetVacancyLoss()
+        {
+            return GetTotalScheduledGrossRents() * GetVacancyRate();
+        }
+
+        public decimal GetEffectiveGrossIncome()
+        {
+            return GetTotalScheduledGrossRents() - GetVacancyLoss();
+        }
+
+        // Get Potential Fees for occupied (though this would need a call to applications to get occupants)
     }
 }
