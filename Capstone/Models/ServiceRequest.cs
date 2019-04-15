@@ -11,19 +11,20 @@ namespace Capstone.Models
     {
         public int RequestID { get; set; }
 
-        [Display(Name = "Please enter your Tenant ID #")]
-        [Required(ErrorMessage = "You must input your Tenant ID #")]
-        [Range(1, int.MaxValue, ErrorMessage = "Please input a valid number")]
+        [Required(ErrorMessage = "A tenant ID is required")]
+        [Range(1, int.MaxValue, ErrorMessage = "Please enter a valid number")]
+        [Display(Name = "Please enter your tenant ID: ")]
         public int TenantID { get; set; }
 
-        [Required(ErrorMessage = "You must describe the nature of the service request.")]
+        [Required(ErrorMessage = "A description is required")]
+        [Display(Name = "Description: ")]
         public string Description { get; set; }
 
         [Display(Name = "Is this an Emergency?")]
         public bool IsEmergency { get; set; }
 
-        [Display(Name = "What kind of service request is this?")]
-        [Required]
+        [Required(ErrorMessage = "A category is required")]
+        [Display(Name = "Please choose a service category: ")]
         public string Category { get; set; }
 
         public bool IsCompleted { get; set; }

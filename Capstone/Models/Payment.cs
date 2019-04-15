@@ -10,16 +10,18 @@ namespace Capstone.Models
     {
         public int PaymentID { get; set; }
 
-        [Required(ErrorMessage = "Please provide a Unit ID")]
-        [Display(Name = "Enter your Unit ID: ")]
+        [Required(ErrorMessage = "A unit ID is required")]
+        [Range(1, int.MaxValue, ErrorMessage = "Please enter a valid number")]
+        [Display(Name = "Please enter your unit ID: ")]
         public int UnitID { get; set; }
 
-        [Required(ErrorMessage = "Please provide a Tenant ID")]
-        [Display(Name = "Enter your Tenant ID: ")]
+        [Required(ErrorMessage = "A tenant ID is required")]
+        [Display(Name = "Please enter your tenant ID: ")]
         public int TenantID { get; set; }
 
-        [Required(ErrorMessage = "Please provide a Payment Amount")]
-        [Display(Name = "Enter the amount you would like to Pay: ")]
+        [Required(ErrorMessage = "Payment amount is required")]
+        [Range(0.01, 999999999, ErrorMessage = "Price must be greater than 0.00")]
+        [Display(Name = "Payment Amount: ")]
         public decimal PaymentAmount { get; set; }
     }
 }

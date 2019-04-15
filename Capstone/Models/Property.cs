@@ -10,28 +10,29 @@ namespace Capstone.Models
     {
         public int PropertyID { get; set; }
 
-        [Range(1, int.MaxValue, ErrorMessage = "Please provide a Owner ID")]
-        [Display(Name = "Enter your Owner ID: ")]
+        [Required(ErrorMessage = "An owner ID is required")]
+        [Range(1, int.MaxValue, ErrorMessage = "Please enter a valid number")]
+        [Display(Name = "Please enter your owner ID #: ")]
         public int OwnerID { get; set; }
 
-        [Range(1, int.MaxValue, ErrorMessage = "Manager ID required")]
-        [Display(Name = "Please submit your manager's ID #: ")]
+        [Required(ErrorMessage = "A manager ID is required")]
+        [Range(1, int.MaxValue, ErrorMessage = "Please enter a valid number")]
+        [Display(Name = "Please enter your manager's ID #: ")]
         public int ManagerID { get; set; }
 
-        [Required(ErrorMessage = "Please provide a property name")]
-        [Display(Name = "Enter in the name of your property")]
+        [Required(ErrorMessage = "A property name is required")]
+        [Display(Name = "Property Name: ")]
         public string PropertyName { get; set; }
 
-        [Required(ErrorMessage = "Please provide a property type")]
-        [Display(Name = "Property Type")]
+        [Required(ErrorMessage = "Please choose a property type")]
         public string PropertyType { get; set; }
 
-        [Required(ErrorMessage = "Please provide number of Units")]
-        [Range(0, 2000)]
-        [Display(Name = "Enter in the number of units")]
+        [Required(ErrorMessage = "Number of units is required")]
+        [Range(1, 100, ErrorMessage = "Please enter a valid number")]
+        [Display(Name = "Please provide the number of units at this location: ")]
         public int NumberOfUnits { get; set; }
 
-        [DataType(DataType.ImageUrl)]
+        [DataType(DataType.ImageUrl, ErrorMessage = "Please enter a valid URL")]
         [Display(Name = "Add a link to an image of your property: ")]
         public string ImageSource { get; set; } = "";
 
