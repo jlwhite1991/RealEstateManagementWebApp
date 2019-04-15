@@ -107,5 +107,7 @@ namespace Capstone.Models
                 return (TenantID == 0);
             }
         }
+
+        public int RentCollectedYTD { get; set; }
     }
 }

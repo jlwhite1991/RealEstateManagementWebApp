@@ -10,7 +10,7 @@ namespace Capstone.DAL
 {
     public class PaymentDAL : IPaymentDAL
     {
-        private const string SQL_AddPayment = "INSERT INTO payment (unit_id, tenant_id, payment_amount) VALUES (@unitID, @tenant_id, @payment_amount);";
+        private const string SQL_AddPayment = "INSERT INTO payment (unit_id, tenant_id, payment_amount, payment_date, payment_for_month) VALUES (@unitID, @tenant_id, @payment_amount, GETDATE(), @payment_for_month);";
 
         private string connectionString;
 
@@ -33,6 +33,7 @@ namespace Capstone.DAL
                     cmd.Parameters.AddWithValue("@unitID", payment.UnitID);
                     cmd.Parameters.AddWithValue("@tenant_id", payment.TenantID);
                     cmd.Parameters.AddWithValue("@payment_amount", payment.PaymentAmount);
+                    cmd.Parameters.AddWithValue("@payment_for_month", payment.PaymentForMonth);
 
                     cmd.ExecuteNonQuery();
                 }

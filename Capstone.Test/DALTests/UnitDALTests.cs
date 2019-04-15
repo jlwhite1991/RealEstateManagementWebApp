@@ -89,7 +89,7 @@ namespace Capstone.Test.DALTests
         public void GetAllUnitsAtPropertyTest()
         {
             UnitDAL unitDAL = new UnitDAL(connectionString);
-            List<Unit> units = unitDAL.GetAllUnitsAtProperty(999);
+            List<Unit> units = unitDAL.GetAvailableUnitsAtProperty(999);
 
             Assert.IsNotNull(units);
         }
