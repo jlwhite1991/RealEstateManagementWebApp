@@ -81,5 +81,20 @@ namespace Capstone.Controllers
 
             return RedirectToAction("Review");
         }
+
+        [HttpGet]
+        public IActionResult MyProperties()
+        {
+            // Get ownersID
+            int myID = 0;
+
+            List<Property> ownerProperties = propertyDAL.GetPropertiesForOwner(myID);
+
+            OwnersPropertiesViewModel myProperties = new OwnersPropertiesViewModel();
+
+            myProperties.ownersProperties = ownerProperties;
+
+            return View(ownerProperties);
+        }
     }
 }
