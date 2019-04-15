@@ -89,6 +89,8 @@ CREATE TABLE payment (
 	unit_id integer NOT NULL,
 	tenant_id integer NOT NULL,
 	payment_amount DECIMAL(13,2) NOT NULL,
+	payment_date DATE NOT NULL,
+	payment_for_month integer NOT NULL,
 	CONSTRAINT pk_payment_id PRIMARY KEY (payment_id),
 );
 

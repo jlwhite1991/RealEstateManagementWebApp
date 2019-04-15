@@ -12,7 +12,9 @@ namespace Capstone.DAL
     public class UnitDAL : IUnitDAL
     {
         private const string SQL_AddUnit = "INSERT INTO unit (property_id, monthly_rent, square_feet, number_of_beds, number_of_baths, description, tagline, image_source, application_fee, security_deposit, pet_deposit, address_line_1, address_line_2, city, us_state, zip_code, washer_dryer, allow_cats, allow_dogs, parking_spots, gym, pool) VALUES (@propertyID, @monthlyRent, @squareFeet, @numberOfBeds, @numberOfBaths, @description, @tagline, @imageSource, @applicationFee, @securityDeposit, @petDeposit, @addressLine1, @addressLine2, @city, @state, @zipCode, @washerDryer, @allowCats, @allowDogs, @parkingSpots, @gym, @pool);";
-        private const string SQL_GetAllUnitsAtProperty = "SELECT * FROM unit JOIN property ON property.property_id = unit.property_id WHERE unit.property_id = @propertyID AND unit.tenant_id IS NULL;";
+        private const string SQL_GetAvailableUnitsAtProperty = "SELECT * FROM unit JOIN property ON property.property_id = unit.property_id WHERE unit.property_id = @propertyID AND unit.tenant_id IS NULL;";
+
+        private const string SQL_GetAllUnitsAtProperty = "SELECT * FROM unit JOIN property ON property.property_id = unit.property_id WHERE unit.property_id = @propertyID;";
 
         private string connectionString;
 
@@ -69,7 +71,7 @@ namespace Capstone.DAL
             return result;
         }
 
-        public List<Unit> GetAllUnitsAtProperty(int propertyID)
+        public List<Unit> GetAvailableUnitsAtProperty(int propertyID)
         {
             List<Unit> returnedUnits = new List<Unit>();
 

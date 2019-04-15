@@ -23,5 +23,11 @@ namespace Capstone.Models
         [Range(0.01, 999999999, ErrorMessage = "Price must be greater than 0.00")]
         [Display(Name = "Payment Amount: ")]
         public decimal PaymentAmount { get; set; }
+
+        public DateTime PaymentDate { get; set; }
+
+        [Required(ErrorMessage = "Please enter a payment month")]
+        [Display(Name = "This rent is being submitted for what month of rent: ")]
+        public int PaymentForMonth { get; set; }
     }
 }

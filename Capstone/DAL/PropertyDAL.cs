@@ -13,7 +13,7 @@ namespace Capstone.DAL
         private const string SQL_AddProperty = "INSERT INTO property (owner_id, manager_id, property_name, property_type, number_of_units, image_source) VALUES (@ownerID, @managerID, @propertyName, @propertyType, @numberOfUnits, @imageSource);";
         private const string SQL_GetAllProperties = "SELECT * FROM property;";
         private const string SQL_GetAvailableProperties = "SELECT DISTINCT property.property_id, property.owner_id, property.manager_id, property.property_name, property.property_type, property.number_of_units, property.image_source FROM property JOIN unit ON property.property_id = unit.property_id WHERE tenant_id IS NULL;";
-        private const string SQL_GetPropertiesForOwner = "SELECT * FROM property as p JOIN site_user as u ON p.owner_id = u.user_id WHERE p.owner_id = @ownerID ";
+        private const string SQL_GetPropertiesForOwner = "SELECT p.* FROM property as p JOIN site_user as u ON p.owner_id = u.user_id WHERE p.owner_id = @ownerID;";
 
         private string connectionString;
         private UnitDAL unitDAL;
@@ -84,7 +84,7 @@ namespace Capstone.DAL
                         {
                             property.ImageSource = Convert.ToString(reader["image_source"]);
                         }
-                        property.UnitsAtThisProperty = unitDAL.GetAllUnitsAtProperty(property.PropertyID);
+                        property.UnitsAtThisProperty = unitDAL.GetAvailableUnitsAtProperty(property.PropertyID);
 
                         returnedProperties.Add(property);
                     }
@@ -110,9 +110,9 @@ namespace Capstone.DAL
                     connection.Open();
 
                     SqlCommand cmd = new SqlCommand(SQL_GetPropertiesForOwner, connection);
-                    SqlDataReader reader = cmd.ExecuteReader();
-
                     cmd.Parameters.AddWithValue("@ownerID", ownerID);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
                    
                     while (reader.Read())
                     {
@@ -129,7 +129,7 @@ namespace Capstone.DAL
                         {
                             property.ImageSource = Convert.ToString(reader["image_source"]);
                         }
-                        property.UnitsAtThisProperty = unitDAL.GetAllUnitsAtProperty(property.PropertyID);
+                        property.UnitsAtThisProperty = unitDAL.GetAvailableUnitsAtProperty(property.PropertyID);
 
                         result.Add(property);
                     }

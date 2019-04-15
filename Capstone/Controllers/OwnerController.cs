@@ -86,7 +86,7 @@ namespace Capstone.Controllers
         public IActionResult MyProperties()
         {
             // Get ownersID
-            int myID = 0;
+            int myID = 2;
 
             List<Property> ownerProperties = propertyDAL.GetPropertiesForOwner(myID);
 
@@ -94,7 +94,7 @@ namespace Capstone.Controllers
 
             myProperties.ownersProperties = ownerProperties;
 
-            return View(ownerProperties);
+            return View(myProperties);
         }
     }
 }
