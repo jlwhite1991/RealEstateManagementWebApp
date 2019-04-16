@@ -9,5 +9,7 @@ namespace Capstone.DAL.Interfaces
     public interface IPaymentDAL
     {
         bool SubmitPayment(Payment payment);
+
+        decimal GetYTDPaymentsforUnit(int unitID);
     }
 }
