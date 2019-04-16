@@ -10,8 +10,6 @@ namespace Capstone.Models
         public List<Property> ownersProperties { get; set; }
 
 
-
-
         public decimal AverageBaseRentAllUnits()
         {
             decimal result = 0.0M;
@@ -33,14 +31,29 @@ namespace Capstone.Models
         {
             decimal result = 0.0M;
             int numOfUnits = 0;
-            foreach (var prop in ownersProperties )
+            foreach (var prop in ownersProperties)
             {
                 result += prop.GetVacancyRate();
                 numOfUnits += prop.UnitsAtThisProperty.Count;
             }
 
-            return result / numOfUnits;
+            return Math.Round(result / numOfUnits, 2);
         }
 
+        public decimal SumRentCollectedYTD()
+        {
+            decimal result = 0.0M;
+
+            foreach(Property prop in ownersProperties)
+            {
+                foreach (Unit unit in prop.UnitsAtThisProperty)
+                {
+                    result += unit.RentCollectedYTD;
+                }
+
+            }
+
+            return result;
+        }
     }
 }

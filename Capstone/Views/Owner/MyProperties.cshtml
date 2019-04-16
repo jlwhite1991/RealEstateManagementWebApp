@@ -9,6 +9,7 @@
 <div>
     <p>Average Vacancy For all Units @Model.AvgVacancyForAllUnits()</p>
     <p>Average Rent of All Units @Model.AverageBaseRentAllUnits()</p>
+    <p>Rent Collected YTD: @Model.SumRentCollectedYTD()</p>
 </div>
 
 <div>
@@ -30,6 +31,7 @@
         {
             <p>No available units at this property.</p>
         }
+        
 
         <p>Image URL: @property.ImageSource</p>
 
@@ -52,6 +54,8 @@
                 <p>Number of Baths: @unit.NumberOfBaths</p>
                 <p>Description: @unit.Description</p>
                 <p>Tagline: @unit.Tagline</p>
+                <p>Rent YTD: @unit.RentCollectedYTD</p>
+
 
                 @if (unit.ImageSource != null)
                 {
