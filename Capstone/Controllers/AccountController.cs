@@ -47,7 +47,6 @@ namespace Capstone.Controllers
                     return RedirectToAction("Index", "Home");
                 }
             }
-
             return View(loginViewModel);
         }
 
@@ -72,10 +71,16 @@ namespace Capstone.Controllers
         {
             if(ModelState.IsValid)
             {
-               
+                if (authProvider.Register(registerViewModel.Email, registerViewModel.Password, "user", 
+                    registerViewModel.PhoneNumber, registerViewModel.FirstName, registerViewModel.LastName) == false)
+                {
+                    return RedirectToAction("Error", "Home");
+                }
 
+
+                return RedirectToAction("Index", "Home");
             }
-            return View();
+            return View(registerViewModel);
         }
         
 

@@ -55,7 +55,7 @@ namespace Capstone.DAL
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand("INSERT INTO users VALUES (@first_name, @last_name, @phone_number, @email_address, @role, @password, @salt);", conn);
+                    SqlCommand cmd = new SqlCommand("INSERT INTO site_user VALUES (@first_name, @last_name, @phone_number, @email_address, @role, @password, @salt);", conn);
                     cmd.Parameters.AddWithValue("@first_name", user.FirstName);
                     cmd.Parameters.AddWithValue("@last_name", user.LastName);
                     cmd.Parameters.AddWithValue("@phone_number", user.PhoneNumber);
@@ -127,7 +127,7 @@ namespace Capstone.DAL
         {
             return new User()
             {
-                UserID = Convert.ToInt32(reader["id"]),
+                UserID = Convert.ToInt32(reader["user_id"]),
                 EmailAddress = Convert.ToString(reader["email_address"]),
                 Password = Convert.ToString(reader["password"]),
                 Salt = Convert.ToString(reader["salt"]),
