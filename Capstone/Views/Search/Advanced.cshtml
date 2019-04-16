@@ -1,136 +1,351 @@
 ﻿@model Capstone.Models.SearchModel
 
 @{
-    ViewData["Title"] = "Advanced";
+    ViewData["Title"] = "Advanced Search";
 }
 
-<h2>Advanced</h2>
+<div class="w3-container">
+    <h1 class="w3-text-black">Advanced Search</h1>
+    <h6><em>Choose your search criteria below:</em></h6>
+    <div class="w3-row w3-large">
 
-<h4>SearchModel</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
         <form asp-action="Advanced">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="NumberofBedsMin" class="control-label"></label>
-                <input asp-for="NumberofBedsMin" class="form-control" />
-                <span asp-validation-for="NumberofBedsMin" class="text-danger"></span>
+            <div asp-validation-summary="ModelOnly"></div>
+
+            <div class="w3-row">
+                <div class="w3-col" style="width:15%">
+                    <h4><strong>Bedrooms:</strong></h4>
+                </div>
+                <div class="w3-col" style="width:15%">
+                    <h4><strong>Bathrooms:</strong></h4>
+                </div>
+                <div class="w3-col" style="width:20%">
+                    <h4><strong>Square Ft:</strong></h4>
+                </div>
+                <div class="w3-col" style="width:20%">
+                    <h4><strong>Rent:</strong></h4>
+                </div>
+                <div class="w3-col" style="width:15%">
+                    <h4><strong>Zip Code:</strong></h4>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="NumberofBedsMax" class="control-label"></label>
-                <input asp-for="NumberofBedsMax" class="form-control" />
-                <span asp-validation-for="NumberofBedsMax" class="text-danger"></span>
+
+
+
+            <div class="w3-row">
+                <div class="form-group w3-col" style="width:15%">
+                    <div class="w3-col s4">
+                        <input asp-for="NumberofBedsMin" class="w3-input w3-border" />
+                        <span asp-validation-for="NumberofBedsMin" class="text-danger"></span>
+                    </div>
+                    <div class="w3-col s4">
+                        <input asp-for="NumberofBedsMax" class="w3-input w3-border" />
+                        <span asp-validation-for="NumberofBedsMax" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <div class="form-group w3-col" style="width:15%">
+                    <div class="w3-col s4">
+                        <input asp-for="NumberofBathsMin" class="w3-input w3-border" />
+                        <span asp-validation-for="NumberofBathsMin" class="text-danger"></span>
+                    </div>
+                    <div class="w3-col s4">
+                        <input asp-for="NumberofBathsMax" class="w3-input w3-border" />
+                        <span asp-validation-for="NumberofBathsMax" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group w3-col" style="width:20%">
+                    <div class="w3-col s5">
+                        <input asp-for="MonthlyRentMin" class="w3-input w3-border" />
+                        <span asp-validation-for="MonthlyRentMin" class="text-danger"></span>
+                    </div>
+                    <div class="w3-col s5">
+                        <input asp-for="MonthlyRentMax" class="w3-input w3-border" />
+                        <span asp-validation-for="MonthlyRentMax" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group w3-col" style="width:20%">
+                    <div class="w3-col s5">
+                        <input asp-for="SquareFeetMin" class="w3-input w3-border" />
+                        <span asp-validation-for="SquareFeetMin" class="text-danger"></span>
+                    </div>
+                    <div class="w3-col s5">
+
+                        <input asp-for="SquareFeetMax" class="w3-input w3-border" />
+                        <span asp-validation-for="SquareFeetMax" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group w3-col" style="width:15%">
+                    <div class="w3-col s8">
+
+                        <input asp-for="ZipCode" class="w3-input w3-border" style="vertical-align:bottom" />
+                        <span asp-validation-for="ZipCode" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group w3-col" style="width:10%">
+                    <input type="submit" value="Search" class="w3-button w3-green w3-left-align" />
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="NumberofBathsMin" class="control-label"></label>
-                <input asp-for="NumberofBathsMin" class="form-control" />
-                <span asp-validation-for="NumberofBathsMin" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NumberofBathsMax" class="control-label"></label>
-                <input asp-for="NumberofBathsMax" class="form-control" />
-                <span asp-validation-for="NumberofBathsMax" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ZipCode" class="control-label"></label>
-                <input asp-for="ZipCode" class="form-control" />
-                <span asp-validation-for="ZipCode" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MonthlyRentMax" class="control-label"></label>
-                <input asp-for="MonthlyRentMax" class="form-control" />
-                <span asp-validation-for="MonthlyRentMax" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MonthlyRentMin" class="control-label"></label>
-                <input asp-for="MonthlyRentMin" class="form-control" />
-                <span asp-validation-for="MonthlyRentMin" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="SquareFeetMax" class="control-label"></label>
-                <input asp-for="SquareFeetMax" class="form-control" />
-                <span asp-validation-for="SquareFeetMax" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="SquareFeetMin" class="control-label"></label>
-                <input asp-for="SquareFeetMin" class="form-control" />
-                <span asp-validation-for="SquareFeetMin" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Search" class="btn btn-default" />
+
+            <div class="w3-row">
+                <div class="w3-col" style="width:15%; margin-top:-16px;">
+                    <div class="w3-col s4">
+                        <p style="text-align:center;font-size:12px;">Min</p>
+                    </div>
+                    <div class="w3-col s4">
+                        <p style="text-align:center;font-size:12px;">Max</p>
+                    </div>
+                </div>
+                <div class="w3-col" style="width:15%; margin-top:-16px;">
+                    <div class="w3-col s4">
+                        <p style="text-align:center;font-size:12px;">Min</p>
+                    </div>
+                    <div class="w3-col s4">
+                        <p style="text-align:center;font-size:12px;">Max</p>
+                    </div>
+                </div>
+                <div class="w3-col" style="width:20%; margin-top:-16px;">
+                    <div class="w3-col s5">
+                        <p style="text-align:center;font-size:12px;">Min</p>
+                    </div>
+                    <div class="w3-col s5">
+                        <p style="text-align:center;font-size:12px;">Max</p>
+                    </div>
+                </div>
+                <div class="w3-col" style="width:20%; margin-top:-16px;">
+                    <div class="w3-col s5">
+                        <p style="text-align:center;font-size:12px;">Min</p>
+                    </div>
+                    <div class="w3-col s5">
+                        <p style="text-align:center;font-size:12px;">Max</p>
+                    </div>
+                </div>
             </div>
         </form>
     </div>
-</div>
-<div>
-    @foreach (Property property in Model.AvailableProperties)
-    {
-        <h3>Property Name: @property.PropertyName</h3>
 
-        <p>Property ID: @property.PropertyID</p>
-        <p>Owner ID: @property.OwnerID</p>
-        <p>Manager ID: @property.ManagerID</p>
-        <p>Property Type: @property.PropertyType</p>
-
-        @if (property.NumberOfUnits > 0)
-        {
-            <p>Number of Units: @property.NumberOfUnits</p>
-        }
-        else
-        {
-            <p>No available units at this property.</p>
-        }
-
-        <p>Image URL: @property.ImageSource</p>
-
-        @foreach (Unit unit in property.UnitsAtThisProperty)
+    <div>
+        @foreach (Property property in Model.AvailableProperties)
         {
             <div>
-                <h5>Unit ID: @unit.UnitID</h5>
-                <p>Property ID: @unit.PropertyID</p>
-                <p>Tenant ID: @unit.TenantID</p>
-                <p>Monthly Rent: @unit.MonthlyRent</p>
-                <p>Square Feet: @unit.SquareFeet</p>
-                <p>Number of Beds: @unit.NumberOfBeds</p>
-                <p>Number of Baths: @unit.NumberOfBaths</p>
-                <p>Description: @unit.Description</p>
-                <p>Tagline: @unit.Tagline</p>
 
-                @if (unit.ImageSource != null)
+                <!-- Push down content on small screens -->
+                <div class="w3-hide-large" style="margin-top:80px"></div>
+
+                <div class="w3-container">
+                    <h3 class="w3-text-green">@property.PropertyName</h3>
+                    <p><i class="fas fa-home"></i> Property Type: @property.PropertyType</p>
+                    <p><i class="fas fa-door-open"></i> Available Units: @property.UnitsAtThisProperty.Count()</p>
+                </div>
+                @foreach (Unit unit in property.UnitsAtThisProperty)
                 {
-                    <p>Image URL: @unit.ImageSource</p>
+                    <div class="w3-container">
+                        <div class="w3-display-container">
+                            <img src="@unit.ImageSource" style="width:100%;margin-bottom:-6px">
+                        </div>
+                    </div>
+                    <div class="w3-container">
+                        <h4><strong>@unit.AddressLine1</strong></h4>
+                        <h6><em>@unit.Tagline</em></h6>
+                        <div>
+                            <p>@unit.Description</p>
+                        </div>
+                        <hr>
+                        <h4><strong>Details</strong></h4>
+                        <div class="w3-row w3-large">
+                            <div class="w3-col s6">
+                                <p><i class="fas fa-ruler"></i> Square Feet: @unit.SquareFeet.ToString("#,##0")</p>
+                                <p><i class="fa fa-fw fa-bed"></i> Bedrooms: @unit.NumberOfBeds</p>
+                                <p><i class="fa fa-fw fa-bath"></i> Bathrooms: @unit.NumberOfBaths</p>
+                            </div>
+                            <div class="w3-col s6">
+                                <p><i class="fa fa-fw fa-money"></i> Monthly Rent: @unit.MonthlyRent.ToString("C") </p>
+                                <p><i class="fas fa-lock"></i> Security Deposit: @unit.SecurityDeposit.ToString("C")</p>
+                                <p><i class="fa fa-fw fa-paw"></i> Pet Deposit: @unit.PetDeposit.ToString("C")</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <h4><strong>Features & Amenities</strong></h4>
+                        <div class="w3-row w3-large">
+                            <div class="w3-col s6">
+                                @if (unit.WasherDryer)
+                                {
+                                    <p><i class="fas fa-tshirt"></i> Washer/Dryer: Yes</p>
+                                }
+                                else
+                                {
+                                    <p><i class="fas fa-tshirt"></i> Washer/Dryer: No</p>
+                                }
+                                <p><i class="fa fa-fw fa-car"></i> Parking: @unit.ParkingSpots</p>
+                            </div>
+                            <div class="w3-col s6">
+                                @if (unit.Gym)
+                                {
+                                    <p><i class="fas fa-dumbbell"></i> Gym Access: Yes</p>
+                                }
+                                else
+                                {
+                                    <p><i class="fas fa-dumbbell"></i> Gym Access: No</p>
+                                }
+                                @if (unit.Pool)
+                                {
+                                    <p><i class="fas fa-swimmer"></i> Pool Access: Yes</p>
+                                }
+                                else
+                                {
+                                    <p><i class="fas fa-swimmer"></i> Pool Access: No</p>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
                 }
-
-                <p>Application Fee: @unit.ApplicationFee</p>
-                <p>Security Deposit: @unit.SecurityDeposit</p>
-                <p>Pet Deposit: @unit.PetDeposit</p>
-                <p>Address Line 1: @unit.AddressLine1</p>
-
-                @if (unit.AddressLine2 != null)
-                {
-                    <p>Address Line 2: @unit.AddressLine2</p>
-                }
-
-                <p>City: @unit.City</p>
-                <p>State: @unit.State</p>
-                <p>ZipCode: @unit.ZipCode</p>
-                <p>Washer/Dryer Hookup: @unit.WasherDryer</p>
-                <p>Cats Allowed?: @unit.AllowCats</p>
-                <p>Dogs Allowed?: @unit.AllowDogs</p>
-                <p>Parking Spots: @unit.ParkingSpots</p>
-                <p>Gym?: @unit.Gym</p>
-                <p>Pool?: @unit.Pool</p>
             </div>
         }
-    }
+    </div>
 
-</div>
 
-<div>
-    <a asp-action="Index">Back to all Available Properties</a>
+    <div>
+        <a asp-action="Index">Back to all Available Properties</a>
+    </div>
+
 </div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+
+
+@*<h2>Advanced</h2>
+
+    <h4>SearchModel</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+
+
+
+            <form asp-action="Advanced">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="NumberofBedsMin" class="control-label"></label>
+                    <input asp-for="NumberofBedsMin" class="form-control" />
+                    <span asp-validation-for="NumberofBedsMin" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NumberofBedsMax" class="control-label"></label>
+                    <input asp-for="NumberofBedsMax" class="form-control" />
+                    <span asp-validation-for="NumberofBedsMax" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NumberofBathsMin" class="control-label"></label>
+                    <input asp-for="NumberofBathsMin" class="form-control" />
+                    <span asp-validation-for="NumberofBathsMin" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NumberofBathsMax" class="control-label"></label>
+                    <input asp-for="NumberofBathsMax" class="form-control" />
+                    <span asp-validation-for="NumberofBathsMax" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ZipCode" class="control-label"></label>
+                    <input asp-for="ZipCode" class="form-control" />
+                    <span asp-validation-for="ZipCode" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="MonthlyRentMax" class="control-label"></label>
+                    <input asp-for="MonthlyRentMax" class="form-control" />
+                    <span asp-validation-for="MonthlyRentMax" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="MonthlyRentMin" class="control-label"></label>
+                    <input asp-for="MonthlyRentMin" class="form-control" />
+                    <span asp-validation-for="MonthlyRentMin" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SquareFeetMax" class="control-label"></label>
+                    <input asp-for="SquareFeetMax" class="form-control" />
+                    <span asp-validation-for="SquareFeetMax" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SquareFeetMin" class="control-label"></label>
+                    <input asp-for="SquareFeetMin" class="form-control" />
+                    <span asp-validation-for="SquareFeetMin" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Search" class="btn btn-default" />
+                </div>
+            </form>
+        </div>
+    </div>*@
+
+
+
+
+
+@*<div>
+        @foreach (Property property in Model.AvailableProperties)
+        {
+            <h3>Property Name: @property.PropertyName</h3>
+
+            <p>Property ID: @property.PropertyID</p>
+            <p>Owner ID: @property.OwnerID</p>
+            <p>Manager ID: @property.ManagerID</p>
+            <p>Property Type: @property.PropertyType</p>
+
+            @if (property.NumberOfUnits > 0)
+            {
+                <p>Number of Units: @property.NumberOfUnits</p>
+            }
+            else
+            {
+                <p>No available units at this property.</p>
+            }
+
+            <p>Image URL: @property.ImageSource</p>
+
+            @foreach (Unit unit in property.UnitsAtThisProperty)
+            {
+                <div>
+                    <h5>Unit ID: @unit.UnitID</h5>
+                    <p>Property ID: @unit.PropertyID</p>
+                    <p>Tenant ID: @unit.TenantID</p>
+                    <p>Monthly Rent: @unit.MonthlyRent</p>
+                    <p>Square Feet: @unit.SquareFeet</p>
+                    <p>Number of Beds: @unit.NumberOfBeds</p>
+                    <p>Number of Baths: @unit.NumberOfBaths</p>
+                    <p>Description: @unit.Description</p>
+                    <p>Tagline: @unit.Tagline</p>
+
+                    @if (unit.ImageSource != null)
+                    {
+                        <p>Image URL: @unit.ImageSource</p>
+                    }
+
+                    <p>Application Fee: @unit.ApplicationFee</p>
+                    <p>Security Deposit: @unit.SecurityDeposit</p>
+                    <p>Pet Deposit: @unit.PetDeposit</p>
+                    <p>Address Line 1: @unit.AddressLine1</p>
+
+                    @if (unit.AddressLine2 != null)
+                    {
+                        <p>Address Line 2: @unit.AddressLine2</p>
+                    }
+
+                    <p>City: @unit.City</p>
+                    <p>State: @unit.State</p>
+                    <p>ZipCode: @unit.ZipCode</p>
+                    <p>Washer/Dryer Hookup: @unit.WasherDryer</p>
+                    <p>Cats Allowed?: @unit.AllowCats</p>
+                    <p>Dogs Allowed?: @unit.AllowDogs</p>
+                    <p>Parking Spots: @unit.ParkingSpots</p>
+                    <p>Gym?: @unit.Gym</p>
+                    <p>Pool?: @unit.Pool</p>
+                </div>
+            }
+        }
+
+    </div>*@
+
+
+
