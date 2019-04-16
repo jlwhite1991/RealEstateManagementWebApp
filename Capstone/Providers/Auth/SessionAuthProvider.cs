@@ -124,7 +124,10 @@ namespace Capstone.Providers.Auth
                 EmailAddress = username,
                 Password = passwordHash.Password,
                 Salt = passwordHash.Salt,
-                Role = role
+                Role = role,
+                PhoneNumber = phoneNumber,
+                FirstName = firstName,
+                LastName = lastName
             };
 
             result = userDAL.CreateUser(user);

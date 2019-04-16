@@ -17,13 +17,17 @@
 <body class="w3-content w3-border-left w3-border-right">
     <div class="w3-top">
         <div class="w3-bar w3-theme w3-top w3-left-align w3-large">
-            <img src="~/images/techelevatorlogo.png" alt="Tech Elevator Real Estate Logo" style="width: 180px; height: auto;" class="w3-bar-item w3-button w3-hide-small w3-hover-white"/>
+            <img src="~/images/techelevatorlogo.png" alt="Tech Elevator Real Estate Logo" style="width: 180px; height: auto;" class="w3-bar-item w3-button w3-hide-small w3-hover-white" />
             <a asp-area="" asp-controller="Home" asp-action="Index" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Home</a>
             <a asp-area="" asp-controller="Search" asp-action="Index" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Property Search</a>
             <a asp-area="" asp-controller="Home" asp-action="Apply" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Apply Now</a>
             <a asp-area="" asp-controller="Tenant" asp-action="Index" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Tenants</a>
             <a asp-area="" asp-controller="Owner" asp-action="Index" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Owners</a>
             <a asp-area="" asp-controller="Manager" asp-action="Index" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white">Managers</a>
+
+            <ul class="nav navbar-nav navbar-right">
+                @await Component.InvokeAsync("NavBar") @* Render the NavBar component. *@
+            </ul>
         </div>
     </div>
     <div id="container" class="w3-main w3-white" style="margin-top:40px">
