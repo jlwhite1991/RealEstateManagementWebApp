@@ -5,29 +5,30 @@ using System.Threading.Tasks;
 using Capstone.DAL.Interfaces;
 using Capstone.Models;
 using Capstone.Models.ViewModels;
+using Capstone.Providers.Auth;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Capstone.Controllers
 {
-    public class OwnerController : Controller
+    public class OwnerController : HomeController
     {
-        private IPropertyDAL propertyDAL;
-        private IUnitDAL unitDAL;
-        private IApplicationDAL applicationDAL;
 
-        public OwnerController(IPropertyDAL propertyDAL, IUnitDAL unitDAL, IApplicationDAL applicationDAL)
+        public OwnerController(IApplicationDAL applicationDAL, IPropertyDAL propertyDAL, IHttpContextAccessor contextAccessor, IUserDAL userDAL, IUnitDAL unitDAL, IAuthProvider authProvider, IServiceRequestDAL serviceRequestDAL,
+            IPaymentDAL paymentDAL) : 
+            base(applicationDAL, propertyDAL, contextAccessor, userDAL, unitDAL, authProvider, serviceRequestDAL, paymentDAL)
         {
-            this.propertyDAL = propertyDAL;
-            this.unitDAL = unitDAL;
-            this.applicationDAL = applicationDAL;
+
         }
 
+        [AuthorizationFilter("owner")]
         public IActionResult Index()
         {
             return View();
         }
 
         [HttpGet]
+        [AuthorizationFilter("owner")]
         public IActionResult Property()
         {
             Property property = new Property();
@@ -36,6 +37,7 @@ namespace Capstone.Controllers
 
         [ValidateAntiForgeryToken]
         [HttpPost]
+        [AuthorizationFilter("owner")]
         public IActionResult Property(Property property)
         {
             propertyDAL.AddProperty(property);
@@ -44,6 +46,7 @@ namespace Capstone.Controllers
         }
 
         [HttpGet]
+        [AuthorizationFilter("owner")]
         public IActionResult Unit()
         {
             return View();
@@ -51,6 +54,7 @@ namespace Capstone.Controllers
 
         [ValidateAntiForgeryToken]
         [HttpPost]
+        [AuthorizationFilter("owner")]
         public IActionResult Unit(Unit unit)
         {
             unitDAL.AddUnit(unit);
@@ -59,6 +63,7 @@ namespace Capstone.Controllers
         }
 
         [HttpGet]
+        [AuthorizationFilter("owner")]
         public IActionResult Review()
         {
             List<Application> applications = applicationDAL.GetAllUnreviewedApplications();
@@ -68,6 +73,7 @@ namespace Capstone.Controllers
 
         [ValidateAntiForgeryToken]
         [HttpPost]
+
         public IActionResult Approve(int applicationID)
         {
                 applicationDAL.ApproveApplication(applicationID);
@@ -85,6 +91,7 @@ namespace Capstone.Controllers
         }
 
         [HttpGet]
+        [AuthorizationFilter("owner")]
         public IActionResult Statistics()
         {
             //TODO: Implement get owner's ID

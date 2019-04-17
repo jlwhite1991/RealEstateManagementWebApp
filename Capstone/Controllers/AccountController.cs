@@ -12,19 +12,15 @@ using Capstone.DAL.Interfaces;
 namespace Capstone.Controllers
 {
 
-    public class AccountController : Controller
+    public class AccountController : HomeController
     {
-        private readonly IAuthProvider authProvider;
-        private readonly IHttpContextAccessor contextAccessor;
-        private readonly IUserDAL userDAL;
-        private readonly IApplicationDAL applicationDAL;
 
-        public AccountController(IApplicationDAL applicationDAL, IHttpContextAccessor contextAccessor, IUserDAL userDAL, IAuthProvider authProvider)
+
+        public AccountController(IApplicationDAL applicationDAL, IPropertyDAL propertyDAL, IHttpContextAccessor contextAccessor, IUserDAL userDAL, IUnitDAL unitDAL, IAuthProvider authProvider, IServiceRequestDAL serviceRequestDAL,
+            IPaymentDAL paymentDAL)
+            : base(applicationDAL, propertyDAL, contextAccessor, userDAL, unitDAL, authProvider, serviceRequestDAL, paymentDAL)
         {
-            this.applicationDAL = applicationDAL;
-            this.contextAccessor = contextAccessor;
-            this.userDAL = userDAL;
-            this.authProvider = authProvider;
+
         }
 
 
@@ -33,7 +29,7 @@ namespace Capstone.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            User user = authProvider.GetCurrentUser();
+            User user = GetCurrentUser();
 
             return View(user);
         }
@@ -50,22 +46,22 @@ namespace Capstone.Controllers
         {
             if (ModelState.IsValid)
             {
-                bool validLogin = authProvider.SignIn(loginViewModel.Email, loginViewModel.Password);
+                bool validLogin = SignIn(loginViewModel.Email, loginViewModel.Password);
                 if (validLogin)
                 {
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Home", "Home");
                 }
             }
+            loginViewModel.failedLogin = true;
+
             return View(loginViewModel);
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult LogOff()
+        public IActionResult LogOut()
         {
-            authProvider.LogOff();
+            LogOff();
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Home", "Home");
         }
 
         [HttpGet]
@@ -87,7 +83,7 @@ namespace Capstone.Controllers
                 }
 
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Home", "Home");
             }
             return View(registerViewModel);
         }

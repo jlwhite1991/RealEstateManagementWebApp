@@ -54,6 +54,7 @@ namespace Capstone.Models
         public decimal GetVacancyRate()
         {
             int vacantCount = 0;
+
             foreach (var unit in UnitsAtThisProperty)
             {
                 if(unit.IsVacant)

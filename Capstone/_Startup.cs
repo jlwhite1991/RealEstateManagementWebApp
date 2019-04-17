@@ -1,30 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Capstone.DAL;
 using Capstone.DAL.Interfaces;
 using Capstone.Providers.Auth;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 
 namespace Capstone
 {
-    public class Startup
+    public class StartupOld
     {
-        public Startup(IConfiguration configuration)
+        public StartupOld(IConfiguration configuration)
         {
             Configuration = configuration;
+            
         }
 
         public IConfiguration Configuration { get; }
 
-        //This method gets called by the runtime.Use this method to add services to the container.
+        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<CookiePolicyOptions>(options =>
@@ -37,14 +39,18 @@ namespace Capstone
             services.AddDistributedMemoryCache();
             services.AddSession(options =>
             {
-                // Sets session expiration to 20 minutes
+                // Sets session expiration to 20 minuates
                 options.IdleTimeout = TimeSpan.FromMinutes(20);
-                options.Cookie.HttpOnly = true;
-                options.Cookie.IsEssential = true;
+                options.Cookie.HttpOnly = false;
+                options.Cookie.Name = ".Capstone.Session";
+                
             });
 
-            string connectionString = Configuration.GetConnectionString("Default");
+            services.AddSingleton<IFileProvider>(
+                new PhysicalFileProvider(
+                    Path.Combine(Directory.GetCurrentDirectory(), "wwwroot")));
 
+            string connectionString = Configuration.GetConnectionString("Default");
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<IPropertyDAL, PropertyDAL>(c => new PropertyDAL(connectionString));
@@ -56,6 +62,7 @@ namespace Capstone
             services.AddTransient<IUserDAL, UserDAL>(c => new UserDAL(connectionString));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -71,16 +78,17 @@ namespace Capstone
                 app.UseHsts();
             }
 
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            //app.UseCookiePolicy();
+            app.UseCookiePolicy();
             app.UseSession();
 
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Home}/{id?}");
+                    template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

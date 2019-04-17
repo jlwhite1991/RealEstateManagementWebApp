@@ -11,5 +11,6 @@ namespace Capstone.DAL.Interfaces
     {
         bool AddUnit(Unit unit);
         List<Unit> GetAvailableUnitsAtProperty(int propertyID);
+        List<Unit> GetAllUnitsAtProperty(int propertyID);
     }
 }

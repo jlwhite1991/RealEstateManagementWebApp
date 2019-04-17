@@ -164,7 +164,103 @@ namespace Capstone.DAL
                 throw ex;
             }
 
+
             return returnedUnits;
+        }
+
+        //GetAllUnitsAtProperty
+        public List<Unit> GetAllUnitsAtProperty(int propertyID)
+        {
+            List<Unit> returnedUnits = new List<Unit>();
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    SqlCommand cmd = new SqlCommand(SQL_GetAllUnitsAtProperty, connection);
+                    cmd.Parameters.AddWithValue("@propertyID", propertyID);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        Unit unit = new Unit();
+
+                        unit.UnitID = Convert.ToInt32(reader["unit_id"]);
+                        unit.PropertyID = Convert.ToInt32(reader["property_id"]);
+                        //The following if statements prevent an exception by checking if the database value is null before setting the property
+                        if (!Convert.IsDBNull(reader["tenant_id"]))
+                        {
+                            unit.TenantID = Convert.ToInt32(reader["tenant_id"]);
+                        }
+                        unit.MonthlyRent = Convert.ToDecimal(reader["monthly_rent"]);
+                        unit.SquareFeet = Convert.ToInt32(reader["square_feet"]);
+                        unit.NumberOfBeds = Convert.ToInt32(reader["number_of_beds"]);
+                        unit.NumberOfBaths = Convert.ToDouble(reader["number_of_baths"]);
+                        if (!Convert.IsDBNull(reader["description"]))
+                        {
+                            unit.Description = Convert.ToString(reader["description"]);
+                        }
+                        if (!Convert.IsDBNull(reader["tagline"]))
+                        {
+                            unit.Tagline = Convert.ToString(reader["tagline"]);
+                        }
+                        if (!Convert.IsDBNull(reader["image_source"]))
+                        {
+                            unit.ImageSource = Convert.ToString(reader["image_source"]);
+                        }
+                        unit.ApplicationFee = Convert.ToDecimal(reader["application_fee"]);
+                        unit.SecurityDeposit = Convert.ToDecimal(reader["security_deposit"]);
+                        unit.PetDeposit = Convert.ToDecimal(reader["pet_deposit"]);
+                        unit.AddressLine1 = Convert.ToString(reader["address_line_1"]);
+                        if (!Convert.IsDBNull(reader["address_line_2"]))
+                        {
+                            unit.AddressLine2 = Convert.ToString(reader["address_line_2"]);
+                        }
+                        unit.City = Convert.ToString(reader["city"]);
+                        unit.State = Convert.ToString(reader["us_state"]);
+                        unit.ZipCode = Convert.ToInt32(reader["zip_code"]);
+                        if (!Convert.IsDBNull(reader["washer_dryer"]))
+                        {
+                            unit.WasherDryer = Convert.ToBoolean(reader["washer_dryer"]);
+                        }
+                        if (!Convert.IsDBNull(reader["allow_cats"]))
+                        {
+                            unit.AllowCats = Convert.ToBoolean(reader["allow_cats"]);
+                        }
+                        if (!Convert.IsDBNull(reader["allow_dogs"]))
+                        {
+                            unit.AllowDogs = Convert.ToBoolean(reader["allow_dogs"]);
+                        }
+                        if (!Convert.IsDBNull(reader["parking_spots"]))
+                        {
+                            unit.ParkingSpots = Convert.ToString(reader["parking_spots"]);
+                        }
+                        if (!Convert.IsDBNull(reader["gym"]))
+                        {
+                            unit.Gym = Convert.ToBoolean(reader["gym"]);
+                        }
+                        if (!Convert.IsDBNull(reader["pool"]))
+                        {
+                            unit.Pool = Convert.ToBoolean(reader["pool"]);
+                        }
+
+                        unit.RentCollectedYTD = payDAL.GetYTDPaymentsforUnit(unit.UnitID);
+
+                        returnedUnits.Add(unit);
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                returnedUnits = new List<Unit>();
+                throw ex;
+            }
+
+            return returnedUnits;
+
         }
     }
 }

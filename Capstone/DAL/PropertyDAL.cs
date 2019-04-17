@@ -129,7 +129,7 @@ namespace Capstone.DAL
                         {
                             property.ImageSource = Convert.ToString(reader["image_source"]);
                         }
-                        property.UnitsAtThisProperty = unitDAL.GetAvailableUnitsAtProperty(property.PropertyID);
+                        property.UnitsAtThisProperty = unitDAL.GetAllUnitsAtProperty(property.PropertyID);
 
                         result.Add(property);
                     }
