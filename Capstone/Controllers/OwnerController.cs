@@ -30,7 +30,8 @@ namespace Capstone.Controllers
         [HttpGet]
         public IActionResult Property()
         {
-            return View();
+            Property property = new Property();
+            return View(property);
         }
 
         [ValidateAntiForgeryToken]

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -12,24 +13,24 @@ namespace Capstone.Models
 
         [Required(ErrorMessage = "An owner ID is required")]
         [Range(1, int.MaxValue, ErrorMessage = "Please enter a valid number")]
-        [Display(Name = "Please enter your owner ID #: ")]
+        [Display(Name = "Owner ID:")]
         public int OwnerID { get; set; }
 
         [Required(ErrorMessage = "A manager ID is required")]
         [Range(1, int.MaxValue, ErrorMessage = "Please enter a valid number")]
-        [Display(Name = "Please enter your manager's ID #: ")]
+        [Display(Name = "Manager ID:")]
         public int ManagerID { get; set; }
 
         [Required(ErrorMessage = "A property name is required")]
-        [Display(Name = "Property Name: ")]
+        [Display(Name = "Property Name:")]
         public string PropertyName { get; set; }
 
-        [Required(ErrorMessage = "Please choose a property type")]
+        [Display(Name = "Choose a property type:")]
         public string PropertyType { get; set; }
 
         [Required(ErrorMessage = "Number of units is required")]
         [Range(1, 100, ErrorMessage = "Please enter a valid number")]
-        [Display(Name = "Please provide the number of units at this location: ")]
+        [Display(Name = "# of Units:")]
         public int NumberOfUnits { get; set; }
 
         [DataType(DataType.ImageUrl, ErrorMessage = "Please enter a valid URL")]
@@ -38,6 +39,16 @@ namespace Capstone.Models
 
         public List<Unit> UnitsAtThisProperty { get; set; }
 
+        public IList<SelectListItem> PropertyTypesList = new List<SelectListItem>()
+        {
+        new SelectListItem() { Text="Single Family"},
+        new SelectListItem() { Text="Duplex"},
+        new SelectListItem() { Text="Triplex"},
+        new SelectListItem() { Text="Fourplex"},
+        new SelectListItem() { Text="Multi-Family"},
+        new SelectListItem() { Text="Condo"},
+        new SelectListItem() { Text="Mobile Home"}
+        };
 
         // Get Vacancy % at property(?)
         public decimal GetVacancyRate()
