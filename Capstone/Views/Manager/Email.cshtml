@@ -7,21 +7,41 @@
     <h2><strong>Email Tenants</strong></h2>
     <div class="w3-row w3-large">
         <form method="post" action="Email">
-            <div class="container">
+            <div class="w3-container">
 
-                <span class="form-control-static"> Receiver: </span>
+                <div class="w3-row w3-large">
+                    <div class="w3-col" style="width:33%">
 
-                <input class="form-control" type="text" name="receiver" v-model="Email" v-on:blur="CheckEmail" />
-                <span class="invalid-input" v-show="InvalidEmail">Invalid Email</span>
+                        <span class="form-control-static"> Receiver: </span>
+                        <input class="w3-input w3-border" type="text" name="receiver" v-model="Email" v-on:blur="CheckEmail" />
+                        <span class="invalid-input" v-show="InvalidEmail"></span>
+                    </div>
+                </div>
                 <br />
-                <span class="form-control-static"> Subject: </span>
-                <input class="form-control" type="text" name="subject" />
+                <div class="w3-row w3-large">
+                    <div class="w3-col" style="width:33%">
+                        <span class="form-control-static"> Subject: </span>
+                        <input class="w3-input w3-border" type="text" name="subject" />
+                    </div>
+                </div>
                 <br />
-                <span class="form-control-static"> Message: </span>
-                <input class="form-control" type="text" name="message" />
-                <br /> <input class="btn btn-primary" type="submit" value="Send" />
+                <div class="w3-row w3-large">
+                    <div class="w3-col s8">
+
+                        <span class="form-control-static"> Message: </span>
+                        <input class="w3-input w3-border" type="text" name="message" />
+                    </div>
+                </div>
+                <br />
+                <div class="w3-row w3-large">
+                    <div class="w3-col" style="width:33%">
+
+                        <input class="w3-button w3-green w3-left-align" type="submit" value="Send" />
+                    </div>
+                </div>
             </div>
         </form>
+        <hr />
         <div>
             <a asp-action="Index">Back to Manager Home</a>
         </div>

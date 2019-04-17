@@ -64,14 +64,14 @@
                                 @using (Html.BeginForm("Approve", "Owner"))
                                 {
                                     <input type="hidden" name="ApplicationID" value="@application.ApplicationID" />
-                                    <input type="submit" value="Approve" />
+                                    <input class="w3-button w3-green w3-left-align" type="submit" value="Approve" />
                                 }
                             </div>
                             <div class="w3-col" style="width:33%">
                                 @using (Html.BeginForm("Deny", "Owner"))
                                 {
                                     <input type="hidden" name="ApplicationID" value="@application.ApplicationID" />
-                                    <input type="submit" value="Deny" />
+                                    <input class="w3-button w3-green w3-left-align" type="submit" value="Deny" />
                                 }
                             </div>
                         </div>
