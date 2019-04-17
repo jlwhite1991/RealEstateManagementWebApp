@@ -55,8 +55,6 @@ namespace Capstone.Controllers
             return View(loginViewModel);
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
         public IActionResult LogOut()
         {
             LogOff();
