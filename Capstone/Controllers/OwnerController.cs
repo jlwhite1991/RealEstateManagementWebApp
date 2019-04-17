@@ -21,12 +21,14 @@ namespace Capstone.Controllers
 
         }
 
+        [AuthorizationFilter("owner")]
         public IActionResult Index()
         {
             return View();
         }
 
         [HttpGet]
+        [AuthorizationFilter("owner")]
         public IActionResult Property()
         {
             return View();
@@ -34,6 +36,7 @@ namespace Capstone.Controllers
 
         [ValidateAntiForgeryToken]
         [HttpPost]
+        [AuthorizationFilter("owner")]
         public IActionResult Property(Property property)
         {
             propertyDAL.AddProperty(property);
@@ -42,6 +45,7 @@ namespace Capstone.Controllers
         }
 
         [HttpGet]
+        [AuthorizationFilter("owner")]
         public IActionResult Unit()
         {
             return View();
@@ -49,6 +53,7 @@ namespace Capstone.Controllers
 
         [ValidateAntiForgeryToken]
         [HttpPost]
+        [AuthorizationFilter("owner")]
         public IActionResult Unit(Unit unit)
         {
             unitDAL.AddUnit(unit);
@@ -67,6 +72,7 @@ namespace Capstone.Controllers
 
         [ValidateAntiForgeryToken]
         [HttpPost]
+
         public IActionResult Approve(int applicationID)
         {
                 applicationDAL.ApproveApplication(applicationID);
@@ -84,6 +90,7 @@ namespace Capstone.Controllers
         }
 
         [HttpGet]
+        [AuthorizationFilter("owner")]
         public IActionResult Statistics()
         {
             //TODO: Implement get owner's ID

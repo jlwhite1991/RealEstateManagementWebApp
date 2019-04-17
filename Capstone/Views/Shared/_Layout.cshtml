@@ -19,24 +19,45 @@
         }
     </style>
 </head>
-<body >
+<body>
     <div class="w3-top">
-        <div class="w3-bar w3-theme w3-top w3-left-align w3-large">
-            <img src="~/images/techelevatorlogo.png" alt="Tech Elevator Real Estate Logo" style="margin-left:10%; width: 160px; height: auto;" class="w3-bar-item w3-hide-small" />
-            <a asp-area="" asp-controller="Home" asp-action="Home" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Home</a>
-            <a asp-area="" asp-controller="Home" asp-action="Search" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Property Search</a>
-            <a asp-area="" asp-controller="Home" asp-action="Apply" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Apply Now</a>
-            <a asp-area="" asp-controller="Tenant" asp-action="Index" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Tenants</a>
-            <a asp-area="" asp-controller="Owner" asp-action="Index" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Owners</a>
-            <a asp-area="" asp-controller="Manager" asp-action="Index" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white">Managers</a>
-            <ul class="nav navbar-nav navbar-right">
-                @await Component.InvokeAsync("NavBar") @* Render the NavBar component. *@
-            </ul>
+
+        <div style="text-align:center; position: relative; display:inline-block;" class="w3-bar w3-theme w3-top w3-left-align w3-large">
+            @*display:flex; justify-content:flex-end; align-items:flex-end;*@
+                <div style="text-align:center; position:relative; display: inline-block;">
+
+                    <img src="~/images/techelevatorlogo.png" alt="Tech Elevator Real Estate Logo" style="width: 475px; height: auto;" class="w3-bar-item w3-hide-small" />
+                </div>
+                <div style="display: inline-block">
+                    <a asp-area="" asp-controller="Home" asp-action="Home" style="font-size:16px;" class ="w3-bar-item w3-button w3-hide-small w3-hover-white">Home</a>
+                </div>
+                <div style="display: inline-block">
+                    <a asp-area="" asp-controller="Home" asp-action="Search" style="font-size:16px;"  class="w3-bar-item w3-button w3-hide-small w3-hover-white">Available Properties</a>
+                </div>
+                <div style="display: inline-block">
+                    <a asp-area="" asp-controller="Home" asp-action="Apply" style="font-size:16px;"  class="w3-bar-item w3-button w3-hide-small w3-hover-white">Apply Now</a>
+                </div>
+                <div style="display: inline-block">
+                    <a asp-area="" asp-controller="Tenant" asp-action="Index" style="font-size:16px;"  class="w3-bar-item w3-button w3-hide-small w3-hover-white">Current Residents</a>
+                </div>
+                <div style="display: inline-block">
+                    <a asp-area="" asp-controller="Owner" asp-action="Index" style="font-size:16px;"  class="w3-bar-item w3-button w3-hide-small w3-hover-white">Owners</a>
+                </div>
+                <div style="display: inline-block">
+                    <a asp-area="" asp-controller="Manager" asp-action="Index" style="font-size:16px;"  class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white">Managers</a>
+                </div>
+                <div style="display: inline-block">
+                    @await Component.InvokeAsync("NavBar") @* Render the NavBar component. *@
+                </div>
+
         </div>
     </div>
     <div class="w3-content w3-border-left w3-border-right">
         <div id="container" class="w3-main w3-white" style="margin-top:40px">
             <main>
+                <br>
+                <br>
+                <br>
                 @RenderBody()
             </main>
         </div>

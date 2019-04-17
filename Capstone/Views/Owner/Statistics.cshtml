@@ -11,9 +11,9 @@
 
         <h6><strong>Statistics:</strong></h6>
         <div>
-            @*<p>Average Vacancy For all Units @Model.AverageVacancyForAllUnits()</p>
+            <p>Average Vacancy For all Units @Model.AverageVacancyForAllUnits()</p>
             <p>Average Rent of All Units @Model.AverageBaseRentAllUnits()</p>
-            <p>Rent Collected YTD: @Model.SumRentCollectedYTD()</p>*@
+            <p>Rent Collected YTD: @Model.SumRentCollectedYTD()</p>
         </div>
 
         <div>
@@ -41,10 +41,10 @@
 
                 <br>
 
-                @*<p>Get Vacancy Loss @property.GetVacancyLoss()</p>
+                <p>Get Vacancy Loss @property.GetVacancyLoss()</p>
                 <p>Get Vacancy Rate @property.GetVacancyRate()</p>
                 <p>Get Estimated Gross Rents @property.GetTotalScheduledGrossRents()</p>
-                <p>Get Effective Gross Income @property.GetEffectiveGrossIncome()</p>*@
+                <p>Get Effective Gross Income @property.GetEffectiveGrossIncome()</p>
 
                 @foreach (Unit unit in property.UnitsAtThisProperty)
                 {

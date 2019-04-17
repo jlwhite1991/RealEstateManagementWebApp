@@ -81,7 +81,7 @@ namespace Capstone.Controllers
                 }
 
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Home", "Home");
             }
             return View(registerViewModel);
         }
