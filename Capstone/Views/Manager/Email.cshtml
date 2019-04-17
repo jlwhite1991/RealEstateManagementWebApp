@@ -2,28 +2,37 @@
     ViewData["Title"] = "Email Tenants";
 }
 
-<h2> Email </h2>
+
+
+
+
 
 <br />
-<br />
+<div class="w3-container">
+    <h2><strong>Email Tenants</strong></h2>
+    <div class="w3-row w3-large">
+        <form method="post" action="Email">
+            <div class="container">
 
-<form method="post" action="Email">
-    <div class="container">
+                <span class="form-control-static"> Receiver: </span>
 
-        <span class="form-control-static"> Receiver: </span>
-
-        <input class="form-control" type="text" name="receiver" v-model="Email" v-on:blur="CheckEmail" />
-        <span class="invalid-input" v-show="InvalidEmail">Invalid Email</span>
-        <br />
-        <span class="form-control-static"> Subject: </span>
-        <input class="form-control" type="text" name="subject" />
-        <br />
-        <span class="form-control-static"> Message: </span>
-        <input class="form-control" type="text" name="message" />
-        <br /> <input class="btn btn-primary" type="submit" value="Send" />
+                <input class="form-control" type="text" name="receiver" v-model="Email" v-on:blur="CheckEmail" />
+                <span class="invalid-input" v-show="InvalidEmail">Invalid Email</span>
+                <br />
+                <span class="form-control-static"> Subject: </span>
+                <input class="form-control" type="text" name="subject" />
+                <br />
+                <span class="form-control-static"> Message: </span>
+                <input class="form-control" type="text" name="message" />
+                <br /> <input class="btn btn-primary" type="submit" value="Send" />
+            </div>
+        </form>
+        <div>
+            <a asp-action="Index">Back to Manager Home</a>
+        </div>
     </div>
-</form>
-
-<div>
-    <a asp-action="Index">Back to Manager Home</a>
 </div>
+
+
+
+

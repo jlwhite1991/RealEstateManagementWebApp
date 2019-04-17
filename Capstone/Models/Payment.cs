@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -12,11 +13,11 @@ namespace Capstone.Models
 
         [Required(ErrorMessage = "A unit ID is required")]
         [Range(1, int.MaxValue, ErrorMessage = "Please enter a valid number")]
-        [Display(Name = "Please enter your unit ID: ")]
+        [Display(Name = "Unit ID: ")]
         public int UnitID { get; set; }
 
         [Required(ErrorMessage = "A tenant ID is required")]
-        [Display(Name = "Please enter your tenant ID: ")]
+        [Display(Name = "Tenant ID: ")]
         public int TenantID { get; set; }
 
         [Required(ErrorMessage = "Payment amount is required")]
@@ -27,7 +28,23 @@ namespace Capstone.Models
         public DateTime PaymentDate { get; set; }
 
         [Required(ErrorMessage = "Please enter a payment month")]
-        [Display(Name = "This rent is being submitted for what month of rent: ")]
+        [Display(Name = "Choose the month being paid: ")]
         public int PaymentForMonth { get; set; }
+
+        //public IList<SelectListItem> MonthsList = new List<SelectListItem>()
+        //{
+        //new SelectListItem() { Text="January", Value="1"},
+        //new SelectListItem() { Text="February", Value="2"},
+        //new SelectListItem() { Text="March", Value="3"},
+        //new SelectListItem() { Text="April", Value="4"},
+        //new SelectListItem() { Text="May", Value="5"},
+        //new SelectListItem() { Text="June", Value="6"},
+        //new SelectListItem() { Text="July", Value="7"},
+        //new SelectListItem() { Text="August", Value="8"},
+        //new SelectListItem() { Text="September", Value="9"},
+        //new SelectListItem() { Text="October", Value="10"},
+        //new SelectListItem() { Text="November", Value="11"},
+        //new SelectListItem() { Text="December", Value="12"}
+        //};
     }
 }
