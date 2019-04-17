@@ -7,9 +7,10 @@
 <br />
 <div class="w3-container">
     <div class="w3-row w3-large">
-        <h6><strong>Avg. Vacancy of All Units:     @*@Model.AverageVacancyForAllUnits()*@    </strong></h6>
-        <h6><strong>Avg. Rent of All Units:    @*@Model.AverageBaseRentAllUnits()*@     </strong></h6>
-        <h6><strong>Rent Collected this Year:     @*@Model.SumRentCollectedYTD()*@     </strong></h6>
+        @* TODO: Check math for this *@
+        <h6><strong>Avg. Vacancy of All Units: @Model.AverageVacancyForAllUnits()</strong></h6>
+        <h6><strong>Avg. Rent of All Units: @Math.Round(Model.AverageBaseRentAllUnits(), 2).ToString("C")</strong></h6>
+        <h6><strong>Rent Collected this Year: @Model.SumRentCollectedYTD().ToString("C")</strong></h6>
 
         <div>
             <hr />
@@ -21,9 +22,9 @@
                     </div>
                     <div class="w3-row w3-large">
                         <div class="w3-col" style="width:17%">
-                            <h6><strong>Vacancy Rate:    @*@Math.Round(property.GetVacancyRate(), 2).ToString("C")*@   </strong> </h6>
-                            <h6><strong>Estimated Gross Rent:    @*@Math.Round(property.GetTotalScheduledGrossRents(), 2).ToString("C")*@   </strong> </h6>
-                            <h6><strong> Effective Gross Income:   @*@Math.Round(property.GetEffectiveGrossIncome(), 2).ToString("C")*@ </strong></h6>
+                            <h6><strong>Vacancy Rate: @Math.Round(property.GetVacancyRate(), 2).ToString("C")</strong> </h6>
+                            <h6><strong>Estimated Gross Rent: @Math.Round(property.GetTotalScheduledGrossRents(), 2).ToString("C")</strong> </h6>
+                            <h6><strong> Effective Gross Income: @Math.Round(property.GetEffectiveGrossIncome(), 2).ToString("C")</strong></h6>
                         </div>
                         <div class="w3-col" style="width:17%">
 
