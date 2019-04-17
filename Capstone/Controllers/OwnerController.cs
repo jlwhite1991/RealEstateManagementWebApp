@@ -84,7 +84,7 @@ namespace Capstone.Controllers
         }
 
         [HttpGet]
-        public IActionResult MyProperties()
+        public IActionResult Statistics()
         {
             //TODO: Implement get owner's ID
             int currentOwnerID = 2;
