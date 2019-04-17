@@ -22,19 +22,21 @@ namespace Capstone.Controllers
 
         }
 
-
-        public new IActionResult Index()
+        [AuthorizationFilter("manager")]
+        public IActionResult Index()
         {
             return View();
         }
 
         [HttpGet]
+        [AuthorizationFilter("manager")]
         public ActionResult Email()
         {
             return View();
         }
 
         [HttpPost]
+        [AuthorizationFilter("manager")]
         public ActionResult Email(string receiver, string subject, string message)
         {
             try

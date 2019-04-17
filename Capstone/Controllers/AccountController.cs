@@ -27,7 +27,7 @@ namespace Capstone.Controllers
 
         [AuthorizationFilter("manager", "owner", "tenant", "user")]
         [HttpGet]
-        public new IActionResult Index()
+        public IActionResult Index()
         {
             User user = GetCurrentUser();
 
@@ -49,9 +49,11 @@ namespace Capstone.Controllers
                 bool validLogin = SignIn(loginViewModel.Email, loginViewModel.Password);
                 if (validLogin)
                 {
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Home", "Home");
                 }
             }
+            loginViewModel.failedLogin = true;
+
             return View(loginViewModel);
         }
 
@@ -59,7 +61,7 @@ namespace Capstone.Controllers
         {
             LogOff();
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Home", "Home");
         }
 
         [HttpGet]
@@ -81,7 +83,7 @@ namespace Capstone.Controllers
                 }
 
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Home", "Home");
             }
             return View(registerViewModel);
         }
