@@ -4,34 +4,46 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using Capstone.Models;
 using Capstone.Models.ViewModels;
 using Capstone.DAL.Interfaces;
-using Microsoft.AspNetCore.Http;
 using Capstone.Providers.Auth;
 
 namespace Capstone.Controllers
 {
     public class HomeController : Controller
     {
-        private IApplicationDAL applicationDAL;
-        private IPropertyDAL propertyDAL;
-        private readonly IAuthProvider authProvider;
-        private readonly IHttpContextAccessor contextAccessor;
-        private readonly IUserDAL userDAL;
+        protected IApplicationDAL applicationDAL;
+        protected IPropertyDAL propertyDAL;
+        protected IUnitDAL unitDAL;
+        protected readonly IUserDAL userDAL;
+        protected IServiceRequestDAL serviceRequestDAL;
+        protected IPaymentDAL paymentDAL;
+        protected readonly IAuthProvider authProvider;
+        protected readonly IHttpContextAccessor contextAccessor;
         public static string SessionKey = "Auth_User";
 
-        public HomeController(IApplicationDAL applicationDAL, IPropertyDAL propertyDAL, IHttpContextAccessor contextAccessor, IUserDAL userDAL, IAuthProvider authProvider)
+        public HomeController(IApplicationDAL applicationDAL, IPropertyDAL propertyDAL, IHttpContextAccessor contextAccessor,
+            IUserDAL userDAL, IUnitDAL unitDAL, IAuthProvider authProvider, IServiceRequestDAL serviceRequestDAL,
+            IPaymentDAL paymentDAL)
         {
             this.applicationDAL = applicationDAL;
             this.contextAccessor = contextAccessor;
             this.userDAL = userDAL;
             this.authProvider = authProvider;
             this.propertyDAL = propertyDAL;
+            this.unitDAL = unitDAL;
+            this.serviceRequestDAL = serviceRequestDAL;
+            this.paymentDAL = paymentDAL;
         }
 
         public IActionResult Index()
         {
+            if (IsLoggedIn)
+            {
+
+            }
             return View();
         }
 
@@ -89,12 +101,20 @@ namespace Capstone.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        ISession Session => contextAccessor.HttpContext.Session;
+        //ISession Session => contextAccessor.HttpContext.Session;
 
         /// <summary>
         /// Returns true if the user is logged in.
         /// </summary>
-        public bool IsLoggedIn => !String.IsNullOrEmpty(Session.GetString(SessionKey));
+        public bool IsLoggedIn
+        {
+            get
+            {
+                bool result = false;
+                result = !String.IsNullOrEmpty(HttpContext.Session.GetString(SessionKey));
+                return result;
+            }
+        }
 
         /// <summary>
         /// Signs the user in and saves their username in session.
@@ -102,14 +122,14 @@ namespace Capstone.Controllers
         /// <param name="username"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        public bool SignIn(string username, string password)
+        public bool SignIn(string emailaddress, string password)
         {
-            var user = userDAL.GetUser(username);
+            var user = userDAL.GetUser(emailaddress);
             var hashProvider = new HashProvider();
 
             if (user != null && hashProvider.VerifyPasswordMatch(user.Password, password, user.Salt))
             {
-                Session.SetString(SessionKey, user.EmailAddress);
+                HttpContext.Session.SetString(SessionKey, user.EmailAddress);
                 return true;
             }
 
@@ -121,7 +141,7 @@ namespace Capstone.Controllers
         /// </summary>
         public void LogOff()
         {
-            Session.Clear();
+            HttpContext.Session.Clear();
         }
 
         /// <summary>
@@ -130,7 +150,7 @@ namespace Capstone.Controllers
         /// <returns></returns>
         public User GetCurrentUser()
         {
-            var username = Session.GetString(SessionKey);
+            var username = HttpContext.Session.GetString(SessionKey);
 
             if (!String.IsNullOrEmpty(username))
             {

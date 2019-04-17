@@ -13,14 +13,14 @@ namespace Capstone.Models
 
         [Required(ErrorMessage = "A tenant ID is required")]
         [Range(1, int.MaxValue, ErrorMessage = "Please enter a valid number")]
-        [Display(Name = "Please enter your tenant ID: ")]
+        [Display(Name = "Tenant ID: ")]
         public int TenantID { get; set; }
 
         [Required(ErrorMessage = "A description is required")]
         [Display(Name = "Description: ")]
         public string Description { get; set; }
 
-        [Display(Name = "Is this an Emergency?")]
+        [Display(Name = "Check if this is an emergency")]
         public bool IsEmergency { get; set; }
 
         [Required(ErrorMessage = "A category is required")]

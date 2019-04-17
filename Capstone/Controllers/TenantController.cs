@@ -5,22 +5,23 @@ using System.Threading.Tasks;
 using Capstone.DAL;
 using Capstone.DAL.Interfaces;
 using Capstone.Models;
+using Capstone.Providers.Auth;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Capstone.Controllers
 {
-    public class TenantController : Controller
+    public class TenantController : HomeController
     {
-        private IServiceRequestDAL serviceRequestDAL;
-        private IPaymentDAL paymentDAL;
 
-        public TenantController(IServiceRequestDAL serviceRequestDAL, IPaymentDAL paymentDAL)
+        public TenantController(IApplicationDAL applicationDAL, IPropertyDAL propertyDAL, IHttpContextAccessor contextAccessor, IUserDAL userDAL, IUnitDAL unitDAL, IAuthProvider authProvider, IServiceRequestDAL serviceRequestDAL,
+            IPaymentDAL paymentDAL)
+            : base( applicationDAL,  propertyDAL,  contextAccessor,  userDAL,  unitDAL,  authProvider, serviceRequestDAL, paymentDAL)
         {
-            this.serviceRequestDAL = serviceRequestDAL;
-            this.paymentDAL = paymentDAL;
+
         }
 
-        public IActionResult Index()
+        public new IActionResult Index()
         {
             return View();
         }

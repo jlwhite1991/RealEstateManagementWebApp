@@ -22,6 +22,7 @@ namespace Capstone.Providers.Auth
         {
             this.contextAccessor = contextAccessor;
             this.userDAL = userDAL;
+            
         }
 
         /// <summary>

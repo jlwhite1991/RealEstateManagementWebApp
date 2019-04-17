@@ -4,13 +4,26 @@ using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
+using Capstone.DAL.Interfaces;
+using Capstone.Providers.Auth;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Capstone.Controllers
 {
-    public class ManagerController : Controller
+    public class ManagerController : HomeController
     {
-        public IActionResult Index()
+
+
+        public ManagerController(IApplicationDAL applicationDAL, IPropertyDAL propertyDAL, IHttpContextAccessor contextAccessor, IUserDAL userDAL, IUnitDAL unitDAL, IAuthProvider authProvider, IServiceRequestDAL serviceRequestDAL,
+            IPaymentDAL paymentDAL)
+            : base( applicationDAL,  propertyDAL,  contextAccessor,  userDAL, unitDAL, authProvider, serviceRequestDAL, paymentDAL) 
+        {
+
+        }
+
+
+        public new IActionResult Index()
         {
             return View();
         }
@@ -21,7 +34,6 @@ namespace Capstone.Controllers
             return View();
         }
 
-        [ValidateAntiForgeryToken]
         [HttpPost]
         public ActionResult Email(string receiver, string subject, string message)
         {
