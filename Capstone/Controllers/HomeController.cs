@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Capstone.Models;
+using Capstone.Models.ViewModels;
 using Capstone.DAL.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Capstone.Providers.Auth;
@@ -59,7 +60,7 @@ namespace Capstone.Controllers
         [HttpGet]
         public IActionResult Search()
         {
-            SearchModel model = new SearchModel();
+            SearchViewModel model = new SearchViewModel();
             model.CurrentAvailableProperties = propertyDAL.GetAvailableProperties();
 
             return View(model);
@@ -67,7 +68,7 @@ namespace Capstone.Controllers
 
         [ValidateAntiForgeryToken]
         [HttpPost]
-        public IActionResult Search(SearchModel model)
+        public IActionResult Search(SearchViewModel model)
         {
             model.CurrentAvailableProperties = propertyDAL.GetAvailableProperties();
 

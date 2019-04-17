@@ -1,20 +1,20 @@
-﻿@model OwnersPropertiesViewModel
+﻿@model Capstone.Models.ViewModels.OwnersPropertiesViewModel
 
 @{
-    ViewData["Title"] = "MyProperties";
+    ViewData["Title"] = "My Properties";
 }
 
 <h2>MyProperties</h2>
 
 <div>
-    <p>Average Vacancy For all Units @Model.AvgVacancyForAllUnits()</p>
+    @*<p>Average Vacancy For all Units @Model.AverageVacancyForAllUnits()</p>
     <p>Average Rent of All Units @Model.AverageBaseRentAllUnits()</p>
-    <p>Rent Collected YTD: @Model.SumRentCollectedYTD()</p>
+    <p>Rent Collected YTD: @Model.SumRentCollectedYTD()</p>*@
 </div>
 
 <div>
 
-    @foreach (Property property in Model.ownersProperties)
+    @foreach (Property property in Model.CurrentOwnerProperties)
     {
         <h3>Property Name: @property.PropertyName</h3>
 
@@ -37,10 +37,10 @@
 
         <br>
 
-        <p>Get Vacancy Loss @property.GetVacancyLoss()</p>
+        @*<p>Get Vacancy Loss @property.GetVacancyLoss()</p>
         <p>Get Vacancy Rate @property.GetVacancyRate()</p>
         <p>Get Estimated Gross Rents @property.GetTotalScheduledGrossRents()</p>
-        <p>Get Effective Gross Income @property.GetEffectiveGrossIncome()</p>
+        <p>Get Effective Gross Income @property.GetEffectiveGrossIncome()</p>*@
 
         @foreach (Unit unit in property.UnitsAtThisProperty)
         {

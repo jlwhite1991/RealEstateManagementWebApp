@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Capstone.Models;
-using Capstone.Models.Account;
+using Capstone.Models.ViewModels.Account;
 using Capstone.Providers.Auth;
 using Microsoft.AspNetCore.Http;
 using Capstone.DAL.Interfaces;

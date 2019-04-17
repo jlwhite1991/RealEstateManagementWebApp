@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Capstone.Models
+namespace Capstone.Models.ViewModels
 {
-    public class SearchModel
+    public class SearchViewModel
     {
         public List<Property> CurrentAvailableProperties { get; set; }
 

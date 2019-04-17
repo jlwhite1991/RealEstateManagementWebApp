@@ -48,15 +48,14 @@ namespace Capstone
                     Path.Combine(Directory.GetCurrentDirectory(), "wwwroot")));
 
             string connectionString = Configuration.GetConnectionString("Default");
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<IPropertyDAL, PropertyDAL>(c => new PropertyDAL(connectionString));
             services.AddScoped<IUnitDAL, UnitDAL>(c => new UnitDAL(connectionString));
             services.AddScoped<IServiceRequestDAL, ServiceRequestDAL>(c => new ServiceRequestDAL(connectionString));
             services.AddScoped<IApplicationDAL, ApplicationDAL>(c => new ApplicationDAL(connectionString));
             services.AddScoped<IPaymentDAL, PaymentDAL>(c => new PaymentDAL(connectionString));
             services.AddScoped<IAuthProvider, SessionAuthProvider>();
-
             services.AddTransient<IUserDAL, UserDAL>(c => new UserDAL(connectionString));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Capstone.DAL.Interfaces;
 using Capstone.Models;
+using Capstone.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Capstone.Controllers
@@ -85,16 +86,14 @@ namespace Capstone.Controllers
         [HttpGet]
         public IActionResult MyProperties()
         {
-            // Get ownersID
-            int myID = 2;
+            //TODO: Implement get owner's ID
+            int currentOwnerID = 2;
 
-            List<Property> ownerProperties = propertyDAL.GetPropertiesForOwner(myID);
+            OwnersPropertiesViewModel statisticsForOwnerProperties = new OwnersPropertiesViewModel();
 
-            OwnersPropertiesViewModel myProperties = new OwnersPropertiesViewModel();
+            statisticsForOwnerProperties.CurrentOwnerProperties = propertyDAL.GetPropertiesForOwner(currentOwnerID);
 
-            myProperties.ownersProperties = ownerProperties;
-
-            return View(myProperties);
+            return View(statisticsForOwnerProperties);
         }
     }
 }
