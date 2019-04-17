@@ -12,10 +12,12 @@ namespace Capstone.Controllers
     public class HomeController : Controller
     {
         private IApplicationDAL applicationDAL;
+        private IPropertyDAL propertyDAL;
 
-        public HomeController(IApplicationDAL applicationDAL)
+        public HomeController(IApplicationDAL applicationDAL, IPropertyDAL propertyDAL)
         {
             this.applicationDAL = applicationDAL;
+            this.propertyDAL = propertyDAL;
         }
 
         public IActionResult Index()
@@ -45,11 +47,36 @@ namespace Capstone.Controllers
             }
         }
 
+        [HttpGet]
+        public IActionResult Search()
+        {
+            SearchModel model = new SearchModel();
+            model.CurrentAvailableProperties = propertyDAL.GetAvailableProperties();
+
+            return View(model);
+        }
+
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public IActionResult Search(SearchModel model)
+        {
+            model.CurrentAvailableProperties = propertyDAL.GetAvailableProperties();
+
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            else
+            {
+                model.AdvancedPropertySearch();
+                return View(model);
+            }
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-
     }
 }

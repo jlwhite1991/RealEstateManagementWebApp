@@ -7,11 +7,20 @@
 
 @if (Model == null)
 {
+    //Here's how it would look in order to fit with the other navbar elements; have fun trying to make this work:
+    @*<a asp-area="" asp-controller="Account" asp-action="Register" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white" >Register</a>
+        <a asp-area="" asp-controller="Account" asp-action="Login" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white" >Login</a>*@
+
     <li><a asp-area="" asp-controller="Account" asp-action="Register">Register</a></li>
     <li><a asp-area="" asp-controller="Account" asp-action="Login">Login</a></li>
+
 }
 else
 {
+    //Here's how it would look in order to fit with the other navbar elements; have fun trying to make this work:
+    @*<a asp-area="" asp-controller="Account" asp-action="Index" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white" >Welcome @Model.FirstName</a>
+        <a asp-area="" asp-controller="Account" asp-action="Logoff" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white" >Logout</a>*@
+
     <li><a asp-area="" asp-controller="Account" asp-action="Index">Welcome @Model.FirstName</a></li>
     <li><a asp-area="" asp-controller="Account" asp-action="Logoff">Logout</a></li>
 }
