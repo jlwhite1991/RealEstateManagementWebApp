@@ -84,7 +84,7 @@ namespace Capstone.DAL
                 {
                     connection.Open();
 
-                    SqlCommand cmd = new SqlCommand(SQL_GetAllUnitsAtProperty, connection);
+                    SqlCommand cmd = new SqlCommand(SQL_GetAvailableUnitsAtProperty, connection);
                     cmd.Parameters.AddWithValue("@propertyID", propertyID);
 
                     SqlDataReader reader = cmd.ExecuteReader();

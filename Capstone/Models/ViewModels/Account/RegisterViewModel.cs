@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 
-namespace Capstone.Models.Account
+namespace Capstone.Models.ViewModels.Account
 {
     public class RegisterViewModel
     {

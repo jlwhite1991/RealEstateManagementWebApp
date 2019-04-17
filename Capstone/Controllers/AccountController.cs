@@ -4,27 +4,32 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Capstone.Models;
-using Capstone.Models.Account;
+using Capstone.Models.ViewModels.Account;
 using Capstone.Providers.Auth;
+using Microsoft.AspNetCore.Http;
+using Capstone.DAL.Interfaces;
 
 namespace Capstone.Controllers
 {
 
-    public class AccountController : Controller
+    public class AccountController : HomeController
     {
-    private readonly IAuthProvider authProvider;
-    public AccountController(IAuthProvider authProvider)
-    {
-        this.authProvider = authProvider;
-    }
+
+
+        public AccountController(IApplicationDAL applicationDAL, IPropertyDAL propertyDAL, IHttpContextAccessor contextAccessor, IUserDAL userDAL, IUnitDAL unitDAL, IAuthProvider authProvider, IServiceRequestDAL serviceRequestDAL,
+            IPaymentDAL paymentDAL)
+            : base(applicationDAL, propertyDAL, contextAccessor, userDAL, unitDAL, authProvider, serviceRequestDAL, paymentDAL)
+        {
+
+        }
 
 
 
         [AuthorizationFilter("manager", "owner", "tenant", "user")]
         [HttpGet]
-        public IActionResult Index()
+        public new IActionResult Index()
         {
-            User user = authProvider.GetCurrentUser();
+            User user = GetCurrentUser();
 
             return View(user);
         }
@@ -39,10 +44,10 @@ namespace Capstone.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Login(LoginViewModel loginViewModel)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                bool validLogin = authProvider.SignIn(loginViewModel.Email, loginViewModel.Password);
-                if(validLogin)
+                bool validLogin = SignIn(loginViewModel.Email, loginViewModel.Password);
+                if (validLogin)
                 {
                     return RedirectToAction("Index", "Home");
                 }
@@ -52,9 +57,9 @@ namespace Capstone.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult LogOff()
+        public IActionResult LogOut()
         {
-            authProvider.LogOff();
+            LogOff();
 
             return RedirectToAction("Index", "Home");
         }
@@ -67,11 +72,11 @@ namespace Capstone.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Register (RegisterViewModel registerViewModel)
+        public IActionResult Register(RegisterViewModel registerViewModel)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                if (authProvider.Register(registerViewModel.Email, registerViewModel.Password, "user", 
+                if (authProvider.Register(registerViewModel.Email, registerViewModel.Password, "user",
                     registerViewModel.PhoneNumber, registerViewModel.FirstName, registerViewModel.LastName) == false)
                 {
                     return RedirectToAction("Error", "Home");
@@ -82,7 +87,7 @@ namespace Capstone.Controllers
             }
             return View(registerViewModel);
         }
-        
+
 
     }
 }

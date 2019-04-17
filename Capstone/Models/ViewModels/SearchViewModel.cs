@@ -1,57 +1,66 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Capstone.Models
+namespace Capstone.Models.ViewModels
 {
-    public class SearchModel
+    public class SearchViewModel
     {
-        public List<Property> AvailableProperties { get; set; }
+        public List<Property> CurrentAvailableProperties { get; set; }
 
         public int NumberofBedsMin { get; set; }
+
         public int NumberofBedsMax { get; set; }
+
         public int NumberofBathsMin { get; set; }
+
         public int NumberofBathsMax { get; set; }
+
         public int MonthlyRentMin { get; set; }
+
         public int MonthlyRentMax { get; set; }
+
         public int SquareFeetMin { get; set; }
+
         public int SquareFeetMax { get; set; }
+
         public int ZipCode { get; set; }
 
         public void AdvancedPropertySearch()
         {
-            List<Property> result = new List<Property>();
+            List<Property> propertiesThatContainValidUnits = new List<Property>();
 
-            foreach (Property property in AvailableProperties)
+            foreach (Property property in CurrentAvailableProperties)
             {
-                List<Unit> validUnits = new List<Unit>();
+                List<Unit> unitsThatMeetAllSearchConditions = new List<Unit>();
 
-                foreach (Unit unit in property.UnitsAtThisProperty)
+                foreach (Unit unitBeingTested in property.UnitsAtThisProperty)
                 {
-                    bool isValid = CheckNumberOfBedsMin(unit) && CheckNumberOfBedsMax(unit) && CheckNumberOfBathsMin(unit) && CheckNumberOfBathsMax(unit) && CheckMonthlyRentMin(unit) && CheckMonthlyRentMax(unit) && CheckSquareFeetMin(unit) && CheckSquareFeetMax(unit) && CheckZipCode(unit);
+                    bool resultOfAllSearchTests = CheckNumberOfBedsMin(unitBeingTested) && CheckNumberOfBedsMax(unitBeingTested) && CheckNumberOfBathsMin(unitBeingTested) && CheckNumberOfBathsMax(unitBeingTested) && CheckMonthlyRentMin(unitBeingTested) && CheckMonthlyRentMax(unitBeingTested) && CheckSquareFeetMin(unitBeingTested) && CheckSquareFeetMax(unitBeingTested) && CheckZipCode(unitBeingTested);
 
-                    if (isValid)
+                    if (resultOfAllSearchTests)
                     {
-                        validUnits.Add(unit);
+                        unitsThatMeetAllSearchConditions.Add(unitBeingTested);
                     }
                 }
 
-                if (validUnits.Count > 0)
+                if (unitsThatMeetAllSearchConditions.Count > 0)
                 {
-                    property.UnitsAtThisProperty = validUnits;
-                    result.Add(property);
+                    property.UnitsAtThisProperty = unitsThatMeetAllSearchConditions;
+                    propertiesThatContainValidUnits.Add(property);
                 }
             }
 
-            AvailableProperties = result;
+            CurrentAvailableProperties = propertiesThatContainValidUnits;
         }
 
         public bool CheckNumberOfBedsMin(Unit unit)
         {
             bool checkResult = true;
 
-            if (NumberofBedsMin > 0)
+            if (NumberofBedsMin != 0)
             {
                 checkResult = unit.NumberOfBeds >= NumberofBedsMin;
             }
@@ -63,7 +72,7 @@ namespace Capstone.Models
         {
             bool checkResult = true;
 
-            if (NumberofBedsMax > 0)
+            if (NumberofBedsMax != 0)
             {
                 checkResult = unit.NumberOfBeds <= NumberofBedsMax;
             }
@@ -75,7 +84,7 @@ namespace Capstone.Models
         {
             bool checkResult = true;
 
-            if (NumberofBathsMin > 0)
+            if (NumberofBathsMin != 0)
             {
                 checkResult = unit.NumberOfBaths >= NumberofBathsMin;
             }
@@ -87,7 +96,7 @@ namespace Capstone.Models
         {
             bool checkResult = true;
 
-            if (NumberofBathsMax > 0)
+            if (NumberofBathsMax != 0)
             {
                 checkResult = unit.NumberOfBaths <= NumberofBathsMax;
             }
@@ -99,7 +108,7 @@ namespace Capstone.Models
         {
             bool checkResult = true;
 
-            if (MonthlyRentMin > 0)
+            if (MonthlyRentMin != 0)
             {
                 checkResult = unit.MonthlyRent >= MonthlyRentMin;
             }
@@ -111,7 +120,7 @@ namespace Capstone.Models
         {
             bool checkResult = true;
 
-            if (MonthlyRentMax > 0)
+            if (MonthlyRentMax != 0)
             {
                 checkResult = unit.MonthlyRent <= MonthlyRentMax;
             }
@@ -123,10 +132,11 @@ namespace Capstone.Models
         {
             bool checkResult = true;
 
-            if (SquareFeetMin > 0)
+            if (SquareFeetMin != 0)
             {
                 checkResult = unit.SquareFeet >= SquareFeetMin;
             }
+
             return checkResult;
         }
 
@@ -134,7 +144,7 @@ namespace Capstone.Models
         {
             bool checkResult = true;
 
-            if (SquareFeetMax > 0)
+            if (SquareFeetMax != 0)
             {
                 checkResult = unit.SquareFeet <= SquareFeetMax;
             }
@@ -146,7 +156,7 @@ namespace Capstone.Models
         {
             bool checkResult = true;
 
-            if (ZipCode > 0)
+            if (ZipCode != 0)
             {
                 checkResult = unit.ZipCode == ZipCode;
             }

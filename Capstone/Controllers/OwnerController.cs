@@ -4,24 +4,24 @@ using System.Linq;
 using System.Threading.Tasks;
 using Capstone.DAL.Interfaces;
 using Capstone.Models;
+using Capstone.Models.ViewModels;
+using Capstone.Providers.Auth;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Capstone.Controllers
 {
-    public class OwnerController : Controller
+    public class OwnerController : HomeController
     {
-        private IPropertyDAL propertyDAL;
-        private IUnitDAL unitDAL;
-        private IApplicationDAL applicationDAL;
 
-        public OwnerController(IPropertyDAL propertyDAL, IUnitDAL unitDAL, IApplicationDAL applicationDAL)
+        public OwnerController(IApplicationDAL applicationDAL, IPropertyDAL propertyDAL, IHttpContextAccessor contextAccessor, IUserDAL userDAL, IUnitDAL unitDAL, IAuthProvider authProvider, IServiceRequestDAL serviceRequestDAL,
+            IPaymentDAL paymentDAL) : 
+            base(applicationDAL, propertyDAL, contextAccessor, userDAL, unitDAL, authProvider, serviceRequestDAL, paymentDAL)
         {
-            this.propertyDAL = propertyDAL;
-            this.unitDAL = unitDAL;
-            this.applicationDAL = applicationDAL;
+
         }
 
-        public IActionResult Index()
+        public new IActionResult Index()
         {
             return View();
         }
@@ -83,18 +83,16 @@ namespace Capstone.Controllers
         }
 
         [HttpGet]
-        public IActionResult MyProperties()
+        public IActionResult Statistics()
         {
-            // Get ownersID
-            int myID = 2;
+            //TODO: Implement get owner's ID
+            int currentOwnerID = 2;
 
-            List<Property> ownerProperties = propertyDAL.GetPropertiesForOwner(myID);
+            OwnersPropertiesViewModel statisticsForOwnerProperties = new OwnersPropertiesViewModel();
 
-            OwnersPropertiesViewModel myProperties = new OwnersPropertiesViewModel();
+            statisticsForOwnerProperties.CurrentOwnerProperties = propertyDAL.GetPropertiesForOwner(currentOwnerID);
 
-            myProperties.ownersProperties = ownerProperties;
-
-            return View(myProperties);
+            return View(statisticsForOwnerProperties);
         }
     }
 }

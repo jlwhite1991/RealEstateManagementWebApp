@@ -18,18 +18,16 @@ namespace Capstone.DAL
         private string connectionString;
         private UnitDAL unitDAL;
 
-
         public PropertyDAL(string connectionString)
         {
             this.connectionString = connectionString;
             unitDAL = new UnitDAL(connectionString);
-            
         }
 
         public bool AddProperty(Property property)
         {
             bool result;
-            
+
             try
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
@@ -42,7 +40,7 @@ namespace Capstone.DAL
                     cmd.Parameters.AddWithValue("@propertyName", property.PropertyName);
                     cmd.Parameters.AddWithValue("@propertyType", property.PropertyType);
                     cmd.Parameters.AddWithValue("@numberOfUnits", property.NumberOfUnits);
-                    cmd.Parameters.AddWithValue("@imageSource", (property.ImageSource??(object)DBNull.Value));
+                    cmd.Parameters.AddWithValue("@imageSource", (property.ImageSource ?? (object)DBNull.Value));
 
                     cmd.ExecuteNonQuery();
                 }
@@ -100,7 +98,7 @@ namespace Capstone.DAL
 
             return returnedProperties;
         }
-        
+
         public List<Property> GetPropertiesForOwner(int ownerID)
         {
             List<Property> result = new List<Property>();
@@ -115,7 +113,7 @@ namespace Capstone.DAL
                     cmd.Parameters.AddWithValue("@ownerID", ownerID);
 
                     SqlDataReader reader = cmd.ExecuteReader();
-                   
+
                     while (reader.Read())
                     {
                         Property property = new Property();
@@ -145,42 +143,43 @@ namespace Capstone.DAL
 
             return result;
         }
-        //public List<Property> GetAllProperties()
-        //{
-        //    List<Property> returnedProperties = new List<Property>();
-
-        //    try
-        //    {
-        //        using (SqlConnection connection = new SqlConnection(connectionString))
-        //        {
-        //            connection.Open();
-
-        //            SqlCommand cmd = new SqlCommand(SQL_GetAllProperties, connection);
-        //            SqlDataReader reader = cmd.ExecuteReader();
-
-        //            while (reader.Read())
-        //            {
-        //                Property property = new Property();
-
-        //                property.PropertyID = Convert.ToInt32(reader["property_id"]);
-        //                property.OwnerID = Convert.ToInt32(reader["owner_id"]);
-        //                property.ManagerID = Convert.ToInt32(reader["manager_id"]);
-        //                property.PropertyName = Convert.ToString(reader["property_name"]);
-        //                property.PropertyType = Convert.ToString(reader["property_type"]);
-        //                property.NumberOfUnits = Convert.ToInt32(reader["number_of_units"]);
-        //                property.ImageSource = Convert.ToString(reader["image_source"]);
-
-        //                returnedProperties.Add(property);
-        //            }
-        //        }
-        //    }
-        //    catch (SqlException ex)
-        //    {
-        //        returnedProperties = new List<Property>();
-        //        throw ex;
-        //    }
-
-        //    return returnedProperties;
-        //}
     }
 }
+
+//public List<Property> GetAllProperties()
+//{
+//    List<Property> returnedProperties = new List<Property>();
+
+//    try
+//    {
+//        using (SqlConnection connection = new SqlConnection(connectionString))
+//        {
+//            connection.Open();
+
+//            SqlCommand cmd = new SqlCommand(SQL_GetAllProperties, connection);
+//            SqlDataReader reader = cmd.ExecuteReader();
+
+//            while (reader.Read())
+//            {
+//                Property property = new Property();
+
+//                property.PropertyID = Convert.ToInt32(reader["property_id"]);
+//                property.OwnerID = Convert.ToInt32(reader["owner_id"]);
+//                property.ManagerID = Convert.ToInt32(reader["manager_id"]);
+//                property.PropertyName = Convert.ToString(reader["property_name"]);
+//                property.PropertyType = Convert.ToString(reader["property_type"]);
+//                property.NumberOfUnits = Convert.ToInt32(reader["number_of_units"]);
+//                property.ImageSource = Convert.ToString(reader["image_source"]);
+
+//                returnedProperties.Add(property);
+//            }
+//        }
+//    }
+//    catch (SqlException ex)
+//    {
+//        returnedProperties = new List<Property>();
+//        throw ex;
+//    }
+
+//    return returnedProperties;
+//}

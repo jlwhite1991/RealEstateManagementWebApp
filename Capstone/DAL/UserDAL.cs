@@ -35,10 +35,8 @@ namespace Capstone.DAL
                         user = MapRowToUser(reader);
                     }
                 }
-
-
             }
-            catch (SqlException ex)
+            catch (SqlException)
             {
                 user = null;
             }
@@ -65,13 +63,13 @@ namespace Capstone.DAL
                     cmd.Parameters.AddWithValue("@salt", user.Salt);
 
                     result = (cmd.ExecuteNonQuery() > 0) ? true : false;
-
                 }
             }
-            catch (SqlException ex)
+            catch (SqlException)
             {
                 result = false;
             }
+
             return result;
         }
 
@@ -89,14 +87,11 @@ namespace Capstone.DAL
                     cmd.Parameters.AddWithValue("@id", user.UserID);
 
                     return cmd.ExecuteNonQuery() >= 1 ? true : false;
-
-                    
                 }
             }
-            catch (SqlException e)
+            catch (SqlException ex)
             {
-
-                throw e;
+                throw ex;
             }
         }
 
@@ -111,16 +106,12 @@ namespace Capstone.DAL
                     cmd.Parameters.AddWithValue("@id", user.UserID);
 
                     return cmd.ExecuteNonQuery() >= 1 ? true : false;
-
-                    
                 }
             }
             catch (SqlException ex)
             {
                 throw ex;
             }
-
-
         }
 
         private User MapRowToUser(SqlDataReader reader)
