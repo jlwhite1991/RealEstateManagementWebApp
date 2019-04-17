@@ -52,6 +52,7 @@ namespace Capstone.Providers.Auth
             // give them a 403
             if (roles.Length > 0 && !authProvider.UserHasRole(roles))
             {
+           
                 // User shouldn't have access
                 context.Result = new StatusCodeResult(403);
                 return;
