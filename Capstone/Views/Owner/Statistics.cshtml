@@ -4,84 +4,94 @@
     ViewData["Title"] = "Statistics";
 }
 
-<h2>My Properties</h2>
+<br />
+<div class="w3-container">
+    <h2><strong>My Properties</strong></h2>
+    <div class="w3-row w3-large">
 
-<div>
-    @*<p>Average Vacancy For all Units @Model.AverageVacancyForAllUnits()</p>
-    <p>Average Rent of All Units @Model.AverageBaseRentAllUnits()</p>
-    <p>Rent Collected YTD: @Model.SumRentCollectedYTD()</p>*@
-</div>
+        <h6><strong>Statistics:</strong></h6>
+        <div>
+            @*<p>Average Vacancy For all Units @Model.AverageVacancyForAllUnits()</p>
+            <p>Average Rent of All Units @Model.AverageBaseRentAllUnits()</p>
+            <p>Rent Collected YTD: @Model.SumRentCollectedYTD()</p>*@
+        </div>
 
-<div>
+        <div>
 
-    @foreach (Property property in Model.CurrentOwnerProperties)
-    {
-        <h3>Property Name: @property.PropertyName</h3>
+            @foreach (Property property in Model.CurrentOwnerProperties)
+            {
+                <h3>Property Name: @property.PropertyName</h3>
 
-        <p>Property ID: @property.PropertyID</p>
-        <p>Owner ID: @property.OwnerID</p>
-        <p>Manager ID: @property.ManagerID</p>
-        <p>Property Type: @property.PropertyType</p>
+                <p>Property ID: @property.PropertyID</p>
+                <p>Owner ID: @property.OwnerID</p>
+                <p>Manager ID: @property.ManagerID</p>
+                <p>Property Type: @property.PropertyType</p>
 
-        @if (property.NumberOfUnits > 0)
-        {
-            <p>Number of Units: @property.NumberOfUnits</p>
-        }
-        else
-        {
-            <p>No available units at this property.</p>
-        }
-        
-
-        <p>Image URL: @property.ImageSource</p>
-
-        <br>
-
-        @*<p>Get Vacancy Loss @property.GetVacancyLoss()</p>
-        <p>Get Vacancy Rate @property.GetVacancyRate()</p>
-        <p>Get Estimated Gross Rents @property.GetTotalScheduledGrossRents()</p>
-        <p>Get Effective Gross Income @property.GetEffectiveGrossIncome()</p>*@
-
-        @foreach (Unit unit in property.UnitsAtThisProperty)
-        {
-            <div>
-                <h5>Unit ID: @unit.UnitID</h5>
-                <p>Property ID: @unit.PropertyID</p>
-                <p>Tenant ID: @unit.TenantID</p>
-                <p>Monthly Rent: @unit.MonthlyRent</p>
-                <p>Square Feet: @unit.SquareFeet</p>
-                <p>Number of Beds: @unit.NumberOfBeds</p>
-                <p>Number of Baths: @unit.NumberOfBaths</p>
-                <p>Description: @unit.Description</p>
-                <p>Tagline: @unit.Tagline</p>
-                <p>Rent YTD: @unit.RentCollectedYTD</p>
-
-
-                @if (unit.ImageSource != null)
+                @if (property.NumberOfUnits > 0)
                 {
-                    <p>Image URL: @unit.ImageSource</p>
+                    <p>Number of Units: @property.NumberOfUnits</p>
+                }
+                else
+                {
+                    <p>No available units at this property.</p>
                 }
 
-                <p>Application Fee: @unit.ApplicationFee</p>
-                <p>Security Deposit: @unit.SecurityDeposit</p>
-                <p>Pet Deposit: @unit.PetDeposit</p>
-                <p>Address Line 1: @unit.AddressLine1</p>
 
-                @if (unit.AddressLine2 != null)
+                <p>Image URL: @property.ImageSource</p>
+
+                <br>
+
+                @*<p>Get Vacancy Loss @property.GetVacancyLoss()</p>
+                <p>Get Vacancy Rate @property.GetVacancyRate()</p>
+                <p>Get Estimated Gross Rents @property.GetTotalScheduledGrossRents()</p>
+                <p>Get Effective Gross Income @property.GetEffectiveGrossIncome()</p>*@
+
+                @foreach (Unit unit in property.UnitsAtThisProperty)
                 {
-                    <p>Address Line 2: @unit.AddressLine2</p>
-                }
+                    <div>
+                        <h5>Unit ID: @unit.UnitID</h5>
+                        <p>Property ID: @unit.PropertyID</p>
+                        <p>Tenant ID: @unit.TenantID</p>
+                        <p>Monthly Rent: @unit.MonthlyRent</p>
+                        <p>Square Feet: @unit.SquareFeet</p>
+                        <p>Number of Beds: @unit.NumberOfBeds</p>
+                        <p>Number of Baths: @unit.NumberOfBaths</p>
+                        <p>Description: @unit.Description</p>
+                        <p>Tagline: @unit.Tagline</p>
+                        <p>Rent YTD: @unit.RentCollectedYTD</p>
 
-                <p>City: @unit.City</p>
-                <p>State: @unit.State</p>
-                <p>ZipCode: @unit.ZipCode</p>
-                <p>Washer/Dryer Hookup: @unit.WasherDryer</p>
-                <p>Cats Allowed?: @unit.AllowCats</p>
-                <p>Dogs Allowed?: @unit.AllowDogs</p>
-                <p>Parking Spots: @unit.ParkingSpots</p>
-                <p>Gym?: @unit.Gym</p>
-                <p>Pool?: @unit.Pool</p>
-            </div>
-        }
-    }
+
+                        @if (unit.ImageSource != null)
+                        {
+                            <p>Image URL: @unit.ImageSource</p>
+                        }
+
+                        <p>Application Fee: @unit.ApplicationFee</p>
+                        <p>Security Deposit: @unit.SecurityDeposit</p>
+                        <p>Pet Deposit: @unit.PetDeposit</p>
+                        <p>Address Line 1: @unit.AddressLine1</p>
+
+                        @if (unit.AddressLine2 != null)
+                        {
+                            <p>Address Line 2: @unit.AddressLine2</p>
+                        }
+
+                        <p>City: @unit.City</p>
+                        <p>State: @unit.State</p>
+                        <p>ZipCode: @unit.ZipCode</p>
+                        <p>Washer/Dryer Hookup: @unit.WasherDryer</p>
+                        <p>Cats Allowed?: @unit.AllowCats</p>
+                        <p>Dogs Allowed?: @unit.AllowDogs</p>
+                        <p>Parking Spots: @unit.ParkingSpots</p>
+                        <p>Gym?: @unit.Gym</p>
+                        <p>Pool?: @unit.Pool</p>
+                    </div>
+                }
+            }
+        </div>
+
+        <div>
+            <a asp-action="Index">Back to Owner Home</a>
+        </div>
+    </div>
 </div>

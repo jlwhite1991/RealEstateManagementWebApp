@@ -4,44 +4,50 @@
     ViewData["Title"] = "Review Applications";
 }
 
-<h2>List of Unreviewed Applications:</h2>
-<hr />
-@foreach (Application application in Model)
-{
-    <div>Unit ID: @application.UnitID</div>
-    <div>First Name: @application.FirstName</div>
-    <div>Last Name: @application.LastName</div>
-    <div>SSN: @application.SocialSecurityNumber</div>
-    <div>Phone Number: @application.PhoneNumber</div>
-    <div>Email Address: @application.EmailAddress</div>
-    <div>Last Residence Owner: @application.LastResidenceOwner</div>
-    <div>Last Residence Contact Phone Number: @application.LastResidenceContactPhoneNumber</div>
-    <div>Last Residence Tenancy Start Date: @application.LastResidenceTenancyStartDate</div>
-    <div>Last Residence Tenancy End Date: @application.LastResidenceTenancyEndDate</div>
-    <div>Employment Status: @application.EmploymentStatus</div>
-    <div>Employer Name: @application.EmployerName</div>
-    <div>Employer Contact Phone Number: @application.EmployerContactPhoneNumber</div>
-    <div>Annual Income: @application.AnnualIncome</div>
-    <div>Number of Residents: @application.NumberOfResidents</div>
-    <div>Number of Cats: @application.NumberOfCats</div>
-    <div>Number of Dogs: @application.NumberOfDogs</div>
+<br />
+<div class="w3-container">
+    <h2><strong>Unreviewed Applications</strong></h2>
+    <div class="w3-row w3-large">
 
-    <div>
-        @using (Html.BeginForm("Approve", "Owner"))
+        <hr />
+        @foreach (Application application in Model)
         {
-            <input type="hidden" name="ApplicationID" value="@application.ApplicationID" />
-            <input type="submit" value="Approve" />
-        }
-    </div>
-    <div>
-        @using (Html.BeginForm("Deny", "Owner"))
-        {
-            <input type="hidden" name="ApplicationID" value="@application.ApplicationID" />
-            <input type="submit" value="Deny" />
-        }
-    </div>
-}
+            <div>Unit ID: @application.UnitID</div>
+            <div>First Name: @application.FirstName</div>
+            <div>Last Name: @application.LastName</div>
+            <div>SSN: @application.SocialSecurityNumber</div>
+            <div>Phone Number: @application.PhoneNumber</div>
+            <div>Email Address: @application.EmailAddress</div>
+            <div>Last Residence Owner: @application.LastResidenceOwner</div>
+            <div>Last Residence Contact Phone Number: @application.LastResidenceContactPhoneNumber</div>
+            <div>Last Residence Tenancy Start Date: @application.LastResidenceTenancyStartDate</div>
+            <div>Last Residence Tenancy End Date: @application.LastResidenceTenancyEndDate</div>
+            <div>Employment Status: @application.EmploymentStatus</div>
+            <div>Employer Name: @application.EmployerName</div>
+            <div>Employer Contact Phone Number: @application.EmployerContactPhoneNumber</div>
+            <div>Annual Income: @application.AnnualIncome</div>
+            <div>Number of Residents: @application.NumberOfResidents</div>
+            <div>Number of Cats: @application.NumberOfCats</div>
+            <div>Number of Dogs: @application.NumberOfDogs</div>
 
-<div>
-    <a asp-action="Index">Back to Owner Home</a>
+            <div>
+                @using (Html.BeginForm("Approve", "Owner"))
+                {
+                    <input type="hidden" name="ApplicationID" value="@application.ApplicationID" />
+                    <input type="submit" value="Approve" />
+                }
+            </div>
+            <div>
+                @using (Html.BeginForm("Deny", "Owner"))
+                {
+                    <input type="hidden" name="ApplicationID" value="@application.ApplicationID" />
+                    <input type="submit" value="Deny" />
+                }
+            </div>
+        }
+
+        <div>
+            <a asp-action="Index">Back to Owner Home</a>
+        </div>
+    </div>
 </div>
