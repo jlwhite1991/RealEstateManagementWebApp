@@ -9,7 +9,6 @@ namespace Capstone.Models
     {
         public List<Property> ownersProperties { get; set; }
 
-
         public decimal AverageBaseRentAllUnits()
         {
             decimal result = 0.0M;
