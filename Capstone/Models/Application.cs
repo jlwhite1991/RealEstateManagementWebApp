@@ -12,7 +12,7 @@ namespace Capstone.Models
 
         [Required(ErrorMessage = "A unit ID is required")]
         [Range(1, int.MaxValue, ErrorMessage = "Please enter a valid number")]
-        [Display(Name = "Please enter the unit ID of the residence you are interested in: ")]
+        [Display(Name = "Unit ID: ")]
         public int UnitID { get; set; }
 
         [Required(ErrorMessage = "This field is required")]
@@ -25,7 +25,7 @@ namespace Capstone.Models
 
         [Required(ErrorMessage = "A SSN is required")]
         [Range(1, 999999999, ErrorMessage = "Please provide a valid SSN")]
-        [Display(Name = "Social Security Number: ")]
+        [Display(Name = "SSN: ")]
         public int SocialSecurityNumber { get; set; }
 
         [Required(ErrorMessage = "A phone number is required")]
@@ -33,26 +33,26 @@ namespace Capstone.Models
         public string PhoneNumber { get; set; }
 
         [Required(ErrorMessage = "An email address is required")]
-        [Display(Name = "Email Address: ")]
+        [Display(Name = "Email: ")]
         public string EmailAddress { get; set; }
 
         [Required(ErrorMessage = "A Landlord name is required")]
-        [Display(Name = "Please enter the name of your last Landlord: ")]
+        [Display(Name = "Landlord Name: ")]
         public string LastResidenceOwner { get; set; }
 
         [Required(ErrorMessage = "A contact number is required")]
-        [Display(Name = "Please enter the contact number of your last Landlord: ")]
+        [Display(Name = "Landlord Phone Number: ")]
         public string LastResidenceContactPhoneNumber { get; set; }
 
         [Required(ErrorMessage = "A start date is required")]
-        [Display(Name = "Please enter the tenancy start date for your last residence: ")]
+        [Display(Name = "Move-In Date: ")]
         public string LastResidenceTenancyStartDate { get; set; }
 
         [Required(ErrorMessage = "An end date is required")]
-        [Display(Name = "Please enter the tenancy start date for your last residence: ")]
+        [Display(Name = "Move-Out Date: ")]
         public string LastResidenceTenancyEndDate { get; set; }
 
-        [Display(Name = "Check if you are currently employed: ")]
+        [Display(Name = "Check if currently employed")]
         public bool EmploymentStatus { get; set; }
 
         [Required(ErrorMessage = "An employer name is required")]
@@ -60,7 +60,7 @@ namespace Capstone.Models
         public string EmployerName { get; set; }
 
         [Required(ErrorMessage = "A contact number is required")]
-        [Display(Name = "Employer Contact Number: ")]
+        [Display(Name = "Employer Phone Number: ")]
         public string EmployerContactPhoneNumber { get; set; }
 
         [Required(ErrorMessage = "Annual income is required")]
