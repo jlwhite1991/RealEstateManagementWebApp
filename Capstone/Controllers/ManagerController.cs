@@ -23,7 +23,7 @@ namespace Capstone.Controllers
         }
 
 
-        public new IActionResult Index()
+        public IActionResult Index()
         {
             return View();
         }

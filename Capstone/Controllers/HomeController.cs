@@ -38,7 +38,7 @@ namespace Capstone.Controllers
             this.paymentDAL = paymentDAL;
         }
 
-        public IActionResult Index()
+        public IActionResult Home()
         {
             if (IsLoggedIn)
             {

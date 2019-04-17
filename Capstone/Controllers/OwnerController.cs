@@ -21,7 +21,7 @@ namespace Capstone.Controllers
 
         }
 
-        public new IActionResult Index()
+        public IActionResult Index()
         {
             return View();
         }
@@ -57,6 +57,7 @@ namespace Capstone.Controllers
         }
 
         [HttpGet]
+        [AuthorizationFilter("owner")]
         public IActionResult Review()
         {
             List<Application> applications = applicationDAL.GetAllUnreviewedApplications();
