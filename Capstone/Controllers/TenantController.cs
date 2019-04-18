@@ -20,14 +20,14 @@ namespace Capstone.Controllers
         {
 
         }
-        [AuthorizationFilter("tenant")]
+        [AuthorizationFilter("tenant", "manager")]
         public new IActionResult Index()
         {
             return View();
         }
 
         [HttpGet]
-        [AuthorizationFilter("tenant")]
+        [AuthorizationFilter("tenant", "manager")]
         public IActionResult Submit()
         {
             ServiceRequest serviceRequest = new ServiceRequest();
@@ -51,7 +51,7 @@ namespace Capstone.Controllers
         }
 
         [HttpGet]
-        [AuthorizationFilter("tenant")]
+        [AuthorizationFilter("tenant", "manager")]
         public IActionResult Rent()
         {
             return View();

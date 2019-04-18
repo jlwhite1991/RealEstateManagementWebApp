@@ -21,14 +21,14 @@ namespace Capstone.Controllers
 
         }
 
-        [AuthorizationFilter("owner")]
+        [AuthorizationFilter("owner", "manager")]
         public IActionResult Index()
         {
             return View();
         }
 
         [HttpGet]
-        [AuthorizationFilter("owner")]
+        [AuthorizationFilter("owner", "manager")]
         public IActionResult Property()
         {
             Property property = new Property();
@@ -37,7 +37,7 @@ namespace Capstone.Controllers
 
         [ValidateAntiForgeryToken]
         [HttpPost]
-        [AuthorizationFilter("owner")]
+        [AuthorizationFilter("owner", "manager")]
         public IActionResult Property(Property property)
         {
             propertyDAL.AddProperty(property);
@@ -46,7 +46,7 @@ namespace Capstone.Controllers
         }
 
         [HttpGet]
-        [AuthorizationFilter("owner")]
+        [AuthorizationFilter("owner", "manager")]
         public IActionResult Unit()
         {
             return View();
@@ -54,7 +54,7 @@ namespace Capstone.Controllers
 
         [ValidateAntiForgeryToken]
         [HttpPost]
-        [AuthorizationFilter("owner")]
+        [AuthorizationFilter("owner", "manager")]
         public IActionResult Unit(Unit unit)
         {
             unitDAL.AddUnit(unit);
@@ -63,7 +63,7 @@ namespace Capstone.Controllers
         }
 
         [HttpGet]
-        [AuthorizationFilter("owner")]
+        [AuthorizationFilter("owner", "manager")]
         public IActionResult Review()
         {
             List<Application> applications = applicationDAL.GetAllUnreviewedApplications();
@@ -91,7 +91,7 @@ namespace Capstone.Controllers
         }
 
         [HttpGet]
-        [AuthorizationFilter("owner")]
+        [AuthorizationFilter("owner", "manager")]
         public IActionResult Statistics()
         {
             //TODO: Implement get owner's ID
