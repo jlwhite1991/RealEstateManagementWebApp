@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Capstone.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Capstone.DAL.Interfaces
 {
@@ -21,6 +22,10 @@ namespace Capstone.DAL.Interfaces
         bool UpdateUser(User user);
 
         bool DeleteUser(User user);
+
+        List<User> GetTenantUsers();
+
+        List<SelectListItem> GetUserEmailSelectList();
 
     }
 }

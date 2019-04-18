@@ -1,5 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Email Tenants";
+    List<SelectListItem> tenants = ViewBag.UserEmailSelectList as List<SelectListItem>;
 }
 
 <br />
@@ -13,7 +14,8 @@
                     <div class="w3-col" style="width:33%">
 
                         <span class="form-control-static"> Receiver: </span>
-                        <input class="w3-input w3-border" type="text" name="receiver" v-model="Email" v-on:blur="CheckEmail" />
+                        @*<input class="w3-input w3-border" type="text" name="receiver" v-model="Email" v-on:blur="CheckEmail" />*@
+                        <select asp-items="@tenants" class="w3-input w3-border" type="text" name="receiver" v-model="Email" v-on:blur="CheckEmail"></select>
                         <span class="invalid-input" v-show="InvalidEmail"></span>
                     </div>
                 </div>

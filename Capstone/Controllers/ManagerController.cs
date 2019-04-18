@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
 using Capstone.DAL.Interfaces;
+using Capstone.Models;
 using Capstone.Providers.Auth;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -32,6 +33,8 @@ namespace Capstone.Controllers
         [AuthorizationFilter("manager")]
         public ActionResult Email()
         {
+            List<User> tenants = userDAL.GetTenantUsers();
+            ViewBag.UserEmailSelectList = userDAL.GetUserEmailSelectList();
             return View();
         }
 
