@@ -52,8 +52,9 @@ namespace Capstone.Controllers
                     return RedirectToAction("Home", "Home");
                 }
             }
+            ModelState.Clear();
+            loginViewModel = new LoginViewModel();
             loginViewModel.failedLogin = true;
-
             return View(loginViewModel);
         }
 
