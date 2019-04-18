@@ -86,6 +86,8 @@ namespace Capstone.Controllers
 
                 return RedirectToAction("Home", "Home");
             }
+            ModelState.Clear();
+            registerViewModel = new RegisterViewModel();
             return View(registerViewModel);
         }
 

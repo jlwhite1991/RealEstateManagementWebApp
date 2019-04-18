@@ -37,7 +37,7 @@ namespace Capstone.Models.ViewModels.Account
         [Required(ErrorMessage = "*")]
         [Display(Name = "Main Phone Number")]
         [DataType(DataType.PhoneNumber)]
-        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid phone number")]
+        [RegularExpression(@"^([\+]?(?:00)?[0-9]{1,3}[\s.-]?[0-9]{1,12})([\s.-]?[0-9]{1,4}?)$", ErrorMessage ="Must be a valid Phone Number")]
         public string PhoneNumber { get; set; }
     }
 }

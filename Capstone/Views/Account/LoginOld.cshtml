@@ -48,12 +48,12 @@
 
 
     <div class="error-box">
-        <span class="failed-login">
-            @if (Model != null && Model.failedLogin)
-            {
-                <p>Your Email or Password was incorrect. Please try again.</p>
-            }
-        </span>
+        @if (Model != null && Model.failedLogin)
+        {
+            <span class="failed-login">
+                Your Email or Password was incorrect. Please try again.
+            </span>
+        }
     </div>
     <form asp-controller="account" asp-action="login" method="post">
 

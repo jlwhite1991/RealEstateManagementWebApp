@@ -1,6 +1,6 @@
 ﻿@model Capstone.Models.ViewModels.Account.LoginViewModel
 @{
-    ViewData["Title"] = "PrettyLogin";
+    ViewData["Title"] = "Login";
 }
 
 <!DOCTYPE html>
@@ -39,12 +39,7 @@
             <div class="wrap-login100">
                 <form asp-controller="account" asp-action="login" method="post" class="login100-form validate-form">
                     <span>
-                        @if (Model != null && Model.failedLogin)
-                         {
-                        <span class="login100-form-title">
-                            Your Email or Password was incorrect. Please try again.
-                        </span>
-                        }
+
                     </span>
                     <span class="login100-form-title p-b-26">
                         Welcome
@@ -52,6 +47,12 @@
                     <span class="login100-form-title p-b-48">
                         <img src="~/images/TE_Logo.png" id="login-logo" />
                     </span>
+                    @if (Model != null && Model.failedLogin)
+                        {
+                    <span class="login100-form-error">
+                        Your Email or Password was incorrect. Please try again.
+                    </span>
+                        }
 
                     <div class="wrap-input100 validate-input" data-validate="Valid email is: a@b.c">
                         <input class="input100" type="email" name="email" asp-for="Email">
