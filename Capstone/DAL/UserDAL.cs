@@ -5,12 +5,15 @@ using System.Threading.Tasks;
 using Capstone.Models;
 using Capstone.DAL.Interfaces;
 using System.Data.SqlClient;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Capstone.DAL
 {
     public class UserDAL : IUserDAL
     {
         private readonly string connectionString;
+
+        private const string SQL_GetTenants = "SELECT* FROM site_user WHERE role = 'tenant';";
 
         public UserDAL(string connectionString)
         {
@@ -59,7 +62,7 @@ namespace Capstone.DAL
                     cmd.Parameters.AddWithValue("@phone_number", user.PhoneNumber);
                     cmd.Parameters.AddWithValue("@email_address", user.EmailAddress);
                     cmd.Parameters.AddWithValue("@role", user.Role);
-                    cmd.Parameters.AddWithValue("@password", user.Password );
+                    cmd.Parameters.AddWithValue("@password", user.Password);
                     cmd.Parameters.AddWithValue("@salt", user.Salt);
 
                     result = (cmd.ExecuteNonQuery() > 0) ? true : false;
@@ -112,6 +115,79 @@ namespace Capstone.DAL
             {
                 throw ex;
             }
+        }
+
+        public List<User> GetTenantUsers()
+        {
+            List<User> output = new List<User>();
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(SQL_GetTenants, conn);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        User user = new User();
+
+                        user.UserID = Convert.ToInt32(reader["user_id"]);
+                        user.EmailAddress = Convert.ToString(reader["email_address"]);
+                        user.Password = Convert.ToString(reader["password"]);
+                        user.Salt = Convert.ToString(reader["salt"]);
+                        user.Role = Convert.ToString(reader["role"]);
+                        user.FirstName = Convert.ToString(reader["first_name"]);
+                        user.LastName = Convert.ToString(reader["last_name"]);
+                        user.PhoneNumber = Convert.ToString(reader["phone_number"]);
+
+                        output.Add(user);
+                    }
+                }
+            }
+            catch (SqlException)
+            {
+                output = new List<User>();
+            }
+
+            return output;
+        }
+
+        public List<SelectListItem> GetUserEmailSelectList()
+        {
+            List<SelectListItem> output = new List<SelectListItem>();
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    SqlCommand cmd = new SqlCommand();
+                    cmd.CommandText = SQL_GetTenants;
+                    cmd.Connection = connection;
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        SelectListItem item = new SelectListItem();
+
+                        item.Text = Convert.ToString(reader["email_address"]);
+                        item.Value = Convert.ToString(reader["email_address"]);
+
+                        output.Add(item);
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                output = new List<SelectListItem>();
+            }
+
+            return output;
         }
 
         private User MapRowToUser(SqlDataReader reader)

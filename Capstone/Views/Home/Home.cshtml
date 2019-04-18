@@ -50,17 +50,20 @@
             </div>
             <div style="display: flex; flex-direction:row; justify-content:space-around; padding-bottom: 20px;">
                 <div>
-                    <img src="~/images/pay-rent.png" alt="Pay Rent" style="width:175px; padding-bottom: 10px; border-radius:20px;" />
-                    <h4 style="text-align: center;"><strong>Pay Rent</strong></h4>
+                    <a asp-controller="Tenant" asp-action="Rent">
+                        <img src="~/images/pay-rent.png" alt="Pay Rent" style="width:175px; padding-bottom: 10px; border-radius:20px;" />
+                        <h4 style="text-align: center;"><strong>Pay Rent</strong></h4></a>
                 </div>
                 <div>
-                    <img src="~/images/maintenance.png" alt="Maintnenace Request" style="width:175px; padding-bottom: 10px; border-radius:20px;" />
-                    <h4 style="text-align: center;"><strong>Maintenance Request</strong></h4>
+                    <a asp-controller="Tenant" asp-action="Submit">
+                        <img src="~/images/maintenance.png" alt="Maintnenace Request" style="width:175px; padding-bottom: 10px; border-radius:20px;" />
+                        <h4 style="text-align: center;"><strong>Maintenance Request</strong></h4></a>
                 </div>
                 <div>
-                    <img src="~/images/login2.png" alt="Login" style="width:175px; border-radius:20px; padding-bottom: 10px;">
-                    <h4 style="text-align: center;"><strong>Login</strong></h4>
-                </div>
+                    <a asp-controller="Account" asp-action="Login">
+                        <img src="~/images/login2.png" alt="Login" style="width:175px; border-radius:20px; padding-bottom: 10px;">
+                        <h4 style="text-align: center;"><strong>Login</strong></h4></a>
+</div>
             </div>
         </div>
         <div style="padding:50px; padding-left: 150px; padding-right: 150px;">
