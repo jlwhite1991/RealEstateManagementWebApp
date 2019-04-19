@@ -138,7 +138,7 @@ INSERT INTO site_user (user_id, first_name, last_name, phone_number, email_addre
 
 INSERT INTO site_user (user_id, first_name, last_name, phone_number, email_address, role, password, salt) VALUES (2, 'Dick', 'Stevens', '666-666-6666', 'dick@test.com', 'owner', 'password', 'salt');
 
-INSERT INTO site_user (user_id, first_name, last_name, phone_number, email_address, role, password, salt) VALUES (3, 'Cassie', 'Wayne', '777-777-7777', 'jlwhite1991@gmail.com', 'tenant', 'password', 'salt');
+INSERT INTO site_user (user_id, first_name, last_name, phone_number, email_address, role, password, salt) VALUES (3, 'Cassie', 'Wayne', '777-777-7777', 'cassie@test.com', 'tenant', 'password', 'salt');
 
 INSERT INTO site_user (user_id, first_name, last_name, phone_number, email_address, role, password, salt) VALUES (4, 'Joe', 'Drake', '888-888-8888', 'joe@test.com', 'tenant', 'password', 'salt');
 
