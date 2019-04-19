@@ -16,6 +16,7 @@ namespace Capstone.DAL
         private const string SQL_GetPropertiesForOwner = "SELECT p.* FROM property as p JOIN site_user as u ON p.owner_id = u.user_id WHERE p.owner_id = @ownerID;";
 
         private string connectionString;
+
         private UnitDAL unitDAL;
 
         public PropertyDAL(string connectionString)
