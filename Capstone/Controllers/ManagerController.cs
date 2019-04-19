@@ -46,8 +46,10 @@ namespace Capstone.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var senderEmail = new MailAddress("nicholas.paraskos@gmail.com", "Nick");
+                    // Enter in valid email address in the first string parameter below.
+                    var senderEmail = new MailAddress("", "Nick");
                     var receiverEmail = new MailAddress(receiver, "Receiver");
+                    // Enter in password for email address provided above.
                     var password = "TechElevator2019";
                     var sub = subject;
                     var body = message;
