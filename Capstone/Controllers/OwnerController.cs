@@ -95,7 +95,8 @@ namespace Capstone.Controllers
         public IActionResult Statistics()
         {
             //TODO: Implement get owner's ID
-            int currentOwnerID = 2;
+            User user = GetCurrentUser();
+            int currentOwnerID = user.UserID;
 
             OwnersPropertiesViewModel statisticsForOwnerProperties = new OwnersPropertiesViewModel();
 
